@@ -4,6 +4,7 @@ import Breadcrumbs from "../../ui/breadcrumbs.astro";
 import SkillNav from "../../ui/skill-nav.astro";
 import PlaybookDemo from "../../ui/playbook-demo.astro";
 import SkillCard from "../../ui/skill-card.astro";
+import { renderSkillMarkdown } from "../../lib/render-skill-markdown";
 import { playbook, playbookBySlug } from "../../data/playbook.ts";
 import { skills } from "../../data/skills.ts";
 
@@ -48,6 +49,9 @@ const breadcrumbItems = [
 
 const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
 const pageUrl = new URL(`/playbook/${slug}`, siteOrigin).toString();
+const descriptionHtml = entry
+  ? await renderSkillMarkdown(entry.description, siteOrigin.toString())
+  : "";
 const structuredData = entry
   ? {
       "@context": "https://schema.org",
@@ -119,9 +123,10 @@ const breadcrumbStructuredData = {
                 <h1 class="text-parchment-900 text-3xl font-medium tracking-tight text-balance">
                   {entry.title}
                 </h1>
-                <p class="text-parchment-600 max-w-2xl text-base leading-snug text-pretty">
-                  {entry.description}
-                </p>
+                <div
+                  class="prose prose-neutral prose-p:my-0 prose-p:text-base prose-p:leading-snug prose-p:text-parchment-600 prose-p:text-pretty max-w-2xl"
+                  set:html={descriptionHtml}
+                />
               </div>
               <div class="pt-1">
                 <SkillNav

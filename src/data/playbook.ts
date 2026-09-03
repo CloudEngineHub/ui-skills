@@ -62,7 +62,7 @@ const rawPlaybook: PlaybookEntry[] = [
     skill: "better-ui",
     title: "Match border radius on nested elements",
     description:
-      "Set nested border radii to match the padding between each layer.",
+      "Set the nested element's radius to the parent's radius minus its padding.\n\nFormula: `inner radius = outer radius - padding`",
     related: [
       "improve-ui",
       "make-interfaces-feel-better",
