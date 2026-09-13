@@ -3912,6 +3912,71 @@ const registrySource: RegistrySourceSkill[] = [
     description:
       "Development workflows for the playwright-cli repository, including rolling Playwright dependencies and preparing releases.",
   },
+  {
+    slug: "apple-design",
+    user: "dickwu",
+    repo: "apple-design-skill",
+    rawUrl:
+      "https://raw.githubusercontent.com/dickwu/apple-design-skill/main/SKILL.md",
+    githubUrl:
+      "https://github.com/dickwu/apple-design-skill/blob/main/SKILL.md",
+    name: "apple-design",
+    topics: ["visual", "craft", "accessibility"],
+    description:
+      "Cross-platform UI/UX design reviewer grounded in Apple's Human Interface Guidelines plus a design-craft lens for distinctive, non-templated mobile and desktop app work.",
+  },
+  {
+    slug: "apple-hig",
+    user: "justinwetch",
+    repo: "HIGAgentSkills",
+    rawUrl:
+      "https://raw.githubusercontent.com/justinwetch/HIGAgentSkills/main/SKILL.md",
+    githubUrl:
+      "https://github.com/justinwetch/HIGAgentSkills/blob/main/SKILL.md",
+    name: "apple-hig",
+    topics: ["visual", "systems", "accessibility"],
+    description:
+      "Apple Human Interface Guidelines reference with platform-specific design rules, component specs, measurements, and interaction patterns for iOS, iPadOS, macOS, tvOS, visionOS, and watchOS.",
+  },
+  {
+    slug: "gemini-api-dev",
+    user: "google-gemini",
+    repo: "gemini-skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/google-gemini/gemini-skills/main/skills/gemini-api-dev/SKILL.md",
+    githubUrl:
+      "https://github.com/google-gemini/gemini-skills/blob/main/skills/gemini-api-dev/SKILL.md",
+    name: "gemini-api-dev",
+    topics: ["tooling", "systems"],
+    description:
+      "Write code that calls the Gemini API for text generation, chat, multimodal understanding, image and video generation, streaming, function calling, structured output, and agent workflows in Python and TypeScript.",
+  },
+  {
+    slug: "gemini-live-api-dev",
+    user: "google-gemini",
+    repo: "gemini-skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/google-gemini/gemini-skills/main/skills/gemini-live-api-dev/SKILL.md",
+    githubUrl:
+      "https://github.com/google-gemini/gemini-skills/blob/main/skills/gemini-live-api-dev/SKILL.md",
+    name: "gemini-live-api-dev",
+    topics: ["tooling", "systems"],
+    description:
+      "Build real-time, bidirectional streaming applications with the Gemini Live API, including WebSocket audio, video, and text, VAD, session management, and ephemeral client auth tokens.",
+  },
+  {
+    slug: "gemini-omni-flash-api",
+    user: "google-gemini",
+    repo: "gemini-skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/google-gemini/gemini-skills/main/skills/gemini-omni-flash-api/SKILL.md",
+    githubUrl:
+      "https://github.com/google-gemini/gemini-skills/blob/main/skills/gemini-omni-flash-api/SKILL.md",
+    name: "gemini-omni-flash-api",
+    topics: ["video", "tooling"],
+    description:
+      "Generative video editing, text-to-video, image-referenced video, frame transitions, and extensions using Gemini Omni 1.1 Flash via the official google-genai SDK.",
+  },
 ];
 
 const buildInitialPathSlug = (entry: RegistrySourceSkill) => {

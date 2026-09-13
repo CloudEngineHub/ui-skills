@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-12T08:55:34.768Z",
-  "skillCount": 298,
+  "generatedAt": "2026-09-13T08:21:33.100Z",
+  "skillCount": 303,
   "digests": {
     "ibelick/ui-skills-root": "sha256:d4e1033f910467164a9cd3931277c1b309cb87c6d23cb5f184a65bfdf92b1c9c",
     "ibelick/baseline-ui": "sha256:fea3322f36d58fdafafce2aef56e4556dd2ac7b20876b7dff7d8be7f25fa597f",
@@ -201,7 +201,7 @@
     "nvillapiano/cc-figma-tokens": "sha256:2044e6207414700ca4d33c7b8651bdff8dae2ab170a877c2c29e16691eeb673d",
     "oso95/scroll-world": "sha256:e56fe396c1fa258278289cfa9cbf17253519f11f4856535f7709dd2368e3e65e",
     "iannuttall/seo": "sha256:4cfce696054ee456f15eb8048b1a86e567f61079ed8adb86ae8acc96dba9c561",
-    "remotion-dev/remotion-best-practices": "sha256:a1aaa78bbb74fdcc4dd38d1caa9b84a7f5da79ce78aab766d6108ee9f5c5cb6d",
+    "remotion-dev/remotion-best-practices": "sha256:1d79c3676835dd56e64cf6cecca1726d5ea297b8b75fe128aa59b1d20d69d942",
     "vercel/next-cache-components": "sha256:c9df63c3d1762d0574bff679faacf3fdf4ab4fab1b578865c71c26605af6bc7f",
     "vercel/next-cache-components-optimizer": "sha256:f6e9c8deff1ae9864acffc83d8d261d487dcc66afbae1aee1feb4acbb636c30b",
     "accesslint/audit-and-fix": "sha256:fa1f1af1f043a075a93e989b35d00e74c1539cfe840dd69b70c4a00625eb9e44",
@@ -299,6 +299,11 @@
     "humanlayer/narrow-react-prop-types": "sha256:bfcea79a20074a9178c6aa21c34629951d9646ea381e8be4c83a0a136e3aa288",
     "ehmo/slopgent": "sha256:e95124e62bea28f098633c1af0354b23ac934d3a062c7686ef89f446cef2f551",
     "coldteadotai/eli5": "sha256:190f814a70ffb4ab4522628042f1d71c28e94a5fc0786105780ad13a9e1e506e",
-    "microsoft/dev": "sha256:3c08eeb759e6b8e7b7c95c763cc6e7bdadfb0198f86c74e9ce338922d039be1c"
+    "microsoft/dev": "sha256:3c08eeb759e6b8e7b7c95c763cc6e7bdadfb0198f86c74e9ce338922d039be1c",
+    "google-gemini/gemini-live-api-dev": "sha256:f9abc86ccb9a5a94b72ea4293910770ec09521cc2444830e0a28532548d71a80",
+    "justinwetch/apple-hig": "sha256:c5f5cc69b6b79fd06324aae856a7c596d78b9594ea3621a59c50b3ac32712ef0",
+    "dickwu/apple-design": "sha256:2e1b625e273efada93a00ce04c73c557687bbb8646f02d23f501989fbceb0682",
+    "google-gemini/gemini-omni-flash-api": "sha256:5ec057f58398c846e41210c6416341fc6a8052763c1b9feef55f3652defdd220",
+    "google-gemini/gemini-api-dev": "sha256:cab97535318ecb5fa29ab06c1f1125b67e1999186cf7ed176800143715412c6c"
   }
 }
