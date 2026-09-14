@@ -45,31 +45,7 @@ const topicGroupPaths = Array.from(
   new Set(skills.flatMap((skill) => skill.topics ?? [])),
 );
 const groupPaths = getGroupPaths();
-const reservedSingleSegmentPaths = new Set([
-  ...topicGroupPaths,
-  ...groupPaths.filter((pathSlug) => !pathSlug.includes("/")),
-]);
-const slugCounts = new Map<string, number>();
-
-for (const skill of skills) {
-  slugCounts.set(skill.slug, (slugCounts.get(skill.slug) ?? 0) + 1);
-}
-
-const legacySingleSkillPaths = skills
-  .filter(
-    (skill) =>
-      slugCounts.get(skill.slug) === 1 &&
-      !reservedSingleSegmentPaths.has(skill.slug),
-  )
-  .map((skill) => skill.slug);
-const legacySkillPaths = new Map(
-  skills
-    .filter((skill) => legacySingleSkillPaths.includes(skill.slug))
-    .map((skill) => [skill.slug, skill.pathSlug]),
-);
-
 const routePaths = [
-  ...legacySingleSkillPaths,
   ...topicGroupPaths,
   ...groupPaths,
   ...skills.map((skill) => skill.pathSlug),
@@ -82,8 +58,6 @@ export const getRegistryByPath = (pathSlug: string) =>
   registryByPath.get(pathSlug);
 
 export const getSkillsBySlug = (slug: string) => skillsBySlug.get(slug) ?? [];
-
-export const getLegacySkillPath = (slug: string) => legacySkillPaths.get(slug);
 
 export const getSkillsBySource = (sourceKey: string) =>
   skillsBySource.get(sourceKey) ?? [];
