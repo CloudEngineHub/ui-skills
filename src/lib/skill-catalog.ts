@@ -62,6 +62,11 @@ const legacySingleSkillPaths = skills
       !reservedSingleSegmentPaths.has(skill.slug),
   )
   .map((skill) => skill.slug);
+const legacySkillPaths = new Map(
+  skills
+    .filter((skill) => legacySingleSkillPaths.includes(skill.slug))
+    .map((skill) => [skill.slug, skill.pathSlug]),
+);
 
 const routePaths = [
   ...legacySingleSkillPaths,
@@ -77,6 +82,8 @@ export const getRegistryByPath = (pathSlug: string) =>
   registryByPath.get(pathSlug);
 
 export const getSkillsBySlug = (slug: string) => skillsBySlug.get(slug) ?? [];
+
+export const getLegacySkillPath = (slug: string) => legacySkillPaths.get(slug);
 
 export const getSkillsBySource = (sourceKey: string) =>
   skillsBySource.get(sourceKey) ?? [];

@@ -20,6 +20,7 @@ import {
   getSkillsBySlug,
   getSkillsBySource,
   getSkillsByTopic,
+  getLegacySkillPath,
   getSkillRoutePaths,
 } from "../../lib/skill-catalog";
 import { defaultSkillContentLoader } from "../../lib/agent-skills-discovery";
@@ -58,7 +59,13 @@ const skill =
   (Boolean(topic) && segments.length === 2
     ? getSkillByTopicAndSlug(topicSlug, leaf)
     : undefined) ??
-  (!isOwnerGroup ? uniqueSingleSlugMatch : undefined);
+  (!isOwnerGroup && !isTopicGroup ? uniqueSingleSlugMatch : undefined);
+
+const legacySkillPath = segments.length === 1 ? getLegacySkillPath(pathSlug) : undefined;
+
+if (legacySkillPath) {
+  return Astro.redirect(`/skills/${legacySkillPath}`, 301);
+}
 
 const userChildren =
   !topic && segments.length === 1 ? getSkillsBySource(bucket) : [];

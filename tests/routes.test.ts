@@ -5,6 +5,7 @@ import { GET as getSkillContent } from "../src/pages/skills/[...slug]/llms.txt.t
 import { GET as getSitemap } from "../src/pages/sitemap.xml.ts";
 import { renderSkillMarkdown } from "../src/lib/render-skill-markdown.ts";
 import { collections } from "../src/data/collections.ts";
+import { getLegacySkillPath } from "../src/lib/skill-catalog.ts";
 
 describe("route boundaries", () => {
   test("includes Playbook pages in the sitemap", async () => {
@@ -36,6 +37,15 @@ describe("route boundaries", () => {
         ),
       );
     }
+  });
+
+  test("maps legacy direct skill slugs to canonical publisher paths", () => {
+    assert.equal(
+      getLegacySkillPath("ui-skills-root"),
+      "ibelick/ui-skills-root",
+    );
+    assert.equal(getLegacySkillPath("accessibility"), undefined);
+    assert.equal(getLegacySkillPath("motion"), undefined);
   });
 
   test("returns the registry manifest with machine-readable headers", async () => {
