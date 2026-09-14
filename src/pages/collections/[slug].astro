@@ -1,0 +1,238 @@
+---
+export const prerender = true;
+
+import { playbookBySlug } from "../../data/playbook.ts";
+import {
+  getCollectionBySlug,
+  getCollectionRoutePaths,
+} from "../../lib/collection-catalog.ts";
+import { getSkillByPath, getSkillsBySlug } from "../../lib/skill-catalog.ts";
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../ui/breadcrumbs.astro";
+import CollectionCard from "../../ui/collection-card.astro";
+import PlaybookCard from "../../ui/playbook-card.astro";
+import SkillCard from "../../ui/skill-card.astro";
+
+export function getStaticPaths() {
+  return getCollectionRoutePaths();
+}
+
+const routeSlug = Astro.params.slug ?? "";
+const slug = Array.isArray(routeSlug) ? routeSlug.join("/") : routeSlug;
+const collection = getCollectionBySlug(slug);
+
+if (!collection) {
+  Astro.response.status = 404;
+}
+
+const playbookEntries = (collection?.playbook ?? [])
+  .map((playbookSlug) => playbookBySlug.get(playbookSlug))
+  .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
+const collectionSkills = (collection?.skills ?? [])
+  .map((entry) => {
+    const skill = entry.pathSlug
+      ? getSkillByPath(entry.pathSlug)
+      : getSkillsBySlug(entry.slug)[0];
+    return skill ? { ...entry, skill } : undefined;
+  })
+  .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
+const relatedCollections = (collection?.relatedSlugs ?? [])
+  .map((relatedSlug) => getCollectionBySlug(relatedSlug))
+  .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
+
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "Collections", href: "/collections" },
+  { label: collection?.title ?? slug },
+];
+const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
+const pageUrl = new URL(`/collections/${slug}`, siteOrigin).toString();
+const structuredData = collection
+  ? {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: collection.title,
+       description: collection.metaDescription,
+      url: pageUrl,
+      keywords: [collection.keyword, "UI design", "design engineering"],
+      hasPart: {
+        "@type": "ItemList",
+        itemListElement: [
+           ...collectionSkills.map((entry, index) => ({
+             "@type": "ListItem",
+             position: index + 1,
+             name: entry.skill.label,
+             url: new URL(
+               `/skills/${entry.skill.pathSlug}`,
+               siteOrigin,
+             ).toString(),
+           })),
+           ...playbookEntries.map((entry, index) => ({
+             "@type": "ListItem",
+             position: collectionSkills.length + index + 1,
+             name: entry.title,
+             url: new URL(`/playbook/${entry.slug}`, siteOrigin).toString(),
+           })),
+        ],
+      },
+    }
+  : undefined;
+const breadcrumbStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    item: new URL(item.href ?? `/collections/${slug}`, siteOrigin).toString(),
+  })),
+};
+---
+
+<Layout
+  structuredData={structuredData
+    ? [structuredData, breadcrumbStructuredData]
+    : breadcrumbStructuredData}
+   title={collection?.seoTitle ?? "Collection Not Found | UI Skills"}
+   description={collection?.metaDescription ??
+    "The requested collection does not exist."}
+  robots={!collection ? "noindex,follow" : undefined}
+>
+  <div class="relative flex min-h-dvh flex-col items-center px-0 sm:px-4">
+    <div class="relative mt-20 w-full max-w-3xl sm:px-0">
+      <div class="mx-auto flex w-full flex-col gap-10">
+        <Breadcrumbs items={breadcrumbItems} />
+
+        {
+          collection ? (
+            <>
+              <div class="px-4 sm:px-0">
+                <h1 class="text-parchment-900 text-3xl font-medium tracking-tight text-balance">
+                  {collection.title}
+                </h1>
+                <p class="text-parchment-600 mt-3 max-w-2xl text-lg leading-snug text-pretty">
+                   {collection.intro}
+                </p>
+              </div>
+
+              <section>
+                <div class="px-4 sm:px-0">
+                  <h2 class="text-parchment-900 text-lg font-medium text-balance">
+                    Skills
+                  </h2>
+                  <p class="text-parchment-600 mt-2 text-base leading-snug text-pretty">
+                    Deeper agent context for this UI problem.
+                  </p>
+                </div>
+                <div class="mt-4 grid gap-4 px-4 sm:grid-cols-2 sm:px-0">
+                  {collectionSkills.map(({ skill }) => (
+                    <SkillCard
+                      href={`/skills/${skill.pathSlug}`}
+                      slug={skill.label}
+                      description={skill.description}
+                      ownerLabel={skill.sourceLabel ?? skill.label}
+                      avatarUrl={`https://github.com/${skill.sourceKey ?? "ibelick"}.png?size=40`}
+                    />
+                  ))}
+                </div>
+              </section>
+
+              <section>
+                <div class="px-4 sm:px-0">
+                  <h2 class="text-parchment-900 text-lg font-medium text-balance">
+                    Playbook examples
+                  </h2>
+                  <p class="text-parchment-600 mt-2 text-base leading-snug text-pretty">
+                    Practical visual decisions to apply before reaching for
+                    deeper implementation guidance.
+                  </p>
+                </div>
+                <div class="mt-4 grid gap-4 px-4 sm:grid-cols-2 sm:px-0">
+                  {playbookEntries.map((entry) => (
+                    <PlaybookCard
+                      href={`/playbook/${entry.slug}`}
+                      title={entry.title}
+                      description={entry.description}
+                    />
+                  ))}
+                </div>
+              </section>
+
+              <section class="px-4 sm:px-0">
+                <h2 class="text-parchment-900 text-lg font-medium text-balance">
+                  What this improves
+                </h2>
+                <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+                  {collection.improvements.map((improvement) => (
+                    <li class="border-parchment-200 text-parchment-700 border-b py-3 text-base first:border-t sm:first:border-t-0">
+                      {improvement}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              <section class="px-4 sm:px-0">
+                <h2 class="text-parchment-900 text-lg font-medium text-balance">
+                  Use with CLI or MCP
+                </h2>
+                <p class="text-parchment-600 mt-2 max-w-2xl text-base leading-snug text-pretty">
+                  Start from the terminal, or connect UI Skills to an agent
+                  through MCP to browse and fetch the guidance in this
+                  collection.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-3">
+                  <a
+                    href="/cli"
+                    class="border-parchment-300 text-parchment-900 hover:bg-parchment-100 focus-visible:outline-primary rounded-md border px-3 py-2 text-sm font-medium focus-visible:outline-1 focus-visible:outline-offset-2"
+                  >
+                    Open CLI docs
+                  </a>
+                  <a
+                    href="/mcp/docs"
+                    class="border-parchment-300 text-parchment-900 hover:bg-parchment-100 focus-visible:outline-primary rounded-md border px-3 py-2 text-sm font-medium focus-visible:outline-1 focus-visible:outline-offset-2"
+                  >
+                    Connect with MCP
+                  </a>
+                </div>
+              </section>
+
+              {relatedCollections.length > 0 ? (
+                <section>
+                  <div class="px-4 sm:px-0">
+                    <h2 class="text-parchment-900 text-lg font-medium text-balance">
+                      Related collections
+                    </h2>
+                  </div>
+                  <div class="mt-4 grid gap-4 px-4 sm:grid-cols-2 sm:px-0">
+                    {relatedCollections.map((related) => (
+                      <CollectionCard
+                        href={`/collections/${related.slug}`}
+                        title={related.title}
+                        description={related.cardDescription}
+                      />
+                    ))}
+                  </div>
+                </section>
+              ) : null}
+            </>
+          ) : (
+            <div class="px-4 sm:px-0">
+              <h1 class="text-parchment-900 text-3xl font-medium tracking-tight text-balance">
+                Collection not found
+              </h1>
+              <p class="text-parchment-600 mt-3 text-base leading-snug text-pretty">
+                The route does not match a UI Skills collection.
+              </p>
+              <a
+                href="/collections"
+                class="text-parchment-700 hover:text-parchment-900 mt-5 inline-block text-base font-medium underline underline-offset-4"
+              >
+                Browse collections
+              </a>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</Layout>
