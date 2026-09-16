@@ -19,6 +19,43 @@ colors:
 typography:
   mono:
     fontFamily: JetBrains Mono
+  sans:
+    fontFamily: Inter Variable
+  h1:
+    className: type-h1
+    fontFamily: Inter Variable
+    fontSize: text-4xl
+    fontWeight: 450
+    lineHeight: leading-tight
+    letterSpacing: tracking-tighter
+  h2:
+    className: type-h2
+    fontFamily: Inter Variable
+    fontSize: text-xl
+    fontWeight: 450
+    lineHeight: leading-tight
+    letterSpacing: tracking-tighter
+  bodyMd:
+    className: type-body-md
+    fontFamily: Inter Variable
+    fontSize: text-sm
+    fontWeight: 400
+    lineHeight: leading-normal
+    letterSpacing: tracking-tight
+  bodySm:
+    className: type-body-sm
+    fontFamily: Inter Variable
+    fontSize: text-xs
+    fontWeight: 400
+    lineHeight: leading-normal
+    letterSpacing: tracking-tight
+  code:
+    className: type-code
+    fontFamily: JetBrains Mono
+    fontSize: text-xs
+    fontWeight: 400
+    lineHeight: leading-normal
+    letterSpacing: tracking-normal
 ---
 
 ## Overview
@@ -34,10 +71,13 @@ Quiet, editorial, and code-first. UI Skills should feel like a precise developer
 
 ## Typography
 
-- Use the project sans-serif for interface copy.
+- Use Inter Variable for interface copy.
 - Use JetBrains Mono for commands, code, and technical identifiers.
-- Use medium-weight, tight-tracking headings.
-- Keep body copy at the base size.
+- Use `text-4xl`, weight 450, `leading-tight`, and `tracking-tighter` for H1.
+- Use `text-xl`, weight 450, `leading-tight`, and `tracking-tighter` for H2.
+- Use `text-sm`, weight 400, `leading-normal`, and `tracking-tight` for body md.
+- Use `text-xs`, weight 400, `leading-normal`, and `tracking-tight` for body sm.
+- Use `text-xs`, weight 400, `leading-normal`, and `tracking-normal` for code.
 - Use sentence case for labels and links.
 
 ## Layout
