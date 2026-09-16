@@ -86,7 +86,8 @@ Quiet, editorial, and code-first. UI Skills should feel like a precise developer
 
 ## Layout
 
-- Use a narrow centered reading column for documentation.
+- Use `container-7xl` for large page layouts and `container-3xl` for small page layouts.
+- Both layout utilities center their content, fill the available width, and apply `px-5` horizontal padding.
 - Use generous vertical spacing and light section boundaries.
 - Use responsive grids for collections.
 - Keep mobile padding consistent.

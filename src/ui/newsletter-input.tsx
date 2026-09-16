@@ -115,9 +115,9 @@ export default function NewsletterInput({
   };
 
   return (
-    <div className="px-4 pt-16 sm:px-8 sm:pt-20" data-newsletter-widget>
+    <div className="pt-16 sm:pt-20" data-newsletter-widget>
       <hr className="border-line-default border-px mx-auto w-1/4 pb-16 sm:pb-20" />
-      <div className="mx-auto w-full max-w-3xl">
+      <div className="container-3xl">
         <div className="max-w-xl">
           <h2 className="text-content-primary text-lg font-medium text-balance">
             {title}

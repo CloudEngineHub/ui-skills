@@ -36,12 +36,12 @@ const structuredData = {
   title="UI Design Collections | UI Skills"
   description="Explore UI Skills collections for common design problems, from mobile app design and website layout to forms, navigation, and design systems."
 >
-  <div class="relative flex min-h-dvh flex-col items-center px-0 sm:px-4">
-    <div class="relative mt-20 w-full max-w-3xl sm:px-0">
+  <div class="relative flex min-h-dvh flex-col items-center">
+    <div class="relative mt-20 container-3xl">
       <div class="mx-auto flex w-full flex-col gap-8">
         <Breadcrumbs items={breadcrumbItems} />
 
-        <div class="px-4 sm:px-0">
+        <div class="">
           <h1
             class="text-content-primary text-3xl font-medium tracking-tight text-balance"
           >
@@ -56,7 +56,7 @@ const structuredData = {
           </p>
         </div>
 
-        <div class="grid gap-4 px-4 sm:grid-cols-2 sm:px-0">
+        <div class="grid gap-4 sm:grid-cols-2">
           {
             collections.map((collection) => (
               <CollectionCard

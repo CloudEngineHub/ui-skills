@@ -113,12 +113,12 @@ const breadcrumbStructuredData = {
 >
   {
     entry && sourceSkill ? (
-      <div class="relative flex min-h-dvh flex-col items-center px-0 sm:px-4">
-        <div class="relative mt-20 w-full max-w-3xl sm:px-0">
+      <div class="relative flex min-h-dvh flex-col items-center">
+        <div class="relative mt-20 container-3xl">
           <div class="mx-auto flex w-full flex-col gap-10">
             <Breadcrumbs items={breadcrumbItems} />
 
-            <div class="flex items-start justify-between gap-4 px-4 sm:px-0">
+            <div class="flex items-start justify-between gap-4 ">
               <div class="space-y-3">
                 <h1 class="text-content-primary text-3xl font-medium tracking-tight text-balance">
                   {entry.title}
@@ -145,7 +145,7 @@ const breadcrumbStructuredData = {
             <PlaybookDemo entry={entry} />
 
             {relatedSkills.length > 0 ? (
-              <div class="px-4 sm:px-0">
+              <div class="">
                 <h2 class="text-content-primary mb-3 text-lg font-medium text-balance">
                   Related skills
                 </h2>
@@ -166,8 +166,8 @@ const breadcrumbStructuredData = {
         </div>
       </div>
     ) : (
-      <div class="relative flex min-h-dvh flex-col items-center px-0 sm:px-4">
-        <div class="relative mt-20 w-full max-w-3xl px-4 sm:px-0">
+      <div class="relative flex min-h-dvh flex-col items-center">
+        <div class="relative mt-20 container-3xl">
           <Breadcrumbs items={breadcrumbItems} />
           <h1 class="text-content-primary mt-8 text-3xl font-medium text-balance">
             Playbook entry not found

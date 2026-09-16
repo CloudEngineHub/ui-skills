@@ -101,15 +101,15 @@ const breadcrumbStructuredData = {
      "The requested collection does not exist."}
   robots={!collection ? "noindex,follow" : undefined}
 >
-  <div class="relative flex min-h-dvh flex-col items-center px-0 sm:px-4">
-    <div class="relative mt-20 w-full max-w-3xl sm:px-0">
+  <div class="relative flex min-h-dvh flex-col items-center">
+    <div class="relative mt-20 container-3xl">
       <div class="mx-auto flex w-full flex-col gap-10">
         <Breadcrumbs items={breadcrumbItems} />
 
         {
           collection ? (
             <>
-              <div class="px-4 sm:px-0">
+              <div class="">
                 <h1 class="text-content-primary text-3xl font-medium tracking-tight text-balance">
                   {collection.title}
                 </h1>
@@ -118,7 +118,7 @@ const breadcrumbStructuredData = {
                 </p>
               </div>
 
-              <section class="px-4 sm:px-0">
+              <section class="">
                 <h2 class="text-content-primary text-lg font-medium text-balance">
                   What your agent can do with these {capabilityKeyword} skills
                 </h2>
@@ -130,12 +130,12 @@ const breadcrumbStructuredData = {
               </section>
 
               <section>
-                <div class="px-4 sm:px-0">
+                <div class="">
                   <h2 class="text-content-primary text-lg font-medium text-balance">
                     Skills in this collection
                   </h2>
                 </div>
-                <div class="mt-4 grid gap-4 px-4 sm:grid-cols-2 sm:px-0">
+                <div class="mt-4 grid gap-4 sm:grid-cols-2">
                   {collectionSkills.map(({ skill }) => (
                     <SkillCard
                       href={`/skills/${skill.pathSlug}`}
@@ -149,12 +149,12 @@ const breadcrumbStructuredData = {
               </section>
 
               <section>
-                <div class="px-4 sm:px-0">
+                <div class="">
                   <h2 class="text-content-primary text-lg font-medium text-balance">
                     Playbook examples
                   </h2>
                 </div>
-                <div class="mt-4 grid gap-4 px-4 sm:grid-cols-2 sm:px-0">
+                <div class="mt-4 grid gap-4 sm:grid-cols-2">
                   {playbookEntries.map((entry) => (
                     <PlaybookCard
                       href={`/playbook/${entry.slug}`}
@@ -167,12 +167,12 @@ const breadcrumbStructuredData = {
 
               {relatedCollections.length > 0 ? (
                 <section>
-                  <div class="px-4 sm:px-0">
+                  <div class="">
                     <h2 class="text-content-primary text-lg font-medium text-balance">
                       Related collections
                     </h2>
                   </div>
-                  <div class="mt-4 grid gap-4 px-4 sm:grid-cols-2 sm:px-0">
+                  <div class="mt-4 grid gap-4 sm:grid-cols-2">
                     {relatedCollections.map((related) => (
                       <CollectionCard
                         href={`/collections/${related.slug}`}
@@ -185,7 +185,7 @@ const breadcrumbStructuredData = {
               ) : null}
             </>
           ) : (
-            <div class="px-4 sm:px-0">
+            <div class="">
               <h1 class="text-content-primary text-3xl font-medium tracking-tight text-balance">
                 Collection not found
               </h1>

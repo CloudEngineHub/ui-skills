@@ -352,9 +352,9 @@ const installCommand = (() => {
   robots={isInvalidSkillsRoute ? "noindex,follow" : undefined}
 >
   <div
-    class="relative flex min-h-dvh flex-col items-center justify-start px-0 sm:px-4"
+    class="relative flex min-h-dvh flex-col items-center justify-start"
   >
-    <div class="relative mt-20 w-full max-w-3xl sm:px-0">
+    <div class="relative mt-20 container-3xl">
       <div class="mx-auto flex w-full flex-col gap-10">
         <div>
           <Breadcrumbs items={breadcrumbItems} />
@@ -363,7 +363,7 @@ const installCommand = (() => {
         {
           isGroupPage ? (
             <>
-              <div class="px-4 sm:px-0">
+              <div class="">
                 {showOwnerProfile ? (
                   <div class="flex items-center gap-3">
                     <a
@@ -405,7 +405,7 @@ const installCommand = (() => {
                 ) : null}
               </div>
 
-              <div class="grid gap-4 px-4 sm:grid-cols-2 sm:px-0">
+              <div class="grid gap-4 sm:grid-cols-2">
                 {children.map((entry) => (
                   <SkillCard
                     href={skillHref(entry)}
@@ -423,7 +423,7 @@ const installCommand = (() => {
               </div>
 
               {relatedTopicsForTopicPage.length > 0 ? (
-                <div class="px-4 sm:px-0">
+                <div class="">
                   <h2 class="text-content-primary mb-3 text-lg font-medium tracking-tight">
                     Related topics
                   </h2>
@@ -444,7 +444,7 @@ const installCommand = (() => {
         {
           skill ? (
             <>
-              <div class="px-4 sm:px-0">
+              <div class="">
                 <div class="mt-3 flex items-start justify-between gap-3">
                   <div class="flex items-center gap-2">
                     <h1 class="text-content-primary text-3xl font-medium tracking-tight">
@@ -525,7 +525,7 @@ const installCommand = (() => {
                   <h2 class="text-content-primary mb-3 px-4 text-lg font-medium text-balance sm:px-0">
                     Playbook
                   </h2>
-                  <div class="grid gap-4 px-4 sm:grid-cols-2 sm:px-0">
+                  <div class="grid gap-4 sm:grid-cols-2">
                     {skillPlaybookEntries.map((entry) => (
                       <PlaybookCard
                         href={`/playbook/${entry.slug}`}
@@ -542,7 +542,7 @@ const installCommand = (() => {
                   <h2 class="text-content-primary mb-3 px-4 text-lg font-medium sm:px-0">
                     More from {skill.sourceLabel}
                   </h2>
-                  <div class="grid gap-3 px-4 sm:grid-cols-2 sm:px-0">
+                  <div class="grid gap-3 sm:grid-cols-2">
                     {relatedSkills.map((entry) => (
                       <a
                         href={skillHref(entry)}
@@ -563,7 +563,7 @@ const installCommand = (() => {
               ) : null}
 
               {skillTopicSuggestions.length > 0 ? (
-                <div class="px-4 sm:px-0">
+                <div class="">
                   <h2 class="text-content-primary mb-3 text-lg font-medium">
                     Explore topics
                   </h2>
@@ -583,7 +583,7 @@ const installCommand = (() => {
 
         {
           isInvalidSkillsRoute ? (
-            <div class="px-4 sm:px-0">
+            <div class="">
               <h1 class="text-content-primary text-3xl font-medium">
                 Skill page not found
               </h1>
