@@ -18,7 +18,7 @@ const finalItems =
 
 <nav aria-label="Breadcrumb" class="px-4 sm:px-0">
   <ol
-    class="text-parchment-500 flex flex-wrap items-center gap-1.5 text-sm font-medium"
+    class="text-content-secondary flex flex-wrap items-center gap-1.5 text-sm font-medium"
   >
     {
       finalItems.map((item, index) => {
@@ -30,17 +30,17 @@ const finalItems =
               {item.href && !isLast ? (
                 <a
                   href={item.href}
-                  class="hover:text-parchment-900 transition-colors"
+                  class="hover:text-content-primary transition-colors"
                 >
                   {item.label}
                 </a>
               ) : (
-                <span class={isLast ? "text-parchment-900" : undefined}>
+                <span class={isLast ? "text-content-primary" : undefined}>
                   {item.label}
                 </span>
               )}
             </li>
-            {!isLast ? <li class="text-parchment-300 select-none">/</li> : null}
+            {!isLast ? <li class="text-content-extra-muted select-none">/</li> : null}
           </>
         );
       })

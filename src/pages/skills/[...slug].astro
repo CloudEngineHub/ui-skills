@@ -370,7 +370,7 @@ const installCommand = (() => {
                       href={ownerGithubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="focus-visible:outline-primary inline-flex rounded-full focus-visible:outline-1 focus-visible:outline-offset-2"
+                      class="focus-visible:outline-content-primary inline-flex rounded-full focus-visible:outline-1 focus-visible:outline-offset-2"
                       aria-label={`Open ${groupTitle} GitHub profile`}
                     >
                       <img
@@ -379,27 +379,27 @@ const installCommand = (() => {
                         width="32"
                         height="32"
                         loading="lazy"
-                        class="border-parchment-200 size-8 rounded-full border"
+                        class="border-line-default size-8 rounded-full border"
                       />
                     </a>
-                    <h1 class="text-parchment-900 text-3xl font-medium tracking-tight">
+                    <h1 class="text-content-primary text-3xl font-medium tracking-tight">
                       <a
                         href={ownerGithubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="hover:text-parchment-700 transition-colors"
+                        class="hover:text-content-primary transition-colors"
                       >
                         {groupTitle}
                       </a>
                     </h1>
                   </div>
                 ) : (
-                  <h1 class="text-parchment-900 text-3xl font-medium tracking-tight">
+                  <h1 class="text-content-primary text-3xl font-medium tracking-tight">
                     {groupTitle}
                   </h1>
                 )}
                 {isTopicGroup && topic?.description ? (
-                  <p class="text-parchment-500 mt-3 text-base">
+                  <p class="text-content-secondary mt-3 text-base">
                     {topic.description}
                   </p>
                 ) : null}
@@ -424,7 +424,7 @@ const installCommand = (() => {
 
               {relatedTopicsForTopicPage.length > 0 ? (
                 <div class="px-4 sm:px-0">
-                  <h2 class="text-parchment-900 mb-3 text-lg font-medium tracking-tight">
+                  <h2 class="text-content-primary mb-3 text-lg font-medium tracking-tight">
                     Related topics
                   </h2>
                   <div class="flex flex-wrap gap-2">
@@ -447,7 +447,7 @@ const installCommand = (() => {
               <div class="px-4 sm:px-0">
                 <div class="mt-3 flex items-start justify-between gap-3">
                   <div class="flex items-center gap-2">
-                    <h1 class="text-parchment-900 text-3xl font-medium tracking-tight">
+                    <h1 class="text-content-primary text-3xl font-medium tracking-tight">
                       {skill.name}
                     </h1>
                     {githubUrl ? (
@@ -456,7 +456,7 @@ const installCommand = (() => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="View skill source on GitHub"
-                        class="text-parchment-500 hover:text-parchment-900 inline-flex size-9 items-center justify-center rounded-md transition-colors"
+                        class="text-content-secondary hover:text-content-primary inline-flex size-9 items-center justify-center rounded-md transition-colors"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -487,21 +487,21 @@ const installCommand = (() => {
                       width="22"
                       height="22"
                       loading="lazy"
-                      class="border-parchment-200 size-[22px] rounded-full border"
+                      class="border-line-default size-[22px] rounded-full border"
                     />
-                    <span class="text-parchment-700 hover:text-parchment-900 text-[18px] leading-none font-[450]">
+                    <span class="text-content-primary hover:text-content-primary text-[18px] leading-none font-[450]">
                       {skillOwnerLabel}
                     </span>
                   </a>
                 ) : null}
-                <p class="text-parchment-600 mt-3 text-lg">
+                <p class="text-content-secondary mt-3 text-lg">
                   {skill.description ??
                     "Install this skill with a single command."}
                 </p>
               </div>
 
               <div>
-                <h2 class="text-parchment-900 mb-3 px-4 text-lg font-medium sm:px-0">
+                <h2 class="text-content-primary mb-3 px-4 text-lg font-medium sm:px-0">
                   Install
                 </h2>
                 <CodeBlock
@@ -522,7 +522,7 @@ const installCommand = (() => {
 
               {skillPlaybookEntries.length > 0 ? (
                 <div>
-                  <h2 class="text-parchment-900 mb-3 px-4 text-lg font-medium text-balance sm:px-0">
+                  <h2 class="text-content-primary mb-3 px-4 text-lg font-medium text-balance sm:px-0">
                     Playbook
                   </h2>
                   <div class="grid gap-4 px-4 sm:grid-cols-2 sm:px-0">
@@ -539,20 +539,20 @@ const installCommand = (() => {
 
               {relatedSkills.length > 0 ? (
                 <div>
-                  <h2 class="text-parchment-900 mb-3 px-4 text-lg font-medium sm:px-0">
+                  <h2 class="text-content-primary mb-3 px-4 text-lg font-medium sm:px-0">
                     More from {skill.sourceLabel}
                   </h2>
                   <div class="grid gap-3 px-4 sm:grid-cols-2 sm:px-0">
                     {relatedSkills.map((entry) => (
                       <a
                         href={skillHref(entry)}
-                        class="hover:border-parchment-300 hover:bg-parchment-100 border-parchment-200 rounded-[10px] border px-4 py-3 transition-colors"
+                        class="hover:border-content-extra-muted hover:bg-fill-subtle border-line-default rounded-[10px] border px-4 py-3 transition-colors"
                       >
-                        <div class="text-parchment-900 font-[450]">
+                        <div class="text-content-primary font-[450]">
                           {entry.pathSlug}
                         </div>
                         {entry.description ? (
-                          <div class="text-parchment-500 mt-1 line-clamp-2 text-[14px] leading-snug">
+                          <div class="text-content-secondary mt-1 line-clamp-2 text-[14px] leading-snug">
                             {entry.description}
                           </div>
                         ) : null}
@@ -564,7 +564,7 @@ const installCommand = (() => {
 
               {skillTopicSuggestions.length > 0 ? (
                 <div class="px-4 sm:px-0">
-                  <h2 class="text-parchment-900 mb-3 text-lg font-medium">
+                  <h2 class="text-content-primary mb-3 text-lg font-medium">
                     Explore topics
                   </h2>
                   <div class="flex flex-wrap gap-2">
@@ -584,17 +584,17 @@ const installCommand = (() => {
         {
           isInvalidSkillsRoute ? (
             <div class="px-4 sm:px-0">
-              <h1 class="text-parchment-900 text-3xl font-medium">
+              <h1 class="text-content-primary text-3xl font-medium">
                 Skill page not found
               </h1>
-              <p class="text-parchment-500 mt-3 text-base">
+              <p class="text-content-secondary mt-3 text-base">
                 The route you requested does not match a skill, topic, or source
                 page.
               </p>
               <div class="mt-5">
                 <a
                   href="/skills"
-                  class="text-parchment-700 hover:text-parchment-900 text-sm font-medium underline underline-offset-4"
+                  class="text-content-primary hover:text-content-primary text-sm font-medium underline underline-offset-4"
                 >
                   Browse all skills
                 </a>

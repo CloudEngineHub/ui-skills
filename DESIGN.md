@@ -3,19 +3,21 @@ version: alpha
 name: UI Skills
 description: Design language for UI Skills.
 colors:
-  parchment-50: oklch(0.985 0 0)
-  parchment-100: oklch(0.97 0 0)
-  parchment-200: oklch(0.92 0 0)
-  parchment-300: oklch(0.84 0 0)
-  parchment-400: oklch(0.7 0 0)
-  parchment-500: oklch(0.55 0 0)
-  parchment-600: oklch(0.42 0 0)
-  parchment-700: oklch(0.3 0 0)
-  parchment-800: oklch(0.18 0 0)
-  parchment-900: oklch(0.09 0 0)
-  primary: oklch(0.09 0 0)
-  secondary: oklch(0.42 0 0)
-  tertiary: oklch(0.7 0 0)
+  page-default: "#FFFFFF"
+  surface-default: "#FFFFFF"
+  surface-subtle: "#F5F5F5"
+  fill-default: "#FFFFFF"
+  fill-subtle: "#FAFAFA"
+  fill-strong: "#F5F5F5"
+  fill-inverse: "#151515"
+  fill-accent: "#E5F0FF"
+  content-primary: "#151515"
+  content-secondary: "#757575"
+  content-muted: "#A5A5A5"
+  content-extra-muted: "#E5E5E5"
+  content-inverse: "#FFFFFF"
+  content-accent: "#1F78FF"
+  color-line-default: "#EDEDED"
 typography:
   mono:
     fontFamily: JetBrains Mono
@@ -64,10 +66,12 @@ Quiet, editorial, and code-first. UI Skills should feel like a precise developer
 
 ## Colors
 
-- Use the parchment scale for text, borders, muted states, and page backgrounds.
-- Use white or `parchment-100` for elevated surfaces and code blocks.
-- Keep the palette neutral. Do not add decorative accents or gradients.
-- Reserve the darkest values for primary text and important actions.
+- Use `page-default` for the page background and `surface-default` for standard surfaces.
+- Use `surface-subtle`, `fill-subtle`, and `fill-strong` for restrained surface contrast.
+- Use `content-primary`, `content-secondary`, `content-muted`, and `content-extra-muted` for text hierarchy.
+- Use `color-line-default` for borders and dividers.
+- Use `fill-inverse` and `content-inverse` for inverse controls and surfaces.
+- Use `fill-accent` and `content-accent` for accent states.
 
 ## Typography
 
@@ -91,7 +95,7 @@ Quiet, editorial, and code-first. UI Skills should feel like a precise developer
 ## Elevation & Depth
 
 - Use white surfaces with `shadow-2xs`.
-- On larger screens, use `ring-1 ring-black/10` instead of visible borders.
+- On larger screens, use `ring-1 ring-line-default` instead of visible borders.
 - On mobile, use thin top and bottom borders for full-width surfaces.
 - Keep elevation subtle.
 
@@ -99,7 +103,7 @@ Quiet, editorial, and code-first. UI Skills should feel like a precise developer
 
 - Use restrained rounded corners for cards, controls, dialogs, and code blocks.
 - Keep long-form content rectangular.
-- Use parchment-tinted hover states.
+- Use `fill-subtle` and `fill-strong` for hover states.
 
 ## Components
 

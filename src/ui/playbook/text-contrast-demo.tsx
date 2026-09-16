@@ -10,9 +10,9 @@ function SettingsList({ readable = false }: { readable?: boolean }) {
     <div className="w-72 space-y-4 text-left">
       {items.map((item) => (
         <div key={item.title}>
-          <p className="text-parchment-900 text-sm font-medium">{item.title}</p>
+          <p className="text-content-primary text-sm font-medium">{item.title}</p>
           <p
-            className={`mt-0.5 text-sm ${readable ? "text-parchment-600" : "text-parchment-300"}`}
+            className={`mt-0.5 text-sm ${readable ? "text-content-secondary" : "text-content-extra-muted"}`}
           >
             {item.detail}
           </p>

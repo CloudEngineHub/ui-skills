@@ -65,7 +65,7 @@ function CopyButton({ animated = false }: { animated?: boolean }) {
       icon
       aria-label={copied ? "Copied" : "Copy link"}
       onClick={handleCopy}
-      className={copied ? "bg-parchment-100" : undefined}
+      className={copied ? "bg-fill-subtle" : undefined}
     >
       {animated ? (
         <span className="relative size-4">

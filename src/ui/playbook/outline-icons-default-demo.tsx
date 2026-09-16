@@ -85,7 +85,7 @@ function TabBar({
             onClick={() => onActiveTabChange(id)}
             className={cn(
               "flex flex-col items-center gap-1 rounded-md px-3 py-1 transition-colors",
-              active ? "text-parchment-900" : "text-parchment-400 hover:text-parchment-600",
+              active ? "text-content-primary" : "text-content-muted hover:text-content-secondary",
             )}
           >
             <Icon variant={variant} />

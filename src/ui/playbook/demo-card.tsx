@@ -13,7 +13,7 @@ type PlaybookSwitchRowProps = {
 };
 
 const labelButtonClass =
-  "text-xs transition-colors hover:text-parchment-900 whitespace-nowrap";
+  "text-xs transition-colors hover:text-content-primary whitespace-nowrap";
 
 export function PlaybookSwitchRow({
   offLabel,
@@ -39,7 +39,7 @@ export function PlaybookSwitchRow({
         className={cn(
           labelButtonClass,
           isGrid && "justify-self-end",
-          checked ? "text-parchment-400" : "text-parchment-900",
+          checked ? "text-content-muted" : "text-content-primary",
         )}
       >
         {offLabel}
@@ -58,7 +58,7 @@ export function PlaybookSwitchRow({
         className={cn(
           labelButtonClass,
           isGrid && "justify-self-start",
-          checked ? "text-parchment-900" : "text-parchment-400",
+          checked ? "text-content-primary" : "text-content-muted",
         )}
       >
         {onLabel}
@@ -114,7 +114,7 @@ export function PlaybookDemoCard({
     ) : (
       <div className="flex items-center gap-3">
         {headerExtra ? (
-          <div className="border-parchment-200 flex items-center gap-2 border-r pr-3">
+          <div className="border-line-default flex items-center gap-2 border-r pr-3">
             {headerExtra}
           </div>
         ) : null}
@@ -125,7 +125,7 @@ export function PlaybookDemoCard({
   return (
     <div
       className={cn(
-        "border-parchment-200 relative h-84 w-full max-w-3xl rounded-none border-t border-b bg-white py-3.5 pt-6 pr-4 pl-6 shadow-2xs sm:h-88 sm:rounded-[8px] sm:border-none sm:shadow-2xs sm:ring-1 sm:ring-black/10",
+        "border-line-default relative h-84 w-full max-w-3xl rounded-none border-t border-b bg-surface-default py-3.5 pt-6 pr-4 pl-6 shadow-2xs sm:h-88 sm:rounded-[8px] sm:border-none sm:shadow-2xs sm:ring-1 sm:ring-line-default",
         flush ? "overflow-hidden p-0" : "",
       )}
     >

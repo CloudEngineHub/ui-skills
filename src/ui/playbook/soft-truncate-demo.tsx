@@ -4,13 +4,13 @@ const FILENAME = "quarterly-brand-guidelines-final-v3.pdf";
 
 function FileRow({ softFade = false }: { softFade?: boolean }) {
   return (
-    <div className="w-48 rounded-lg bg-white p-3 ring-1 ring-black/10">
-      <p className="text-parchment-500 text-xs">Attachment</p>
+    <div className="w-48 rounded-lg bg-surface-default p-3 ring-1 ring-line-default">
+      <p className="text-content-secondary text-xs">Attachment</p>
       <p
         className={
           softFade
-            ? "text-parchment-900 mt-1 overflow-hidden text-sm whitespace-nowrap [mask-image:linear-gradient(to_right,black_80%,transparent)]"
-            : "text-parchment-900 mt-1 truncate text-sm"
+            ? "text-content-primary mt-1 overflow-hidden text-sm whitespace-nowrap [mask-image:linear-gradient(to_right,black_80%,transparent)]"
+            : "text-content-primary mt-1 truncate text-sm"
         }
       >
         {FILENAME}

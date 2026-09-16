@@ -18,7 +18,7 @@ const items = [
 
 function ScrollList({ faded = false }: { faded?: boolean }) {
   return (
-    <div className="border-parchment-200 w-full max-w-xs overflow-hidden rounded-lg border bg-white">
+    <div className="border-line-default w-full max-w-xs overflow-hidden rounded-lg border bg-surface-default">
       <div
         className={cn(
           "no-scrollbar h-52 overflow-y-auto py-1",
@@ -26,7 +26,7 @@ function ScrollList({ faded = false }: { faded?: boolean }) {
         )}
       >
         {items.map((item) => (
-          <p key={item} className="text-parchment-900 px-4 py-2 text-sm">
+          <p key={item} className="text-content-primary px-4 py-2 text-sm">
             {item}
           </p>
         ))}

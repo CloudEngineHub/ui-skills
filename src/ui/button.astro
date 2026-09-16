@@ -15,14 +15,14 @@ const {
 } = Astro.props as Props;
 
 const baseClass =
-  "inline-flex items-center justify-center rounded-[6px] text-[14px] transition-colors focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-primary";
+  "inline-flex items-center justify-center rounded-[6px] text-[14px] transition-colors focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-content-primary";
 
 const variantClass =
   variant === "ghost"
-    ? "h-8 border border-transparent bg-transparent font-[450] text-parchment-700 hover:bg-parchment-100 hover:text-parchment-900"
+    ? "h-8 border border-transparent bg-transparent font-[450] text-content-primary hover:bg-fill-subtle hover:text-content-primary"
     : variant === "black"
-      ? "h-8 border border-parchment-900 bg-black px-3 font-[450] text-white hover:border-parchment-800 hover:bg-black"
-      : "h-8 border border-parchment-200 bg-transparent px-3 font-[450] text-parchment-900 hover:border-parchment-300 hover:bg-parchment-100";
+      ? "h-8 border border-content-primary bg-fill-inverse px-3 font-[450] text-content-inverse hover:border-content-primary hover:bg-fill-inverse"
+      : "h-8 border border-line-default bg-transparent px-3 font-[450] text-content-primary hover:border-content-extra-muted hover:bg-fill-subtle";
 ---
 
 {

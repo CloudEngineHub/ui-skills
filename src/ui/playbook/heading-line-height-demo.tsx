@@ -3,7 +3,7 @@ import { PlaybookDemoCard } from "./demo-card";
 function HeroHeading({ tight = false }: { tight?: boolean }) {
   return (
     <h2
-      className={`text-parchment-900 max-w-[16ch] text-3xl font-medium tracking-tight ${
+      className={`text-content-primary max-w-[16ch] text-3xl font-medium tracking-tight ${
         tight ? "leading-tight" : "leading-normal"
       }`}
     >

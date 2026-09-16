@@ -18,14 +18,14 @@ function StatusRow({ labeled = false, status }: StatusRowProps) {
   const label = status === "paid" ? "Paid" : "Failed";
 
   return (
-    <div className="flex w-56 items-center justify-between rounded-lg bg-white px-4 py-3 ring-1 ring-black/10">
+    <div className="flex w-56 items-center justify-between rounded-lg bg-surface-default px-4 py-3 ring-1 ring-line-default">
       <div>
-        <p className="text-parchment-900 text-sm font-medium">Invoice #1042</p>
-        <p className="text-parchment-600 text-sm">$248.00</p>
+        <p className="text-content-primary text-sm font-medium">Invoice #1042</p>
+        <p className="text-content-secondary text-sm">$248.00</p>
       </div>
       <div className="flex items-center gap-2">
         <StatusDot status={status} />
-        {labeled ? <span className="text-parchment-900 text-sm">{label}</span> : null}
+        {labeled ? <span className="text-content-primary text-sm">{label}</span> : null}
       </div>
     </div>
   );

@@ -21,9 +21,9 @@ function HomeIcon({ strokeWidth = 1.5 }: { strokeWidth?: number }) {
 
 function NavItem({ matched = false }: { matched?: boolean }) {
   return (
-    <div className="flex w-56 items-center gap-2.5 rounded-lg bg-white px-4 py-3 ring-1 ring-black/10">
+    <div className="flex w-56 items-center gap-2.5 rounded-lg bg-surface-default px-4 py-3 ring-1 ring-line-default">
       <HomeIcon strokeWidth={matched ? 2 : 1} />
-      <span className="text-parchment-900 text-sm font-semibold">Home</span>
+      <span className="text-content-primary text-sm font-semibold">Home</span>
     </div>
   );
 }

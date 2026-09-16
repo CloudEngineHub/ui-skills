@@ -7,11 +7,11 @@ function ArticleCard({ clamped = false }: { clamped?: boolean }) {
   return (
     <div className="w-64 text-left">
       <h3
-        className={`text-parchment-900 text-base font-medium leading-snug ${clamped ? "line-clamp-2" : ""}`}
+        className={`text-content-primary text-base font-medium leading-snug ${clamped ? "line-clamp-2" : ""}`}
       >
         {title}
       </h3>
-      <p className="text-parchment-500 mt-2 text-sm">Updated 2 hours ago</p>
+      <p className="text-content-secondary mt-2 text-sm">Updated 2 hours ago</p>
     </div>
   );
 }

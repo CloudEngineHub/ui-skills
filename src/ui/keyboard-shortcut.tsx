@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const shortcutClass =
-  "inline-flex h-[18px] select-none items-center gap-0.5 bg-transparent font-mono text-[10px] text-white/60";
+  "inline-flex h-[18px] select-none items-center gap-0.5 bg-transparent font-mono text-[10px] text-content-inverse/60";
 
 function CommandIcon() {
   return (

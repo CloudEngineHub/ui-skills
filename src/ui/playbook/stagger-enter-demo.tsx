@@ -31,11 +31,11 @@ function HeroEnter({
     >
       <motion.h3
         variants={item}
-        className="text-parchment-900 text-xl font-medium tracking-tight"
+        className="text-content-primary text-xl font-medium tracking-tight"
       >
         Welcome back
       </motion.h3>
-      <motion.p variants={item} className="text-parchment-600 text-sm">
+      <motion.p variants={item} className="text-content-secondary text-sm">
         Pick up where you left off with your latest drafts.
       </motion.p>
       <motion.div variants={item} className="pt-1">

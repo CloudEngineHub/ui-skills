@@ -10,11 +10,11 @@ function PhotoCard({ cleanOutline = false }: { cleanOutline?: boolean }) {
   return (
     <div className="w-48">
       <div
-        className={`overflow-hidden rounded-lg ${cleanOutline ? "outline-parchment-300 outline outline-1" : "ring-parchment-400 ring-2"}`}
+        className={`overflow-hidden rounded-lg ${cleanOutline ? "outline-content-extra-muted outline outline-1" : "ring-content-muted ring-2"}`}
       >
         {failed ? (
           <div
-            className="bg-parchment-100 aspect-4/3"
+            className="bg-fill-subtle aspect-4/3"
             role="img"
             aria-label="Image unavailable"
           />
@@ -30,7 +30,7 @@ function PhotoCard({ cleanOutline = false }: { cleanOutline?: boolean }) {
           />
         )}
       </div>
-      <p className="text-parchment-900 mt-2 text-sm font-medium">
+      <p className="text-content-primary mt-2 text-sm font-medium">
         Rainy Weather, Étretat
       </p>
     </div>

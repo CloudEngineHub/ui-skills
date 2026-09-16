@@ -8,7 +8,7 @@ function InboxIcon() {
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
-      className="text-parchment-300 size-10"
+      className="text-content-extra-muted size-10"
       aria-hidden="true"
     >
       <path
@@ -24,8 +24,8 @@ function EmptyInbox({ withAction = false }: { withAction?: boolean }) {
   return (
     <div className="flex w-56 flex-col items-center text-center">
       <InboxIcon />
-      <p className="text-parchment-900 mt-3 text-sm font-medium">No messages yet</p>
-      <p className="text-parchment-600 mt-1 text-sm">
+      <p className="text-content-primary mt-3 text-sm font-medium">No messages yet</p>
+      <p className="text-content-secondary mt-1 text-sm">
         When someone writes to you, it will show up here.
       </p>
       {withAction ? (

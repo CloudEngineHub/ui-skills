@@ -11,12 +11,12 @@ function SettingsList({ spaced = false }: { spaced?: boolean }) {
       <div className={spaced ? "space-y-8" : ""}>
         {groups.map((group) => (
           <div key={group.title} className={spaced ? "space-y-1" : ""}>
-            <p className="text-parchment-900 text-sm font-medium">{group.title}</p>
+            <p className="text-content-primary text-sm font-medium">{group.title}</p>
             {group.items.map((item) => (
               <p
                 key={item}
-                className={`text-parchment-600 text-sm ${
-                  spaced ? "py-1" : "border-parchment-200 border-b py-2.5"
+                className={`text-content-secondary text-sm ${
+                  spaced ? "py-1" : "border-line-default border-b py-2.5"
                 }`}
               >
                 {item}

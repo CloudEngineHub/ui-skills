@@ -59,7 +59,7 @@ function TooltipToolbar({ warm = false }: { warm?: boolean }) {
       onMouseLeave={warm ? hideTip : undefined}
       onBlur={warm ? handleBlur : undefined}
     >
-      <div className="flex gap-1 rounded-lg bg-white p-1 ring-1 ring-black/10">
+      <div className="flex gap-1 rounded-lg bg-surface-default p-1 ring-1 ring-line-default">
         {labels.map((label) => (
           <button
             key={label}
@@ -72,14 +72,14 @@ function TooltipToolbar({ warm = false }: { warm?: boolean }) {
             onMouseLeave={warm ? undefined : hideTip}
             onFocus={() => showTip(label)}
             onBlur={warm ? undefined : hideTip}
-            className="text-parchment-700 hover:bg-parchment-50 relative inline-flex size-8 items-center justify-center rounded-md"
+            className="text-content-primary hover:bg-fill-subtle relative inline-flex size-8 items-center justify-center rounded-md"
           >
             <ToolbarIcon />
             {activeTip === label ? (
               <span
                 id={`tooltip-${label.toLowerCase()}`}
                 role="tooltip"
-                className="bg-parchment-900 pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 rounded-md px-2 py-1 text-xs whitespace-nowrap text-white"
+                className="bg-fill-inverse pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 rounded-md px-2 py-1 text-xs whitespace-nowrap text-content-inverse"
               >
                 {label}
               </span>

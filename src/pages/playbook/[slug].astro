@@ -120,11 +120,11 @@ const breadcrumbStructuredData = {
 
             <div class="flex items-start justify-between gap-4 px-4 sm:px-0">
               <div class="space-y-3">
-                <h1 class="text-parchment-900 text-3xl font-medium tracking-tight text-balance">
+                <h1 class="text-content-primary text-3xl font-medium tracking-tight text-balance">
                   {entry.title}
                 </h1>
                 <div
-                  class="prose prose-neutral prose-p:my-0 prose-p:text-base prose-p:leading-snug prose-p:text-parchment-600 prose-p:text-pretty max-w-2xl"
+                  class="prose prose-neutral prose-p:my-0 prose-p:text-base prose-p:leading-snug prose-p:text-content-secondary prose-p:text-pretty max-w-2xl"
                   set:html={descriptionHtml}
                 />
               </div>
@@ -146,7 +146,7 @@ const breadcrumbStructuredData = {
 
             {relatedSkills.length > 0 ? (
               <div class="px-4 sm:px-0">
-                <h2 class="text-parchment-900 mb-3 text-lg font-medium text-balance">
+                <h2 class="text-content-primary mb-3 text-lg font-medium text-balance">
                   Related skills
                 </h2>
                 <div class="grid gap-4 sm:grid-cols-2">
@@ -169,15 +169,15 @@ const breadcrumbStructuredData = {
       <div class="relative flex min-h-dvh flex-col items-center px-0 sm:px-4">
         <div class="relative mt-20 w-full max-w-3xl px-4 sm:px-0">
           <Breadcrumbs items={breadcrumbItems} />
-          <h1 class="text-parchment-900 mt-8 text-3xl font-medium text-balance">
+          <h1 class="text-content-primary mt-8 text-3xl font-medium text-balance">
             Playbook entry not found
           </h1>
-          <p class="text-parchment-500 mt-3 text-base leading-snug text-pretty">
+          <p class="text-content-secondary mt-3 text-base leading-snug text-pretty">
             The route does not match a Playbook slug.
           </p>
           <a
             href="/playbook"
-            class="text-parchment-700 mt-5 inline-block text-base font-medium"
+            class="text-content-primary mt-5 inline-block text-base font-medium"
           >
             Back to Playbook
           </a>

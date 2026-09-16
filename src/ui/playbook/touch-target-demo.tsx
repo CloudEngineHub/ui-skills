@@ -21,7 +21,7 @@ function TouchTargetIconButton({ showHitTarget }: { showHitTarget: boolean }) {
       <button
         type="button"
         aria-label="Close"
-        className="bg-parchment-100 text-parchment-900 hover:bg-parchment-200 inline-flex size-6 items-center justify-center rounded-full transition-transform duration-150 active:scale-[0.96]"
+        className="bg-fill-subtle text-content-primary hover:bg-fill-strong inline-flex size-6 items-center justify-center rounded-full transition-transform duration-150 active:scale-[0.96]"
       >
         <CloseIcon />
       </button>
@@ -32,14 +32,14 @@ function TouchTargetIconButton({ showHitTarget }: { showHitTarget: boolean }) {
     <div className="relative size-11">
       <div
         aria-hidden="true"
-        className="border-parchment-400 pointer-events-none absolute inset-0 rounded-full border border-dashed"
+        className="border-content-muted pointer-events-none absolute inset-0 rounded-full border border-dashed"
       />
       <button
         type="button"
         aria-label="Close"
         className="group inline-flex size-11 items-center justify-center rounded-full"
       >
-        <span className="bg-parchment-100 text-parchment-900 group-hover:bg-parchment-200 flex size-6 items-center justify-center rounded-full transition-colors duration-150 ease-out group-active:scale-[0.96]">
+        <span className="bg-fill-subtle text-content-primary group-hover:bg-fill-strong flex size-6 items-center justify-center rounded-full transition-colors duration-150 ease-out group-active:scale-[0.96]">
           <CloseIcon />
         </span>
       </button>

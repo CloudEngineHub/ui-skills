@@ -17,7 +17,7 @@ function WorkbenchTabs({ restrained = false }: { restrained?: boolean }) {
   return (
     <div className="w-56">
       <div
-        className="border-parchment-200 flex border-b"
+        className="border-line-default flex border-b"
         role="tablist"
         aria-label="Workbench"
       >
@@ -34,8 +34,8 @@ function WorkbenchTabs({ restrained = false }: { restrained?: boolean }) {
               className={cn(
                 "-mb-px flex-1 border-b-2 py-2 text-xs font-medium",
                 selected
-                  ? "text-parchment-900 border-parchment-900"
-                  : "text-parchment-500 border-transparent",
+                  ? "text-content-primary border-content-primary"
+                  : "text-content-secondary border-transparent",
                 restrained && "transition-colors duration-100 ease-out",
               )}
             >
@@ -47,11 +47,11 @@ function WorkbenchTabs({ restrained = false }: { restrained?: boolean }) {
 
       <div className="pt-4" role="tabpanel">
         {restrained ? (
-          <p className="text-parchment-600 text-sm">{activeTab.content}</p>
+          <p className="text-content-secondary text-sm">{activeTab.content}</p>
         ) : (
           <p
             key={active}
-            className="text-parchment-600 animate-in fade-in slide-in-from-bottom-2 blur-in fill-mode-both text-sm duration-300 ease-out"
+            className="text-content-secondary animate-in fade-in slide-in-from-bottom-2 blur-in fill-mode-both text-sm duration-300 ease-out"
           >
             {activeTab.content}
           </p>

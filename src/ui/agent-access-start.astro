@@ -16,7 +16,7 @@ const accessOptions = [
 <section class="px-4 sm:px-0" aria-labelledby="agent-access-title">
   <h2
     id="agent-access-title"
-    class="text-parchment-900 text-base font-medium text-balance"
+    class="text-content-primary text-base font-medium text-balance"
   >
     Agent, start here.
   </h2>
@@ -25,11 +25,11 @@ const accessOptions = [
       accessOptions.map((option) => (
         <a
           href={option.href}
-          class="hover:border-parchment-300 hover:bg-parchment-100 border-parchment-200 focus-visible:outline-primary relative flex h-full flex-col justify-between rounded-[12px] border bg-transparent px-6 py-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+    class="hover:border-content-extra-muted hover:bg-fill-subtle border-line-default focus-visible:outline-content-primary relative flex h-full flex-col justify-between rounded-[12px] border bg-transparent px-6 py-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           <div class="flex flex-col gap-3">
-            <div class="text-parchment-900 font-[450]">{option.label}</div>
-            <div class="text-parchment-500 text-[14px] leading-snug">
+            <div class="text-content-primary font-[450]">{option.label}</div>
+            <div class="text-content-secondary text-[14px] leading-snug">
               {option.description}
             </div>
           </div>

@@ -110,19 +110,19 @@ const breadcrumbStructuredData = {
           collection ? (
             <>
               <div class="px-4 sm:px-0">
-                <h1 class="text-parchment-900 text-3xl font-medium tracking-tight text-balance">
+                <h1 class="text-content-primary text-3xl font-medium tracking-tight text-balance">
                   {collection.title}
                 </h1>
-                <p class="text-parchment-600 mt-3 max-w-2xl text-lg leading-snug text-pretty">
+                <p class="text-content-secondary mt-3 max-w-2xl text-lg leading-snug text-pretty">
                   {collection.intro}
                 </p>
               </div>
 
               <section class="px-4 sm:px-0">
-                <h2 class="text-parchment-900 text-lg font-medium text-balance">
+                <h2 class="text-content-primary text-lg font-medium text-balance">
                   What your agent can do with these {capabilityKeyword} skills
                 </h2>
-                <ul class="text-parchment-700 mt-4 list-disc space-y-2 pl-5 text-base leading-snug text-pretty">
+                <ul class="text-content-primary mt-4 list-disc space-y-2 pl-5 text-base leading-snug text-pretty">
                   {collection.agentCapabilities.map((capability) => (
                     <li>{capability}</li>
                   ))}
@@ -131,7 +131,7 @@ const breadcrumbStructuredData = {
 
               <section>
                 <div class="px-4 sm:px-0">
-                  <h2 class="text-parchment-900 text-lg font-medium text-balance">
+                  <h2 class="text-content-primary text-lg font-medium text-balance">
                     Skills in this collection
                   </h2>
                 </div>
@@ -150,7 +150,7 @@ const breadcrumbStructuredData = {
 
               <section>
                 <div class="px-4 sm:px-0">
-                  <h2 class="text-parchment-900 text-lg font-medium text-balance">
+                  <h2 class="text-content-primary text-lg font-medium text-balance">
                     Playbook examples
                   </h2>
                 </div>
@@ -168,7 +168,7 @@ const breadcrumbStructuredData = {
               {relatedCollections.length > 0 ? (
                 <section>
                   <div class="px-4 sm:px-0">
-                    <h2 class="text-parchment-900 text-lg font-medium text-balance">
+                    <h2 class="text-content-primary text-lg font-medium text-balance">
                       Related collections
                     </h2>
                   </div>
@@ -186,15 +186,15 @@ const breadcrumbStructuredData = {
             </>
           ) : (
             <div class="px-4 sm:px-0">
-              <h1 class="text-parchment-900 text-3xl font-medium tracking-tight text-balance">
+              <h1 class="text-content-primary text-3xl font-medium tracking-tight text-balance">
                 Collection not found
               </h1>
-              <p class="text-parchment-600 mt-3 text-base leading-snug text-pretty">
+              <p class="text-content-secondary mt-3 text-base leading-snug text-pretty">
                 The route does not match a UI Skills collection.
               </p>
               <a
                 href="/collections"
-                class="text-parchment-700 hover:text-parchment-900 mt-5 inline-block text-base font-medium underline underline-offset-4"
+                class="text-content-primary hover:text-content-primary mt-5 inline-block text-base font-medium underline underline-offset-4"
               >
                 Browse collections
               </a>

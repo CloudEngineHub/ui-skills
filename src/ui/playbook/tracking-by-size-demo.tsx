@@ -3,7 +3,7 @@ import { PlaybookDemoCard } from "./demo-card";
 function DisplayHeading({ tuned = false }: { tuned?: boolean }) {
   return (
     <h2
-      className={`text-parchment-900 text-3xl font-medium leading-tight ${
+      className={`text-content-primary text-3xl font-medium leading-tight ${
         tuned ? "tracking-tight" : "tracking-wide"
       }`}
     >

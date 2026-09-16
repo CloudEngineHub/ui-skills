@@ -21,8 +21,8 @@ function PaintingCard({ stable, replay }: { stable: boolean; replay: number }) {
       <div
         className={
           stable
-            ? "bg-parchment-100 aspect-3/4 overflow-hidden rounded-lg"
-            : "bg-parchment-100 overflow-hidden rounded-lg"
+            ? "bg-fill-subtle aspect-3/4 overflow-hidden rounded-lg"
+            : "bg-fill-subtle overflow-hidden rounded-lg"
         }
       >
         {loaded && !failed ? (
@@ -42,7 +42,7 @@ function PaintingCard({ stable, replay }: { stable: boolean; replay: number }) {
           />
         ) : stable || failed ? (
           <div
-            className="bg-parchment-100 size-full min-h-24"
+            className="bg-fill-subtle size-full min-h-24"
             role="img"
             aria-label="Image unavailable"
           />
@@ -50,7 +50,7 @@ function PaintingCard({ stable, replay }: { stable: boolean; replay: number }) {
           <div className="h-16" aria-hidden="true" />
         )}
       </div>
-      <p className="text-parchment-900 mt-2 text-sm font-medium">
+      <p className="text-content-primary mt-2 text-sm font-medium">
         Impression, Sunrise
       </p>
     </div>

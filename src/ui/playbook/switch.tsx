@@ -24,12 +24,12 @@ export function PlaybookSwitch({
       checked={checked}
       onCheckedChange={onCheckedChange}
       className={cn(
-        "bg-parchment-200 focus-visible:outline-parchment-900 relative inline-flex h-6 w-10 shrink-0 items-center rounded-full p-0.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 data-checked:bg-parchment-800",
+        "bg-fill-strong focus-visible:outline-content-primary relative inline-flex h-6 w-10 shrink-0 items-center rounded-full p-0.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 data-checked:bg-fill-inverse",
         className,
       )}
     >
       <SwitchPrimitive.Thumb
-        className="bg-white size-5 rounded-full shadow-sm transition-transform data-checked:translate-x-4"
+        className="bg-surface-default size-5 rounded-full shadow-sm transition-transform data-checked:translate-x-4"
       />
     </SwitchPrimitive.Root>
   );

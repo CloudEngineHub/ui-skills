@@ -15,9 +15,9 @@ export function Input({
     <input
       type={type}
       className={cn(
-        "text-parchment-900 placeholder:text-parchment-400 w-full bg-white transition-shadow duration-150 ease-out outline-none",
-        "ring-1 ring-black/10",
-        "focus-visible:ring-parchment-900 focus-visible:ring-2 focus-visible:ring-offset-2",
+        "text-content-primary placeholder:text-content-muted w-full bg-surface-default transition-shadow duration-150 ease-out outline-none",
+        "ring-1 ring-line-default",
+        "focus-visible:ring-content-primary focus-visible:ring-2 focus-visible:ring-offset-2",
         "aria-invalid:ring-red-500 aria-invalid:focus-visible:ring-red-500",
         size === "sm"
           ? "rounded-lg px-3.5 py-1.5 text-xs"

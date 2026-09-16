@@ -9,11 +9,11 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const variantStyles = {
-  primary: "bg-parchment-900 text-parchment-50 hover:bg-parchment-800",
-  secondary: "bg-parchment-100 text-parchment-900 hover:bg-parchment-200 ring-1 ring-black/10",
-  ghost: "bg-transparent text-parchment-900 hover:bg-parchment-100",
-  accent: "bg-blue-600 text-white hover:bg-blue-700",
-  outline: "bg-white text-parchment-900 ring-1 ring-black/10 hover:bg-parchment-50",
+  primary: "bg-fill-inverse text-content-inverse hover:bg-fill-inverse",
+  secondary: "bg-fill-subtle text-content-primary hover:bg-fill-strong ring-1 ring-line-default",
+  ghost: "bg-transparent text-content-primary hover:bg-fill-subtle",
+  accent: "bg-content-accent text-content-inverse hover:bg-content-accent",
+  outline: "bg-surface-default text-content-primary ring-1 ring-line-default hover:bg-fill-subtle",
 };
 
 const sizeStyles = {

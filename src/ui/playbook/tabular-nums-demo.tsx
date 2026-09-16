@@ -12,7 +12,7 @@ function CounterValue({
 
   return (
     <span
-      className={`text-parchment-900 text-5xl font-medium tracking-tight sm:text-6xl ${tabular ? "tabular-nums" : ""}`}
+      className={`text-content-primary text-5xl font-medium tracking-tight sm:text-6xl ${tabular ? "tabular-nums" : ""}`}
     >
       {display}
     </span>
