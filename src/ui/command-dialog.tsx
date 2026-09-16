@@ -23,6 +23,7 @@ type CommandItem = {
 
 type CommandDialogProps = {
   items: CommandItem[];
+  hideTrigger?: boolean;
 };
 
 type SearchResult = CommandItem & {
@@ -119,7 +120,7 @@ const highlightText = (value: string, query: string): ReactNode => {
   );
 };
 
-export function CommandDialog({ items }: CommandDialogProps) {
+export function CommandDialog({ items, hideTrigger = false }: CommandDialogProps) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -163,7 +164,16 @@ export function CommandDialog({ items }: CommandDialogProps) {
     };
 
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    const onOpenRequest = () => {
+      setActiveIndex(0);
+      setOpen(true);
+    };
+
+    window.addEventListener("open-command-dialog", onOpenRequest);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("open-command-dialog", onOpenRequest);
+    };
   }, []);
 
   const filteredItems = useMemo<SearchResult[]>(() => {
@@ -306,21 +316,23 @@ export function CommandDialog({ items }: CommandDialogProps) {
   return (
     <TooltipProvider>
       <DialogPrimitive.Root open={open} onOpenChange={handleOpenChange}>
-        <Tooltip
-          content={
-            <span className="inline-flex items-center gap-2">
-              Search
-              <CommandKShortcut />
-            </span>
-          }
-        >
-          <DialogPrimitive.Trigger
-            aria-label="Search skills and playbook"
-            className="border-line-default bg-fill-default text-content-primary hover:bg-fill-subtle focus-visible:outline-content-primary inline-flex h-8 w-8 items-center justify-center rounded-lg border text-sm transition-colors focus-visible:outline-1 focus-visible:outline-offset-2"
+        {!hideTrigger ? (
+          <Tooltip
+            content={
+              <span className="inline-flex items-center gap-2">
+                Search
+                <CommandKShortcut />
+              </span>
+            }
           >
-            <MagnifyingGlassIcon className="size-4 shrink-0" aria-hidden="true" />
-          </DialogPrimitive.Trigger>
-        </Tooltip>
+            <DialogPrimitive.Trigger
+              aria-label="Search skills and playbook"
+              className="border-line-default bg-fill-default text-content-primary hover:bg-fill-subtle focus-visible:outline-content-primary inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border text-sm transition-colors focus-visible:outline-1 focus-visible:outline-offset-2"
+            >
+              <MagnifyingGlassIcon className="size-4 shrink-0" aria-hidden="true" />
+            </DialogPrimitive.Trigger>
+          </Tooltip>
+        ) : null}
 
         <DialogPrimitive.Portal>
           <DialogPrimitive.Backdrop className="fixed inset-0 z-50 bg-fill-inverse/35 backdrop-blur-sm" />
