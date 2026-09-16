@@ -60,6 +60,24 @@ const featuredPlaybook = playbook
     return sourceSkill ? entry : null;
   })
   .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
+
+const designMdAssets = [
+  ["Mintlify", "https://assets.querrel.com/design.md/mintlify/mintlify-logo.webp"],
+  ["Atlassian", "https://assets.querrel.com/design.md/atlassian/atlassian-logo.webp"],
+  ["Amplitude", "https://assets.querrel.com/design.md/amplitude/amplitude-logo.webp"],
+  ["Firecrawl", "https://assets.querrel.com/design.md/firecrawl/firecrawl-logo.webp"],
+  ["Vercel", "https://assets.querrel.com/design.md/vercel/vercel-logo.webp"],
+  ["QuiverAI", "https://assets.querrel.com/design.md/quiverai/quiverai-logo.webp"],
+  ["Voltagent", "https://assets.querrel.com/design.md/voltagent/voltagent-logo.webp"],
+  ["UNICEF", "https://assets.querrel.com/design.md/unicef/unicef-logo.webp"],
+  ["Open Food Facts", "https://assets.querrel.com/design.md/openfoodfacts/openfoodfacts-logo.webp"],
+  ["Nuxt", "https://assets.querrel.com/design.md/nuxt/nuxt-logo.webp"],
+  ["Hyperframes", "https://assets.querrel.com/design.md/hyperframes/hyperframes-logo.webp"],
+  ["Culture Amp", "https://assets.querrel.com/design.md/cultureamp/cultureamp-logo.webp"],
+  ["DSFR", "https://assets.querrel.com/design.md/dsfr/dsfr-logo.webp"],
+  ["Ant Design", "https://assets.querrel.com/design.md/antdesign/antdesign-logo.webp"],
+  ["Executor", "https://assets.querrel.com/design.md/executor/executor-logo.webp"],
+] as const;
 ---
 
 <Layout
@@ -83,10 +101,10 @@ const featuredPlaybook = playbook
           <div class="flex flex-col gap-2">
             <a
               href="/skills"
-              class="section-title type-body-md inline-flex items-center gap-0.5 self-start text-content-secondary"
+              class="section-title type-body-md inline-flex items-center gap-0.5 self-start font-[450] text-content-secondary"
             >
               <span>Skills</span>
-              <ChevronRightIcon className="size-4 text-content-extra-muted" aria-hidden="true" />
+              <ChevronRightIcon className="size-4 text-content-muted" aria-hidden="true" />
             </a>
             <div class="flex flex-col">
               {
@@ -107,11 +125,35 @@ const featuredPlaybook = playbook
 
         <div class="flex flex-col gap-5">
           <a
+            href="/design.md"
+            class="section-title type-body-md inline-flex items-center gap-0.5 self-start font-[450] text-content-secondary"
+          >
+            <span>Design.md</span>
+            <ChevronRightIcon className="size-4 text-content-muted" aria-hidden="true" />
+          </a>
+          <div class="flex gap-3 overflow-hidden">
+            {
+              designMdAssets.map(([name, src]) => (
+                <img
+                  src={src}
+                  alt={name}
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  class="size-10 shrink-0 rounded-xl border border-line-default"
+                />
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-5">
+          <a
             href="/playbook"
-            class="section-title type-body-md inline-flex items-center gap-0.5 self-start text-content-secondary"
+            class="section-title type-body-md inline-flex items-center gap-0.5 self-start font-[450] text-content-secondary"
           >
             <span>Learn</span>
-            <ChevronRightIcon className="size-4 text-content-extra-muted" aria-hidden="true" />
+            <ChevronRightIcon className="size-4 text-content-muted" aria-hidden="true" />
           </a>
           <div class="grid gap-3 sm:grid-cols-2">
             {
