@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "motion/react";
+import { ArrowPathIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 
 type Props = {
@@ -16,38 +17,18 @@ function LoaderIcon({
   size?: number;
 }) {
   return (
-    <svg
-      aria-hidden="true"
+    <motion.span
+      animate={{ rotate: 360 }}
+      transition={{
+        repeat: Number.POSITIVE_INFINITY,
+        duration: 0.8,
+        ease: "linear",
+      }}
       className={className}
-      fill="none"
-      height={size}
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-      width={size}
-      xmlns="http://www.w3.org/2000/svg"
+      style={{ display: "inline-flex" }}
     >
-      <motion.g
-        animate={{ rotate: 360 }}
-        style={{ transformOrigin: "12px 12px" }}
-        transition={{
-          repeat: Number.POSITIVE_INFINITY,
-          duration: 0.8,
-          ease: "linear",
-        }}
-      >
-        <path d="M12 2v4" />
-        <path d="m16.2 7.8 2.9-2.9" />
-        <path d="M18 12h4" />
-        <path d="m16.2 16.2 2.9 2.9" />
-        <path d="M12 18v4" />
-        <path d="m4.9 19.1 2.9-2.9" />
-        <path d="M2 12h4" />
-        <path d="m4.9 4.9 2.9 2.9" />
-      </motion.g>
-    </svg>
+      <ArrowPathIcon className="size-4" width={size} height={size} aria-hidden="true" />
+    </motion.span>
   );
 }
 
@@ -209,20 +190,7 @@ export default function NewsletterInput({
                     transition={{ duration: 0.14, ease: "easeOut" }}
                     className="pointer-events-none inline-flex items-center whitespace-nowrap"
                   >
-                    <svg
-                      aria-hidden="true"
-                      className="size-4 shrink-0"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                      />
-                    </svg>
+                    <CheckCircleIcon className="size-4 shrink-0" aria-hidden="true" />
                   </motion.span>
                 ) : null}
               </AnimatePresence>

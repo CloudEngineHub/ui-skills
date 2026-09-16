@@ -70,42 +70,41 @@ const featuredPlaybook = playbook
     class="relative flex min-h-dvh flex-col items-center justify-end"
   >
     <div class="relative mt-20 container-3xl">
-      <div class="mx-auto flex w-full flex-col gap-14">
+      <div class="mx-auto flex w-full flex-col gap-10">
         <header class="container-sm ml-0 px-0 text-left">
           <h1 class="type-h1 text-left text-content-primary">
             Curated skills for design engineering
           </h1>
         </header>
 
-        <AgentAccessStart />
+        <section class="flex flex-col gap-7">
+          <AgentAccessStart />
 
-        <div class="">
-          <h2 class="text-content-primary text-base font-medium text-balance">
-            Skills
-          </h2>
-          <div class="mt-3 grid gap-4 sm:grid-cols-2">
-            {
-              displayedSkills.map((skill) => (
-                <SkillCard
-                  href={`/skills/${skill.pathSlug}`}
-                  slug={skill.slug}
-                  description={skill.description}
-                  ownerLabel={skill.ownerLabel}
-                  avatarUrl={skill.avatarUrl}
-                />
-              ))
-            }
+          <div>
+            <div class="grid gap-3 sm:grid-cols-2">
+              {
+                displayedSkills.map((skill) => (
+                  <SkillCard
+                    href={`/skills/${skill.pathSlug}`}
+                    slug={skill.slug}
+                    description={skill.description}
+                    ownerLabel={skill.ownerLabel}
+                    avatarUrl={skill.avatarUrl}
+                  />
+                ))
+              }
+            </div>
+            <div class="mt-4 flex justify-center ">
+              <Button href="/skills" variant="primary"> See skills </Button>
+            </div>
           </div>
-          <div class="mt-4 flex justify-center ">
-            <Button href="/skills" variant="primary"> See skills </Button>
-          </div>
-        </div>
+        </section>
 
         <div class="">
           <h2 class="text-content-primary text-base font-medium text-balance">
             Playbook
           </h2>
-          <div class="mt-3 grid gap-4 sm:grid-cols-2">
+          <div class="mt-3 grid gap-3 sm:grid-cols-2">
             {
               featuredPlaybook.map((entry) => (
                 <PlaybookCard

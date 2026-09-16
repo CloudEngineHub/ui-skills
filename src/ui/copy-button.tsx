@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { CheckIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 import { TextMorph } from "./text-morph";
 
 type CopyButtonProps = {
@@ -37,27 +38,10 @@ export function CopyButton({
         <div className="flex w-[70px] items-center justify-center text-sm font-medium">
           <TextMorph>{isCopied ? "Copied" : "Copy"}</TextMorph>
         </div>
-      ) : (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          {isCopied ? (
-            <path d="M20 6 9 17l-5-5" />
-          ) : (
-            <>
-              <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-              <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-            </>
-          )}
-        </svg>
+      ) : isCopied ? (
+          <CheckIcon className="size-4" aria-hidden="true" />
+        ) : (
+          <DocumentDuplicateIcon className="size-4" aria-hidden="true" />
       )}
     </button>
   );

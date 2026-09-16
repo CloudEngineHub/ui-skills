@@ -1,4 +1,9 @@
 ---
+import Card from "./card.astro";
+import Command from "./command.astro";
+import Button from "./button.astro";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
+
 const accessOptions = [
   {
     label: "CLI",
@@ -13,28 +18,29 @@ const accessOptions = [
 ];
 ---
 
-<section class="" aria-labelledby="agent-access-title">
-  <h2
-    id="agent-access-title"
-    class="text-content-primary text-base font-medium text-balance"
-  >
-    Agent, start here.
-  </h2>
-  <div class="mt-5 grid gap-3 sm:grid-cols-2">
+<div>
+  <div class="grid gap-3 sm:grid-cols-2">
     {
       accessOptions.map((option) => (
-        <a
-          href={option.href}
-    class="hover:border-content-extra-muted hover:bg-fill-subtle border-line-default focus-visible:outline-content-primary relative flex h-full flex-col justify-between rounded-[12px] border bg-transparent px-6 py-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
-        >
-          <div class="flex flex-col gap-3">
-            <div class="text-content-primary font-[450]">{option.label}</div>
-            <div class="text-content-secondary text-[14px] leading-snug">
+        <Card className="h-full transition-colors hover:border-content-extra-muted hover:bg-fill-subtle">
+          <Button
+            href={option.href}
+            variant="ghost"
+            size="sm"
+            className="absolute right-1 top-1 size-7 p-1 focus-visible:outline-content-primary"
+            aria-label={`Open ${option.label} installation guide`}
+          >
+            <ArrowRightIcon className="size-4" aria-hidden="true" />
+          </Button>
+          <div class="card-description flex flex-col gap-1.5 pr-8">
+            <div class="type-body-md text-content-primary">{option.label}</div>
+            <div class="type-body-md text-content-secondary">
               {option.description}
             </div>
           </div>
-        </a>
+          {option.label === "CLI" ? <Command command="npx ui skills" /> : null}
+        </Card>
       ))
     }
   </div>
-</section>
+</div>

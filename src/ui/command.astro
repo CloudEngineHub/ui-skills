@@ -1,0 +1,19 @@
+---
+import { CopyButton } from "./copy-button";
+
+type Props = {
+  command: string;
+};
+
+const { command } = Astro.props as Props;
+---
+
+<div class="flex h-9 items-center justify-between rounded-lg bg-surface-subtle pl-3 pr-1">
+  <span class="type-code text-content-primary">{command}</span>
+  <CopyButton
+    content={command}
+    showText={false}
+    client:load
+    className="size-7 p-1"
+  />
+</div>

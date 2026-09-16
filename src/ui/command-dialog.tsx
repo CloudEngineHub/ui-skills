@@ -1,4 +1,5 @@
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import {
   useEffect,
   useMemo,
@@ -317,20 +318,7 @@ export function CommandDialog({ items }: CommandDialogProps) {
             aria-label="Search skills and playbook"
             className="border-line-default bg-fill-default text-content-primary hover:bg-fill-subtle focus-visible:outline-content-primary inline-flex h-8 w-8 items-center justify-center rounded-lg border text-sm transition-colors focus-visible:outline-1 focus-visible:outline-offset-2"
           >
-            <svg
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="size-4 shrink-0"
-            >
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.3-4.3" />
-            </svg>
+            <MagnifyingGlassIcon className="size-4 shrink-0" aria-hidden="true" />
           </DialogPrimitive.Trigger>
         </Tooltip>
 
@@ -341,22 +329,7 @@ export function CommandDialog({ items }: CommandDialogProps) {
               Search skills and playbook
             </DialogPrimitive.Title>
             <div className="border-line-default flex items-center gap-2 border-b px-4 py-3">
-              <svg
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-content-secondary"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
+              <MagnifyingGlassIcon className="size-4 text-content-secondary" aria-hidden="true" />
               <input
                 autoFocus
                 value={query}
