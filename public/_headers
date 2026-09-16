@@ -7,7 +7,7 @@
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
 
-/favicon.svg
+/uiskills-favicon-*.webp
   Cache-Control: public, max-age=86400
 
 /analytics/*
