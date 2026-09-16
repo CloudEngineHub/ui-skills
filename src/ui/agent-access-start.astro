@@ -16,6 +16,17 @@ const accessOptions = [
     href: "/mcp/docs",
   },
 ];
+
+const mcpAssets = [
+  ["OpenAI", "https://assets.querrel.com/logo/muted/openai.webp"],
+  ["Claude", "https://assets.querrel.com/logo/muted/claude.webp"],
+  ["Cursor", "https://assets.querrel.com/logo/muted/cursor.webp"],
+  ["Copilot", "https://assets.querrel.com/logo/muted/copilot.webp"],
+  ["Anthropic", "https://assets.querrel.com/logo/muted/anthropic.webp"],
+  ["Gemini", "https://assets.querrel.com/logo/muted/gemini.webp"],
+  ["OpenClaw", "https://assets.querrel.com/logo/muted/openclaw.webp"],
+  ["DeepSeek", "https://assets.querrel.com/logo/muted/deepseek.webp"],
+] as const;
 ---
 
 <div>
@@ -43,6 +54,34 @@ const accessOptions = [
             </div>
           </div>
           {option.label === "CLI" ? <div class="relative z-20 w-full"><Command command="npx ui skills" /></div> : null}
+          {option.label === "MCP" ? (
+            <div class="relative z-20 flex overflow-hidden" aria-label="Supported agents">
+              {[0, 1].map((copy) => (
+                <div
+                  class="mcp-assets-track flex shrink-0 gap-2"
+                  aria-hidden={copy === 1 ? "true" : undefined}
+                >
+                  {mcpAssets.map(([name, src]) => (
+                    <img
+                      src={src}
+                      alt={copy === 1 ? "" : name}
+                      width="36"
+                      height="36"
+                      class="size-9 shrink-0"
+                    />
+                  ))}
+                </div>
+              ))}
+              <div
+                class="pointer-events-none absolute inset-y-0 left-0 z-10 w-6 bg-gradient-to-r from-surface-default to-transparent"
+                aria-hidden="true"
+              ></div>
+              <div
+                class="pointer-events-none absolute inset-y-0 right-0 z-10 w-6 bg-gradient-to-l from-surface-default to-transparent"
+                aria-hidden="true"
+              ></div>
+            </div>
+          ) : null}
         </Card>
       ))
     }
@@ -66,3 +105,26 @@ const accessOptions = [
     });
   });
 </script>
+
+<style>
+  @keyframes mcp-assets-loop {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(calc(-100% - 0.5rem));
+    }
+  }
+
+  .mcp-assets-track {
+    animation: mcp-assets-loop 35s linear infinite;
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mcp-assets-track {
+      animation: none;
+    }
+  }
+</style>
