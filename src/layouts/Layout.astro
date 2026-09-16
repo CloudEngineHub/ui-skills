@@ -206,7 +206,7 @@ const commandItems = [
                 type="button"
                 aria-label="Search skills and playbook"
                 class="border-line-default bg-fill-default text-content-primary hover:bg-fill-subtle focus-visible:outline-content-primary inline-flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-lg border text-sm transition-colors focus-visible:outline-1 focus-visible:outline-offset-2"
-                onclick="window.dispatchEvent(new CustomEvent('open-command-dialog'))"
+                onclick="window.openCommandDialog?.(); window.dispatchEvent(new CustomEvent('open-command-dialog'))"
               >
                 <MagnifyingGlassIcon className="size-4" aria-hidden="true" />
               </button>
@@ -223,7 +223,7 @@ const commandItems = [
                 <span>{githubStars.label}</span>
                 <span aria-hidden="true" class="text-content-inverse/60">★</span>
               </a>
-              <div class="hidden">
+              <div class="contents">
                 <CommandDialog items={commandItems} client:load hideTrigger />
               </div>
             </div>

@@ -26,6 +26,12 @@ type CommandDialogProps = {
   hideTrigger?: boolean;
 };
 
+declare global {
+  interface Window {
+    openCommandDialog?: () => void;
+  }
+}
+
 type SearchResult = CommandItem & {
   score: number;
   snippet: string;
@@ -164,15 +170,19 @@ export function CommandDialog({ items, hideTrigger = false }: CommandDialogProps
     };
 
     window.addEventListener("keydown", onKeyDown);
-    const onOpenRequest = () => {
+    const openDialog = () => {
       setActiveIndex(0);
       setOpen(true);
     };
 
-    window.addEventListener("open-command-dialog", onOpenRequest);
+    window.openCommandDialog = openDialog;
+    window.addEventListener("open-command-dialog", openDialog);
     return () => {
       window.removeEventListener("keydown", onKeyDown);
-      window.removeEventListener("open-command-dialog", onOpenRequest);
+      window.removeEventListener("open-command-dialog", openDialog);
+      if (window.openCommandDialog === openDialog) {
+        delete window.openCommandDialog;
+      }
     };
   }, []);
 
