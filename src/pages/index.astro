@@ -8,6 +8,7 @@ import Button from "../ui/button.astro";
 import AgentAccessStart from "../ui/agent-access-start.astro";
 import PlaybookCard from "../ui/playbook-card.astro";
 import SkillCard from "../ui/skill-card.astro";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
 const MAX_SKILLS = 20;
 
@@ -80,8 +81,15 @@ const featuredPlaybook = playbook
         <section class="flex flex-col gap-7">
           <AgentAccessStart />
 
-          <div>
-            <div>
+          <div class="flex flex-col gap-2">
+            <a
+              href="/skills"
+              class="section-title type-body-md inline-flex items-center gap-0.5 self-start text-content-secondary"
+            >
+              <span>Skills</span>
+              <ChevronRightIcon className="size-4 text-content-extra-muted" aria-hidden="true" />
+            </a>
+            <div class="flex flex-col">
               {
                 displayedSkills.map((skill) => (
                   <SkillCard
@@ -94,9 +102,6 @@ const featuredPlaybook = playbook
                   />
                 ))
               }
-            </div>
-            <div class="mt-4 flex justify-center ">
-              <Button href="/skills" variant="primary"> See skills </Button>
             </div>
           </div>
         </section>
