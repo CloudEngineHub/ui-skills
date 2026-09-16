@@ -315,7 +315,7 @@ export function CommandDialog({ items }: CommandDialogProps) {
         >
           <DialogPrimitive.Trigger
             aria-label="Search skills and playbook"
-            className="border-line-default text-content-primary hover:border-content-extra-muted hover:bg-fill-subtle focus-visible:outline-content-primary inline-flex h-8 w-8 items-center justify-center rounded-[6px] border bg-transparent text-[14px] font-[450] transition-colors focus-visible:outline-1 focus-visible:outline-offset-2"
+            className="border-line-default bg-fill-default text-content-primary hover:bg-fill-subtle focus-visible:outline-content-primary inline-flex h-8 w-8 items-center justify-center rounded-lg border text-sm transition-colors focus-visible:outline-1 focus-visible:outline-offset-2"
           >
             <svg
               aria-hidden="true"

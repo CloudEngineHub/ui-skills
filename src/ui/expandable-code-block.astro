@@ -1,5 +1,6 @@
 ---
 import CodeBlock from "./code-block.astro";
+import Button from "./button.astro";
 
 type Props = {
   lines: Array<Array<{ text: string; className?: string }>>;
@@ -20,12 +21,14 @@ const { lines, maxHeight = 180 } = Astro.props as Props;
     </div>
   </CodeBlock>
   <div class="mt-4 flex justify-center">
-    <button
+    <Button
       type="button"
-      class="expandable-code-btn text-content-secondary hover:text-content-primary cursor-pointer text-sm font-medium transition-colors"
+      variant="ghost"
+      size="sm"
+      className="expandable-code-btn cursor-pointer"
     >
       Show all skills
-    </button>
+    </Button>
   </div>
 </div>
 

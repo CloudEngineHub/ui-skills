@@ -37,7 +37,7 @@ export function GitHubStarButton({ href, initialLabel }: Props) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group/github-stars inline-flex h-8 items-center justify-center gap-2 rounded-[6px] border border-content-primary bg-fill-inverse px-2.5 text-[14px] font-[450] text-content-inverse transition-colors hover:border-content-primary hover:bg-fill-inverse focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-content-primary"
+      className="group/github-stars type-body-md inline-flex h-8 items-center justify-center gap-1.5 rounded-lg border border-transparent bg-fill-inverse px-3 text-content-inverse transition-[background-color,color,border-color] duration-150 ease-out focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-content-primary"
     >
       <span className="sr-only">Star on GitHub</span>
       <svg

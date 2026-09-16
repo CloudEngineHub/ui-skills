@@ -169,7 +169,7 @@ export default function NewsletterInput({
               type="button"
               disabled={status !== "idle"}
               onClick={() => void submit()}
-              className={`bg-fill-inverse text-content-inverse hover:bg-fill-inverse focus-visible:outline-content-primary disabled:hover:bg-fill-inverse absolute top-1/2 right-1 z-10 inline-flex h-10 min-w-[112px] -translate-y-1/2 cursor-pointer items-center justify-center rounded-full px-3.5 text-sm font-medium transition-[opacity,background-color] duration-150 ease-out focus-visible:outline focus-visible:outline-offset-2 disabled:cursor-not-allowed ${
+              className={`type-body-md bg-fill-inverse text-content-inverse hover:bg-fill-inverse focus-visible:outline-content-primary disabled:hover:bg-fill-inverse absolute top-1/2 right-1 z-10 inline-flex h-10 min-w-[112px] -translate-y-1/2 cursor-pointer items-center justify-center gap-2 rounded-full border border-transparent px-5 transition-[opacity,background-color] duration-150 ease-out focus-visible:outline focus-visible:outline-offset-2 disabled:cursor-not-allowed ${
                 status === "subscribing" ? "opacity-70" : "opacity-100"
               }`}
             >

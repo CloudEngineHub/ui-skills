@@ -1,35 +1,50 @@
 ---
 type Props = {
   href?: string;
-  variant?: "default" | "ghost" | "black";
+  variant?: "primary" | "secondary" | "ghost";
+  size?: "lg" | "md" | "sm";
+  shape?: "square" | "rounded";
   className?: string;
   type?: "button" | "submit" | "reset";
 } & Record<string, any>;
 
 const {
   href,
-  variant = "default",
+  variant = "primary",
+  size = "md",
+  shape = "square",
   className = "",
   type = "button",
   ...rest
 } = Astro.props as Props;
 
 const baseClass =
-  "inline-flex items-center justify-center rounded-[6px] text-[14px] transition-colors focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-content-primary";
+  "inline-flex select-none items-center justify-center font-sans text-sm font-normal transition-[background-color,color,border-color] duration-150 ease-out focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-content-primary";
+
+const sizeClass =
+  size === "lg"
+    ? "h-10 gap-2 px-5"
+    : size === "sm"
+      ? "h-7 gap-1 px-2"
+      : "h-8 gap-1.5 px-3";
+
+const shapeClass = shape === "rounded" ? "rounded-full" : size === "lg" ? "rounded-xl" : "rounded-lg";
 
 const variantClass =
-  variant === "ghost"
-    ? "h-8 border border-transparent bg-transparent font-[450] text-content-primary hover:bg-fill-subtle hover:text-content-primary"
-    : variant === "black"
-      ? "h-8 border border-content-primary bg-fill-inverse px-3 font-[450] text-content-inverse hover:border-content-primary hover:bg-fill-inverse"
-      : "h-8 border border-line-default bg-transparent px-3 font-[450] text-content-primary hover:border-content-extra-muted hover:bg-fill-subtle";
+  variant === "secondary"
+    ? "border border-line-default bg-fill-default text-content-primary hover:bg-fill-subtle"
+    : variant === "ghost"
+      ? "border border-transparent bg-transparent text-content-secondary hover:bg-fill-strong hover:text-content-primary"
+      : "border border-transparent bg-fill-inverse text-content-inverse";
+
+const buttonClass = `${baseClass} ${sizeClass} ${shapeClass} ${variantClass} ${className}`;
 ---
 
 {
   href ? (
     <a
       href={href}
-      class={`${baseClass} ${variantClass} ${className}`}
+      class={buttonClass}
       {...rest}
     >
       <slot />
@@ -37,7 +52,7 @@ const variantClass =
   ) : (
     <button
       type={type}
-      class={`${baseClass} ${variantClass} ${className}`}
+      class={buttonClass}
       {...rest}
     >
       <slot />

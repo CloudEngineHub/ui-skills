@@ -108,7 +108,9 @@ Quiet, editorial, and code-first. UI Skills should feel like a precise developer
 ## Components
 
 - Skill cards show the identifier, description, then source.
-- Controls use compact neutral outlines or ghost treatments.
+- Website buttons use three sizes: lg (`h-10 px-5 gap-2 rounded-xl`), md (`h-8 px-3 gap-1.5 rounded-lg`), and sm (`h-7 px-2 gap-1 rounded-lg`), all with `text-sm` and zero vertical padding.
+- Website buttons use primary, secondary, and ghost variants. Primary uses `fill-inverse` with `content-inverse`; secondary uses `fill-default`, `line-default`, and `fill-subtle` on hover; ghost uses `fill-strong` and switches from `content-secondary` to `content-primary` on hover.
+- Buttons use square corners by default and a full-radius rounded shape when requested.
 - Code blocks use monospace text, clear surfaces, scrolling, and copy support.
 - Search uses a focused dialog with keyboard navigation and a clear empty state.
 

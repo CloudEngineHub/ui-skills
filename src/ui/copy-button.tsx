@@ -29,7 +29,7 @@ export function CopyButton({
     <button
       onClick={handleCopy}
       type="button"
-      className={`text-content-muted hover:text-content-primary flex h-8 items-center justify-center rounded-full transition-colors ${className}`}
+      className={`type-body-md ${showText ? "h-7 px-2" : "size-7"} text-content-secondary hover:bg-fill-strong hover:text-content-primary flex items-center justify-center gap-1 rounded-lg border border-transparent transition-[background-color,color] duration-150 ease-out ${className}`}
       aria-label="Copy to clipboard"
       {...props}
     >
