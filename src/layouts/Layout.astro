@@ -160,16 +160,57 @@ const commandItems = [
     </a>
     <div class="relative min-h-dvh">
       <header
-        class="absolute inset-x-0 top-0 z-10 flex justify-end px-4 pt-6 sm:px-8"
+        class="absolute inset-x-0 top-0 z-10 pt-2"
       >
-        <div class="flex items-center gap-3">
-          <CommandDialog items={commandItems} client:idle />
-          <GitHubStarButton
-            client:idle
-            href="https://github.com/ibelick/ui-skills"
-            initialLabel={githubStars.label}
-          />
-        </div>
+        <nav
+          class="mx-auto flex w-full max-w-7xl items-center justify-between px-5"
+          aria-label="Primary navigation"
+        >
+          <a
+            href="/"
+            class="type-body-md inline-flex items-center gap-2 text-content-primary"
+          >
+            <img
+              src="/uiskills-logo-light.webp"
+              alt=""
+              aria-hidden="true"
+              class="h-4 w-4"
+              width="16"
+              height="16"
+            />
+            <span>UI Skills</span>
+          </a>
+          <div class="flex items-center gap-4">
+            <div class="flex items-center gap-4">
+              <a
+                href="/skills"
+                class="type-body-md text-content-primary"
+              >
+                Explore
+              </a>
+              <a
+                href="/playbook"
+                class="type-body-md text-content-primary"
+              >
+                Learn
+              </a>
+              <a
+                href="/jobs"
+                class="type-body-md text-content-primary"
+              >
+                Jobs
+              </a>
+            </div>
+            <div class="flex items-center gap-2">
+              <CommandDialog items={commandItems} client:idle />
+              <GitHubStarButton
+                client:idle
+                href="https://github.com/ibelick/ui-skills"
+                initialLabel={githubStars.label}
+              />
+            </div>
+          </div>
+        </nav>
       </header>
       <main id="main-content">
         <slot />
