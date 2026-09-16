@@ -16,7 +16,7 @@ const { href, slug, description, ownerLabel, avatarUrl, hideTitle } =
 ---
 
 <a href={href} class="group block">
-  <Card className="transition-colors group-hover:border-content-extra-muted group-hover:bg-fill-subtle">
+  <Card className="transition-colors group-hover:border-content-extra-muted">
     <div class="flex flex-col gap-3">
       {hideTitle ? null : <div class="text-content-primary font-[450]">{slug}</div>}
       {

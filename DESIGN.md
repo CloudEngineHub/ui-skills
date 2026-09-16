@@ -43,14 +43,14 @@ typography:
     fontSize: text-sm
     fontWeight: 400
     lineHeight: leading-normal
-    letterSpacing: tracking-tight
+    letterSpacing: tracking-normal
   bodySm:
     className: type-body-sm
     fontFamily: Inter Variable
     fontSize: text-xs
     fontWeight: 400
     lineHeight: leading-normal
-    letterSpacing: tracking-tight
+    letterSpacing: tracking-normal
   code:
     className: type-code
     fontFamily: JetBrains Mono
@@ -79,8 +79,8 @@ Quiet, editorial, and code-first. UI Skills should feel like a precise developer
 - Use JetBrains Mono for commands, code, and technical identifiers.
 - Use `text-4xl`, weight 450, `leading-tight`, and `tracking-tight` for H1.
 - Use `text-xl`, weight 450, `leading-tight`, and `tracking-tight` for H2.
-- Use `text-sm`, weight 400, `leading-normal`, and `tracking-tight` for body md.
-- Use `text-xs`, weight 400, `leading-normal`, and `tracking-tight` for body sm.
+- Use `text-sm`, weight 400, `leading-normal`, and `tracking-normal` for body md.
+- Use `text-xs`, weight 400, `leading-normal`, and `tracking-normal` for body sm.
 - Use `text-xs`, weight 400, `leading-normal`, and `tracking-normal` for code.
 - Use sentence case for labels and links.
 
