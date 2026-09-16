@@ -29,14 +29,14 @@ typography:
     fontSize: text-4xl
     fontWeight: 450
     lineHeight: leading-tight
-    letterSpacing: tracking-tighter
+    letterSpacing: tracking-tight
   h2:
     className: type-h2
     fontFamily: Inter Variable
     fontSize: text-xl
     fontWeight: 450
     lineHeight: leading-tight
-    letterSpacing: tracking-tighter
+    letterSpacing: tracking-tight
   bodyMd:
     className: type-body-md
     fontFamily: Inter Variable
@@ -77,8 +77,8 @@ Quiet, editorial, and code-first. UI Skills should feel like a precise developer
 
 - Use Inter Variable for interface copy.
 - Use JetBrains Mono for commands, code, and technical identifiers.
-- Use `text-4xl`, weight 450, `leading-tight`, and `tracking-tighter` for H1.
-- Use `text-xl`, weight 450, `leading-tight`, and `tracking-tighter` for H2.
+- Use `text-4xl`, weight 450, `leading-tight`, and `tracking-tight` for H1.
+- Use `text-xl`, weight 450, `leading-tight`, and `tracking-tight` for H2.
 - Use `text-sm`, weight 400, `leading-normal`, and `tracking-tight` for body md.
 - Use `text-xs`, weight 400, `leading-normal`, and `tracking-tight` for body sm.
 - Use `text-xs`, weight 400, `leading-normal`, and `tracking-normal` for code.
