@@ -81,7 +81,7 @@ const featuredPlaybook = playbook
           <AgentAccessStart />
 
           <div>
-            <div class="grid gap-3 sm:grid-cols-2">
+            <div>
               {
                 displayedSkills.map((skill) => (
                   <SkillCard
@@ -90,6 +90,7 @@ const featuredPlaybook = playbook
                     description={skill.description}
                     ownerLabel={skill.ownerLabel}
                     avatarUrl={skill.avatarUrl}
+                    variant="list"
                   />
                 ))
               }
