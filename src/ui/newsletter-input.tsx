@@ -34,7 +34,7 @@ function LoaderIcon({
 
 export default function NewsletterInput({
   title = "Get updates",
-  description = "Fresh UI skills and design engineering notes.",
+  description = "Fresh design engineering skills, news and jobs",
   placeholder = "Enter your email",
   buttonLabel = "Subscribe",
 }: Props) {
@@ -99,11 +99,11 @@ export default function NewsletterInput({
     <div className="pt-16 sm:pt-20" data-newsletter-widget>
       <hr className="border-line-default border-px mx-auto w-1/4 pb-16 sm:pb-20" />
       <div className="container-3xl">
-        <div className="max-w-xl">
-          <h2 className="text-content-primary text-lg font-medium text-balance">
+        <div className="mx-auto w-full max-w-xl">
+          <h2 className="type-body-md w-full text-content-primary text-center font-medium text-balance">
             {title}
           </h2>
-          <p className="text-content-secondary mt-2 max-w-lg text-base text-pretty">
+          <p className="type-body-md w-full text-content-secondary mt-0.5 text-center text-pretty">
             {description}
           </p>
         </div>
@@ -143,7 +143,7 @@ export default function NewsletterInput({
                   void submit();
                 }
               }}
-              className="text-content-primary placeholder:text-content-muted focus:border-content-extra-muted relative z-0 h-12 w-full rounded-full bg-surface-default px-4 pr-36 text-sm shadow-2xs ring-1 ring-line-default transition-colors outline-none"
+              className="type-body-md text-content-primary placeholder:type-body-md placeholder:text-content-muted focus:border-content-extra-muted relative z-0 h-12 w-full rounded-full border border-line-default bg-surface-default px-4 pr-36 shadow-2xs transition-colors outline-none"
             />
 
             <button
