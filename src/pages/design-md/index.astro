@@ -1,0 +1,53 @@
+---
+export const prerender = true;
+
+import { designMd } from "../../data/design-md";
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../ui/breadcrumbs.astro";
+import DesignMdItem from "../../ui/design-md-item.astro";
+
+const breadcrumbItems = [{ label: "Explore", href: "/" }, { label: "Design.md" }];
+const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
+const pageUrl = new URL("/design-md", siteOrigin).toString();
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Design.md",
+  description: "A curated collection of design systems and guidelines.",
+  url: pageUrl,
+  hasPart: {
+    "@type": "ItemList",
+    itemListElement: designMd.map((entry, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: new URL(`/design-md/${entry.slug}`, siteOrigin).toString(),
+      name: entry.title,
+    })),
+  },
+};
+---
+
+<Layout
+  structuredData={structuredData}
+  title="Design.md | UI Skills"
+  description="A curated collection of design systems and guidelines."
+>
+  <div class="relative flex min-h-dvh flex-col items-center">
+    <div class="relative mt-20 container-3xl">
+      <div class="mx-auto flex w-full flex-col gap-8">
+        <Breadcrumbs items={breadcrumbItems} />
+
+        <div>
+          <h1 class="type-h1 text-content-primary">Design.md</h1>
+          <p class="type-body-md mt-3 text-content-secondary">
+            A curated collection of design systems and guidelines.
+          </p>
+        </div>
+
+        <div class="flex flex-col">
+          {designMd.map((entry) => <DesignMdItem {...entry} />)}
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

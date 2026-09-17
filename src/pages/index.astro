@@ -125,23 +125,28 @@ const designMdAssets = [
 
         <div class="flex flex-col gap-5">
           <a
-            href="/design.md"
+            href="/design-md"
             class="section-title type-body-md inline-flex items-center gap-0.5 self-start font-[450] text-content-secondary"
           >
             <span>Design.md</span>
             <ChevronRightIcon className="size-4 text-content-muted" aria-hidden="true" />
           </a>
-          <div class="flex gap-3 overflow-hidden">
+          <div class="flex gap-3 overflow-x-clip overflow-y-visible">
             {
               designMdAssets.map(([name, src]) => (
-                <img
-                  src={src}
-                  alt={name}
-                  width="40"
-                  height="40"
-                  loading="lazy"
-                  class="size-10 shrink-0 rounded-xl border border-line-default"
-                />
+                <div class="group relative size-10 shrink-0">
+                  <img
+                    src={src}
+                    alt={name}
+                    width="40"
+                    height="40"
+                    loading="lazy"
+                    class="size-10 rounded-xl border border-line-default transition-transform duration-200 ease-out group-hover:-translate-y-0.5"
+                  />
+                  <span class="pointer-events-none absolute top-full left-1/2 z-20 mt-2 -translate-x-1/2 translate-y-1 whitespace-nowrap type-body-sm text-content-muted opacity-0 transition-[opacity,transform] duration-200 ease-out group-hover:translate-y-0 group-hover:opacity-100">
+                    {name}
+                  </span>
+                </div>
               ))
             }
           </div>
