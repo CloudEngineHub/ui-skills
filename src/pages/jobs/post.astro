@@ -27,7 +27,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
           </span>
         </header>
 
-        <form class="flex flex-col gap-10" method="post" novalidate>
+        <form class="flex flex-col gap-10" method="post" novalidate autocomplete="off">
           <div class="grid gap-5 sm:grid-cols-2">
             <label class="relative flex flex-col gap-1">
               <span class="type-body-sm font-[450] text-content-secondary">Company name</span>
@@ -39,7 +39,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
             </label>
             <label class="relative flex flex-col gap-1">
               <span class="type-body-sm font-[450] text-content-secondary">Contact email</span>
-              <input name="contactEmail" type="email" required class="type-body-md h-8 rounded-md border border-line-default bg-surface-default px-2 text-content-primary outline-none placeholder:text-content-muted focus:border-[#A5A5A5]/40" />
+              <input name="contactEmail" type="email" autocomplete="off" required class="type-body-md h-8 rounded-md border border-line-default bg-surface-default px-2 text-content-primary outline-none placeholder:text-content-muted focus:border-[#A5A5A5]/40" />
             </label>
             <label class="relative flex flex-col gap-1">
               <span class="type-body-sm font-[450] text-content-secondary">Website</span>
@@ -228,6 +228,17 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
     -webkit-box-shadow: 0 0 0 1000px var(--color-surface-default) inset;
     box-shadow: 0 0 0 1000px var(--color-surface-default) inset;
     caret-color: var(--color-content-primary);
+    border-color: rgb(165 165 165 / 40%) !important;
+  }
+
+  :global(input:-webkit-autofill),
+  :global(input:-webkit-autofill:hover) {
+    border-color: rgb(165 165 165 / 40%) !important;
+  }
+
+  :global(input:-webkit-autofill),
+  :global(input:-webkit-autofill:hover) {
+    border-color: var(--color-line-default) !important;
   }
 
 </style>
