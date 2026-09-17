@@ -57,9 +57,17 @@ const userChildren =
 
 const topicChildren = isTopicGroup ? getSkillsByTopic(topicSlug) : [];
 
+const compareSkillLabels = (a: Skill, b: Skill) => {
+  const aIsNumeric = /^\d/.test(a.label);
+  const bIsNumeric = /^\d/.test(b.label);
+
+  if (aIsNumeric !== bIsNumeric) return aIsNumeric ? 1 : -1;
+  return a.label.localeCompare(b.label, undefined, { numeric: true });
+};
+
 const children = [
   ...(topicChildren.length ? topicChildren : userChildren),
-].sort((a, b) => a.pathSlug.localeCompare(b.pathSlug));
+].sort(compareSkillLabels);
 
 const isGroupPage = !skill && children.length > 0;
 const groupOwner = bucket;
@@ -88,7 +96,7 @@ const skillOwnerAvatarUrl = skillOwnerKey
 const canonicalSkillPath = skill ? skill.pathSlug : pathSlug;
 const skillHref = (entry: Skill) => `/skills/${entry.pathSlug}`;
 const breadcrumbItems = [
-  { label: "Home", href: "/" },
+  { label: "Explore", href: "/" },
   { label: "Skills", href: "/skills" },
   ...segments.map((segment: string, index: number) => {
     const currentPath = segments.slice(0, index + 1).join("/");
@@ -405,7 +413,7 @@ const installCommand = (() => {
                 ) : null}
               </div>
 
-              <div class="grid gap-4 sm:grid-cols-2">
+              <div class="flex flex-col">
                 {children.map((entry) => (
                   <SkillCard
                     href={skillHref(entry)}
@@ -417,7 +425,8 @@ const installCommand = (() => {
                         entry.sourceKey ?? entry.pathSlug.split("/")[0] ?? "",
                       )
                     }
-                    avatarUrl={`https://github.com/${entry.sourceKey ?? entry.pathSlug.split("/")[0]}.png?size=40`}
+                    avatarUrl={`https://github.com/${entry.sourceKey ?? entry.pathSlug.split("/")[0]}.png?size=160`}
+                    variant="list"
                   />
                 ))}
               </div>

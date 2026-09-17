@@ -48,7 +48,7 @@ const displayedSkills = FEATURED_PATH_SLUGS.map((pathSlug) =>
       ...skill,
       owner,
       ownerLabel: skill.sourceLabel ?? "Ibelick",
-      avatarUrl: `https://github.com/${owner}.png?size=40`,
+      avatarUrl: `https://github.com/${owner}.png?size=160`,
     };
   });
 
@@ -88,7 +88,7 @@ const designMdAssets = [
     class="relative flex min-h-dvh flex-col items-center justify-end"
   >
     <div class="relative mt-20 container-3xl">
-      <div class="mx-auto flex w-full flex-col gap-10">
+      <div class="mx-auto flex w-full flex-col gap-12">
         <header class="container-sm ml-0 px-0 text-left">
           <h1 class="type-h1 text-left text-content-primary">
             Curated skills for design engineering

@@ -44,7 +44,7 @@ const relatedCollections = (collection?.relatedSlugs ?? [])
   .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
 
 const breadcrumbItems = [
-  { label: "Home", href: "/" },
+  { label: "Explore", href: "/" },
   { label: "Collections", href: "/collections" },
   { label: collection?.title ?? slug },
 ];
@@ -135,14 +135,15 @@ const breadcrumbStructuredData = {
                     Skills in this collection
                   </h2>
                 </div>
-                <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                <div class="mt-4 flex flex-col">
                   {collectionSkills.map(({ skill }) => (
                     <SkillCard
                       href={`/skills/${skill.pathSlug}`}
                       slug={skill.label}
                       description={skill.description}
                       ownerLabel={skill.sourceLabel ?? skill.label}
-                      avatarUrl={`https://github.com/${skill.sourceKey ?? "ibelick"}.png?size=40`}
+                      avatarUrl={`https://github.com/${skill.sourceKey ?? "ibelick"}.png?size=160`}
+                      variant="list"
                     />
                   ))}
                 </div>

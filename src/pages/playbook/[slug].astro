@@ -42,7 +42,7 @@ const nextPlaybook =
     : undefined;
 
 const breadcrumbItems = [
-  { label: "Home", href: "/" },
+  { label: "Explore", href: "/" },
   { label: "Playbook", href: "/playbook" },
   { label: entry?.slug ?? slug },
 ];
@@ -149,14 +149,15 @@ const breadcrumbStructuredData = {
                 <h2 class="text-content-primary mb-3 text-lg font-medium text-balance">
                   Related skills
                 </h2>
-                <div class="grid gap-4 sm:grid-cols-2">
+                <div class="flex flex-col">
                   {relatedSkills.map((skill) => (
                     <SkillCard
                       href={`/skills/${skill.pathSlug}`}
                       slug={skill.label}
                       description={skill.description}
                       ownerLabel={skill.sourceLabel ?? skill.label}
-                      avatarUrl={`https://github.com/${skill.sourceKey ?? "ibelick"}.png?size=40`}
+                      avatarUrl={`https://github.com/${skill.sourceKey ?? "ibelick"}.png?size=160`}
+                      variant="list"
                     />
                   ))}
                 </div>

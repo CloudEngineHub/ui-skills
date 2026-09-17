@@ -4,41 +4,73 @@ export const prerender = true;
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../ui/breadcrumbs.astro";
 import { skills } from "../../data/skills";
-import { primaryDesignTopicSlugs, topicBySlug } from "../../data/topics";
+import { topicBySlug } from "../../data/topics";
+import type { TopicSlug } from "../../data/registry";
 import SkillCard from "../../ui/skill-card.astro";
-import TopicTag from "../../ui/topic-tag.astro";
+import Button from "../../ui/button.astro";
 
-const breadcrumbItems = [{ label: "Home", href: "/" }, { label: "Skills" }];
+const breadcrumbItems = [{ label: "Explore", href: "/" }, { label: "Skills" }];
+
+const compareSkillLabels = (a: (typeof skills)[number], b: (typeof skills)[number]) => {
+  const aIsNumeric = /^\d/.test(a.label);
+  const bIsNumeric = /^\d/.test(b.label);
+
+  if (aIsNumeric !== bIsNumeric) return aIsNumeric ? 1 : -1;
+  return a.label.localeCompare(b.label, undefined, { numeric: true });
+};
 
 const mixedSkills = [...skills]
-  .sort((a, b) => a.pathSlug.localeCompare(b.pathSlug))
+  .sort(compareSkillLabels)
   .map((skill) => {
     const owner = skill.sourceKey ?? "ibelick";
 
     return {
       ...skill,
       ownerLabel: skill.sourceLabel ?? "Ibelick",
-      avatarUrl: `https://github.com/${owner}.png?size=40`,
+      avatarUrl: `https://github.com/${owner}.png?size=160`,
     };
   });
 
-const primaryTopicBadges = primaryDesignTopicSlugs
-  .map((slug) => {
-    const topic = topicBySlug.get(slug);
-    if (!topic) return null;
+const topicSelectionSlugs: TopicSlug[] = [
+  "accessibility",
+  "architecture",
+  "code-quality",
+  "color",
+  "debugging",
+  "frameworks",
+  "frontend",
+  "interaction",
+  "motion",
+  "performance",
+  "systems",
+  "testing",
+  "tooling",
+  "typography",
+  "video",
+  "3d",
+];
 
-    const count = mixedSkills.filter((skill) =>
-      skill.topics?.includes(slug),
-    ).length;
-    return {
-      slug,
-      label: topic.label,
-      count,
-      href: `/skills/${slug}`,
-    };
-  })
-  .filter((topic): topic is NonNullable<typeof topic> => topic !== null)
-  .filter((topic) => topic.count > 0);
+const countSkillsForTopics = (slugs: TopicSlug[]) =>
+  mixedSkills.filter((skill) =>
+    slugs.some((slug) => skill.topics?.includes(slug)),
+  ).length;
+
+const topicSelections = topicSelectionSlugs.map((slug) => {
+  const topic = topicBySlug.get(slug);
+  return topic
+    ? {
+        label: topic.label,
+        href: `/skills/${topic.slug}`,
+        count: countSkillsForTopics([topic.slug]),
+      }
+    : null;
+}).filter((topic): topic is NonNullable<typeof topic> => topic !== null);
+
+topicSelections.splice(14, 0, {
+  label: "UI",
+  href: "/skills/visual",
+  count: countSkillsForTopics(["visual", "craft", "taste"]),
+});
 
 const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
 const skillsIndexUrl = new URL("/skills", siteOrigin).toString();
@@ -73,31 +105,25 @@ const structuredData = {
         <Breadcrumbs items={breadcrumbItems} />
 
         <div>
-          <h1
-            class="text-content-primary px-4 text-3xl font-medium tracking-tight sm:px-0"
-          >
-            Discover today's top UI skills
+          <h1 class="type-h1 text-content-primary">
+            Top UI Skills for design engineering
           </h1>
-          <p class="text-content-secondary mt-3 px-4 text-base sm:px-0">
+          <p class="type-body-md mt-3 text-content-secondary">
             A collection of {mixedSkills.length.toLocaleString()} high-quality
             skills for design engineers and frontend teams, including accessibility,
             motion, frameworks, testing, and performance guidance.
           </p>
-          <div class="scroll-fade mt-5 " id="topic-scroll-row">
-            <div
-              class="flex w-max min-w-full flex-nowrap items-center gap-2 pb-1 whitespace-nowrap"
-            >
-              {
-                primaryTopicBadges.map((topic) => (
-                  <TopicTag href={topic.href} label={topic.label} />
-                ))
-              }
-              <TopicTag href="/skills/topics" label="More +" />
-            </div>
+          <div class="mt-5 flex flex-wrap gap-2">
+            {topicSelections.map((topic) => (
+              <Button href={topic.href} variant="secondary" size="sm">
+                {topic.label}
+                <span class="type-body-sm text-content-muted tabular-nums">{topic.count}</span>
+              </Button>
+            ))}
           </div>
         </div>
 
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="flex flex-col">
           {
             mixedSkills.map((skill) => (
               <SkillCard
@@ -106,6 +132,7 @@ const structuredData = {
                 description={skill.description}
                 ownerLabel={skill.ownerLabel}
                 avatarUrl={skill.avatarUrl}
+                variant="list"
               />
             ))
           }
