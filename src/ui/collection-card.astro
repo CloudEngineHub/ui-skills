@@ -5,17 +5,18 @@ type Props = {
   description: string;
 };
 
+import Card from "./card.astro";
+
 const { href, title, description } = Astro.props as Props;
 ---
 
-<a
-  href={href}
-  class="hover:border-content-extra-muted hover:bg-fill-subtle relative flex h-full flex-col justify-between rounded-[12px] border border-line-default bg-transparent px-6 py-4 transition-colors"
->
-  <div class="flex flex-col gap-3">
-    <div class="text-content-primary font-[450]">{title}</div>
-    <div class="text-content-secondary line-clamp-3 text-[14px] leading-snug">
-      {description}
+<a href={href} aria-label={title} class="group block h-full">
+  <Card className="h-full transition-colors group-hover:border-content-extra-muted">
+    <div class="flex flex-col gap-0.5">
+      <div class="type-body-md font-[450] text-content-primary">{title}</div>
+      <div class="type-body-md line-clamp-3 text-content-secondary">
+        {description}
+      </div>
     </div>
-  </div>
+  </Card>
 </a>

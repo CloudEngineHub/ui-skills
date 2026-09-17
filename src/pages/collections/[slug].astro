@@ -109,33 +109,31 @@ const breadcrumbStructuredData = {
         {
           collection ? (
             <>
-              <div class="">
-                <h1 class="text-content-primary text-3xl font-medium tracking-tight text-balance">
+              <div class="flex flex-col gap-5">
+                <h1 class="type-h2 text-content-primary text-balance">
                   {collection.title}
                 </h1>
-                <p class="text-content-secondary mt-3 max-w-2xl text-lg leading-snug text-pretty">
+                <p class="type-body-md font-[450] text-content-secondary text-pretty">
                   {collection.intro}
                 </p>
               </div>
 
-              <section class="">
-                <h2 class="text-content-primary text-lg font-medium text-balance">
+              <section class="flex flex-col gap-5">
+                <h2 class="type-body-md font-[450] text-content-secondary text-balance">
                   What your agent can do with these {capabilityKeyword} skills
                 </h2>
-                <ul class="text-content-primary mt-4 list-disc space-y-2 pl-5 text-base leading-snug text-pretty">
+                <ul class="type-body-md list-disc space-y-2 pl-5 text-content-secondary text-pretty">
                   {collection.agentCapabilities.map((capability) => (
                     <li>{capability}</li>
                   ))}
                 </ul>
               </section>
 
-              <section>
-                <div class="">
-                  <h2 class="text-content-primary text-lg font-medium text-balance">
-                    Skills in this collection
-                  </h2>
-                </div>
-                <div class="mt-4 flex flex-col">
+              <section class="flex flex-col gap-5">
+                <h2 class="type-body-md font-[450] text-content-secondary text-balance">
+                  Skills in this collection
+                </h2>
+                <div class="flex flex-col">
                   {collectionSkills.map(({ skill }) => (
                     <SkillCard
                       href={`/skills/${skill.pathSlug}`}
@@ -149,13 +147,11 @@ const breadcrumbStructuredData = {
                 </div>
               </section>
 
-              <section>
-                <div class="">
-                  <h2 class="text-content-primary text-lg font-medium text-balance">
-                    Playbook examples
-                  </h2>
-                </div>
-                <div class="mt-4 grid gap-4 sm:grid-cols-2">
+              <section class="flex flex-col gap-5">
+                <h2 class="type-body-md font-[450] text-content-secondary text-balance">
+                  Playbook examples
+                </h2>
+                <div class="grid gap-4 sm:grid-cols-2">
                   {playbookEntries.map((entry) => (
                     <PlaybookCard
                       href={`/playbook/${entry.slug}`}
@@ -167,13 +163,11 @@ const breadcrumbStructuredData = {
               </section>
 
               {relatedCollections.length > 0 ? (
-                <section>
-                  <div class="">
-                    <h2 class="text-content-primary text-lg font-medium text-balance">
-                      Related collections
-                    </h2>
-                  </div>
-                  <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                <section class="flex flex-col gap-5">
+                  <h2 class="type-body-md font-[450] text-content-secondary text-balance">
+                    Related collections
+                  </h2>
+                  <div class="grid gap-4 sm:grid-cols-2">
                     {relatedCollections.map((related) => (
                       <CollectionCard
                         href={`/collections/${related.slug}`}
@@ -187,10 +181,10 @@ const breadcrumbStructuredData = {
             </>
           ) : (
             <div class="">
-              <h1 class="text-content-primary text-3xl font-medium tracking-tight text-balance">
+              <h1 class="type-h2 text-content-primary text-balance">
                 Collection not found
               </h1>
-              <p class="text-content-secondary mt-3 text-base leading-snug text-pretty">
+              <p class="type-body-md mt-3 text-content-secondary text-pretty">
                 The route does not match a UI Skills collection.
               </p>
               <a
