@@ -109,34 +109,13 @@ const footerSections: FooterSection[] = [
       { label: "More playbook", href: "/playbook" },
     ],
   },
-  {
-    title: "More",
-    links: [
-      { label: "@ibelick", href: "https://x.com/Ibelick", external: true },
-      {
-        label: "GitHub",
-        href: "https://github.com/ibelick/ui-skills",
-        external: true,
-      },
-      {
-        label: "Studio",
-        href: "https://interfaceoffice.com/",
-        external: true,
-      },
-      {
-        label: "Mesurer",
-        href: "https://mesurer.dev/",
-        external: true,
-      },
-    ],
-  },
 ];
 ---
 
 <footer class="border-line-default mt-32 border-t">
   <div class="px-4 pt-20 pb-5 sm:px-8">
     <div class="container-7xl">
-      <div class="type-body-md grid gap-10 md:grid-cols-2 lg:grid-cols-6 xl:grid-cols-7">
+      <div class="type-body-md grid gap-10 md:grid-cols-2 lg:grid-cols-6">
         {
           footerSections.map((section) => (
             <div>
