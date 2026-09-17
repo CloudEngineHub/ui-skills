@@ -27,7 +27,10 @@ function section(markdown: string, key: string) {
 }
 
 function clean(value: string) {
-  return value.replace(/^['"]|['"]$/g, "").trim();
+  return value
+    .replace(/(\S)\s+#.*$/, "$1")
+    .replace(/^['"]|['"]$/g, "")
+    .trim();
 }
 
 function markdownSection(markdown: string, pattern: RegExp) {
@@ -44,49 +47,123 @@ function markdownSection(markdown: string, pattern: RegExp) {
 
 function tableRows(lines: string[]) {
   return lines
-    .filter((line) => /^\s*\|/.test(line) && !/^\s*\|\s*:?-+/.test(line))
+    .filter((line) => /^\s*\|/.test(line) && !/^\s*\|\s*:?-+\s*(?:\|\s*:?-+\s*)+\|?\s*$/.test(line))
     .map((line) => line.split("|").slice(1, -1).map((cell) => clean(cell.replace(/[`*_]/g, ""))))
     .filter((cells) => cells.length > 1);
+}
+
+function tableBlocks(lines: string[]) {
+  const blocks: string[][] = [];
+  let block: string[] = [];
+  for (const line of lines) {
+    if (/^\s*\|/.test(line)) {
+      block.push(line);
+    } else if (block.length > 0) {
+      blocks.push(block);
+      block = [];
+    }
+  }
+  if (block.length > 0) blocks.push(block);
+  return blocks;
+}
+
+function cssDimension(value: string, source: string) {
+  const cleanValue = value.trim();
+  if (/[a-z%]+$/i.test(cleanValue)) return cleanValue;
+  const unit = source.match(/(?:px|rem|em|%)/i)?.[0];
+  return unit ? `${cleanValue}${unit}` : cleanValue;
+}
+
+function firstUnit(value: string) {
+  return value.replace(/\s+\([^)]*\)\s*$/, "").trim();
 }
 
 export function parseDesignMdFoundations(markdown: string) {
   const colors: FoundationColor[] = [];
   for (const line of section(markdown, "colors")) {
+    const objectMatch = line.match(/^\s{2,}["']?([^"':]+)["']?\s*:\s*\{\s*light:\s*["']?([^,"'}]+)["']?/i);
+    if (objectMatch) {
+      colors.push({ name: clean(objectMatch[1]), value: clean(objectMatch[2]) });
+      continue;
+    }
     const match = line.match(/^\s{2,}["']?([^"':]+)["']?\s*:\s*["']?((?:#[\da-f]{3,8}|rgba?\([^)]*\)|hsla?\([^)]*))['"]?/i);
     if (match) colors.push({ name: clean(match[1]), value: clean(match[2]) });
   }
   if (colors.length === 0) {
-    for (const cells of tableRows(markdownSection(markdown, /colou?rs?|palette/i))) {
-      const value = cells.find((cell) => /^(?:#|rgba?\(|hsla?\()/i.test(cell));
-      if (value) colors.push({ name: cells[0], value });
+    for (const rows of tableBlocks(markdownSection(markdown, /colou?rs?|palette/i)).map(tableRows)) {
+      for (const cells of rows.slice(1)) {
+        const value = cells.find((cell) => /^(?:#|rgba?\(|hsla?\()/i.test(cell));
+        if (value) colors.push({ name: cells[0], value });
+      }
+    }
+  }
+  for (const line of section(markdown, "theme")) {
+    const match = line.match(/^\s{2,}["']?([^"':]+)["']?\s*:\s*["']?((?:#[\da-f]{3,8}|rgba?\([^)]*\)|hsla?\([^)]*\)))['"]?/i);
+    if (match && /color|brand|background|foreground|border/i.test(match[1])) {
+      const color = { name: clean(match[1]), value: clean(match[2]) };
+      if (!colors.some((item) => item.name === color.name && item.value === color.value)) colors.push(color);
     }
   }
 
   const typography: FoundationTypography[] = [];
   const typographyLines = section(markdown, "typography");
   const aliases = new Map<string, string>();
+  const typographyDocs = markdownSection(markdown, /typograph|type scale/i);
+  let documentedFamily: string | undefined;
+  for (const rows of tableBlocks(typographyDocs).map(tableRows)) {
+    const header = rows[0]?.map((cell) => cell.toLowerCase()) ?? [];
+    if (!header.includes("property") || !header.includes("value")) continue;
+    const propertyIndex = header.indexOf("property");
+    const valueIndex = header.indexOf("value");
+    const familyRow = rows.slice(1).find((cells) => cells[propertyIndex]?.toLowerCase() === "family");
+    if (familyRow?.[valueIndex]) documentedFamily = familyRow[valueIndex];
+  }
   for (const line of typographyLines) {
     const alias = line.match(/^\s+["']?(font-(?:sans|serif|mono|display))["']?\s*:\s*["']?(.+?)["']?\s*$/i);
     if (alias) aliases.set(alias[1], clean(alias[2]));
   }
-  if (typography.length === 0) {
+  // Prefer the typography definitions in frontmatter whenever the source
+  // provides them. Markdown tables are only a fallback for files without a
+  // frontmatter typography section; otherwise they can mask documented
+  // family and weight values with incomplete prose tables.
+  const hasNestedTypography = typographyLines.some((line) => /^\s{2}["']?[\w-]+["']?\s*:\s*$/.test(line));
+  if (typographyLines.length === 0 || !hasNestedTypography) {
     const lines = markdownSection(markdown, /typograph|type scale/i);
-    const rows = tableRows(lines);
-    const header = rows[0]?.map((cell) => cell.toLowerCase()) ?? [];
-    for (const cells of rows.slice(1)) {
-      const style: FoundationTypography = { name: cells[0] };
-      for (const [index, cell] of cells.entries()) {
-        const column = header[index] ?? "";
-        if (/font|family|stack/.test(column)) style.fontFamily = cell;
-        if (/size/.test(column)) style.fontSize = cell;
-        if (/weight/.test(column)) style.fontWeight = cell;
-        if (/line|leading/.test(column)) style.lineHeight = cell;
-        if (/letter|tracking/.test(column)) style.letterSpacing = cell;
-      }
-      if (Object.keys(style).length > 1) typography.push(style);
+    const typographyTables = tableBlocks(lines);
+    if (typographyTables.length === 0) {
+      typographyTables.push(...tableBlocks(markdown.split(/\r?\n/)));
     }
-    const font = lines.join(" ").match(/\*\*Font(?: family)?\*\*:\s*([^\n]+)/i);
-    if (font) typography.push({ name: "Font family", fontFamily: font[1].trim() });
+    for (const rows of typographyTables.map(tableRows)) {
+      const header = rows[0]?.map((cell) => cell.toLowerCase()) ?? [];
+      // A font-family reference table describes reusable stacks, not type
+      // styles. Keep it out of the rendered type scale so entries such as
+      // --font-display do not become default-sized “Aa” specimens.
+      if (header.some((cell) => /stack|family/.test(cell)) && header.some((cell) => /token|variable|utility/.test(cell))) continue;
+      // A weight reference table is metadata for the type scale, not a set of
+      // specimens. Only tables with a size, line-height, or family column can
+      // describe a complete typography style.
+      if (!header.some((cell) => /size|line|leading|family|font/.test(cell))) continue;
+      for (const cells of rows.slice(1)) {
+        const style: FoundationTypography = { name: cells[0] };
+        for (const [index, cell] of cells.entries()) {
+          const column = header[index] ?? "";
+          if (/font|family|stack/.test(column)) style.fontFamily = cell;
+          if (/size/.test(column) && !/line/.test(column)) style.fontSize = cell;
+          if (/weight/.test(column)) style.fontWeight = cell;
+          if (/line|leading/.test(column) && !/size|desktop|mobile|taille/.test(column)) style.lineHeight = cell;
+          if (/letter|tracking/.test(column)) style.letterSpacing = cell;
+          if (!/mobile/.test(column) && /desktop.*(?:size|taille|line)|(?:size|taille).*line/.test(column)) {
+            const scale = cell.match(/([\d.]+(?:px|rem|em|%)?)\s*\/\s*([\d.]+(?:px|rem|em|%)?)/i);
+            if (scale) {
+              style.fontSize = cssDimension(scale[1], cell);
+              style.lineHeight = cssDimension(scale[2], cell);
+            }
+          }
+        }
+        if (documentedFamily && !style.fontFamily) style.fontFamily = documentedFamily;
+        if (Object.keys(style).length > 1) typography.push(style);
+      }
+    }
   }
   const propertyNames: Record<string, keyof FoundationTypography> = {
     fontfamily: "fontFamily",
@@ -132,11 +209,11 @@ export function parseDesignMdFoundations(markdown: string) {
   const parseValues = (key: string, headingPattern: RegExp) => {
     const yamlValues = section(markdown, key).flatMap((line) => {
     const match = line.match(/^\s{2,}["']?([\w-]+)["']?\s*:\s*["']?([^"']+?)["']?\s*$/);
-    return match ? [{ name: match[1], value: clean(match[2]) }] : [];
+      return match ? [{ name: match[1], value: firstUnit(clean(match[2])) }] : [];
     });
     if (yamlValues.length > 0) return yamlValues;
     const rows = tableRows(markdownSection(markdown, headingPattern));
-    return rows.slice(1).flatMap((cells) => cells.length > 1 ? [{ name: cells[0], value: cells[1] }] : []);
+    return rows.slice(1).flatMap((cells) => cells.length > 1 ? [{ name: cells[0], value: firstUnit(cells[1]) }] : []);
   };
 
   return {

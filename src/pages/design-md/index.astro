@@ -6,6 +6,7 @@ import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../ui/breadcrumbs.astro";
 import DesignMdItem from "../../ui/design-md-item.astro";
 
+const orderedDesignMd = [...designMd].sort((a, b) => a.name.localeCompare(b.name));
 const breadcrumbItems = [{ label: "Explore", href: "/" }, { label: "Design.md" }];
 const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
 const pageUrl = new URL("/design-md", siteOrigin).toString();
@@ -17,7 +18,7 @@ const structuredData = {
   url: pageUrl,
   hasPart: {
     "@type": "ItemList",
-    itemListElement: designMd.map((entry, index) => ({
+    itemListElement: orderedDesignMd.map((entry, index) => ({
       "@type": "ListItem",
       position: index + 1,
       url: new URL(`/design-md/${entry.id}`, siteOrigin).toString(),
@@ -45,7 +46,7 @@ const structuredData = {
         </div>
 
         <div class="flex flex-col">
-          {designMd.map((entry) => <DesignMdItem {...entry} />)}
+          {orderedDesignMd.map((entry) => <DesignMdItem {...entry} />)}
         </div>
       </div>
     </div>
