@@ -7,7 +7,7 @@ import PlaybookCard from "../../ui/playbook-card.astro";
 import { playbook } from "../../data/playbook.ts";
 import { skills } from "../../data/skills.ts";
 
-const breadcrumbItems = [{ label: "Explore", href: "/" }, { label: "Playbook" }];
+const breadcrumbItems = [{ label: "Explore", href: "/" }, { label: "Learn" }];
 
 const playbookCards = playbook
   .map((entry) => {
@@ -22,9 +22,9 @@ const pageUrl = new URL("/playbook", siteOrigin).toString();
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "Playbook",
+  name: "Learn",
   description:
-    "Distilled UI lessons from the best design engineering skills.",
+    "Interactive playground and lessons from the best design engineering skills",
   url: pageUrl,
   hasPart: {
     "@type": "ItemList",
@@ -40,8 +40,8 @@ const structuredData = {
 
 <Layout
   structuredData={structuredData}
-  title="Playbook | UI Skills"
-  description="Distilled UI lessons from the best design engineering skills."
+  title="Learn | UI Skills"
+  description="Interactive playground and lessons from the best design engineering skills"
 >
   <div class="relative flex min-h-dvh flex-col items-center">
     <div class="relative mt-20 container-3xl">
@@ -50,14 +50,14 @@ const structuredData = {
 
         <div class="">
           <h1
-            class="text-content-primary text-3xl font-medium tracking-tight text-balance"
+            class="type-h1 text-content-primary text-balance"
           >
-            Playbook
+            Learn
           </h1>
           <p
-            class="text-content-secondary mt-3 max-w-2xl text-base leading-snug text-pretty"
+            class="type-body-md mt-3 max-w-2xl text-content-secondary text-pretty"
           >
-            Distilled UI lessons from the best design engineering skills.
+            Interactive playground and lessons from the best design engineering skills
           </p>
         </div>
 
