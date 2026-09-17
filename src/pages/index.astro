@@ -117,8 +117,8 @@ const featuredPlaybook = playbook
           </a>
           <div class="flex gap-3 overflow-x-clip overflow-y-visible">
             {
-              designMd.map(({ name, logoImage }) => (
-                <div class="group relative size-10 shrink-0">
+              designMd.map(({ id, name, logoImage }) => (
+                <a href={`/design-md/${id}`} aria-label={`View ${name} design.md`} class="group relative block size-10 shrink-0">
                   <img
                     src={logoImage}
                     alt={name}
@@ -127,10 +127,10 @@ const featuredPlaybook = playbook
                     loading="lazy"
                     class="size-10 rounded-xl border border-line-default transition-transform duration-200 ease-out group-hover:-translate-y-0.5"
                   />
-                  <span class="pointer-events-none absolute top-full left-1/2 z-20 mt-2 -translate-x-1/2 translate-y-1 whitespace-nowrap type-body-sm text-content-muted opacity-0 transition-[opacity,transform] duration-200 ease-out group-hover:translate-y-0 group-hover:opacity-100">
+                  <span class="pointer-events-none absolute top-full left-1/2 z-20 mt-2 -translate-x-1/2 whitespace-nowrap type-body-sm text-content-muted opacity-0 group-hover:opacity-100">
                     {name}
                   </span>
-                </div>
+                </a>
               ))
             }
           </div>
