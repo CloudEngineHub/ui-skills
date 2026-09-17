@@ -119,6 +119,23 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
     }
 
     invalidFields[0].focus();
+    return;
+  });
+
+  jobForm?.addEventListener("submit", (event) => {
+    const submitter = event.submitter as HTMLButtonElement | null;
+    if (submitter?.value !== "contact") return;
+    if (!jobForm.checkValidity()) return;
+
+    event.preventDefault();
+    const formData = new FormData(jobForm);
+    const companyName = String(formData.get("companyName") ?? "").trim();
+    const subject = `${companyName} wants to get in touch for a job post`;
+    const body = Array.from(formData.entries())
+      .filter(([name]) => name !== "action")
+      .map(([name, value]) => `${name}: ${value}`)
+      .join("\n");
+    window.location.href = `mailto:julien.thibeaut@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 
   jobForm?.querySelectorAll<HTMLInputElement | HTMLSelectElement>("input, select").forEach((field) => {
