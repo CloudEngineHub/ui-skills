@@ -10,7 +10,6 @@ import PlaybookCard from "../../ui/playbook-card.astro";
 import SkillCard from "../../ui/skill-card.astro";
 import SkillNav from "../../ui/skill-nav.astro";
 import Command from "../../ui/command.astro";
-import TopicTag from "../../ui/topic-tag.astro";
 import Button from "../../ui/button.astro";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { renderSkillMarkdown } from "../../lib/render-skill-markdown";
@@ -447,17 +446,32 @@ const installCommand = (() => {
               </div>
 
               {relatedTopicsForTopicPage.length > 0 ? (
-                <div class="">
-                  <h2 class="text-content-primary mb-3 text-lg font-medium tracking-tight">
+                <div class="flex flex-col gap-2">
+                  <h2 class="type-body-md !font-[450] !text-content-secondary">
                     Related topics
                   </h2>
-                  <div class="flex flex-wrap gap-2">
+                  <div data-topic-row class="flex min-w-0 flex-nowrap items-center gap-2 overflow-hidden">
                     {relatedTopicsForTopicPage.map((entry) => (
-                      <TopicTag
+                      <Button
                         href={`/skills/${entry.slug}`}
-                        label={entry.label}
-                      />
+                        variant="secondary"
+                        size="sm"
+                        className="shrink-0"
+                        data-topic-item
+                      >
+                        {entry.label}
+                      </Button>
                     ))}
+                    <Button
+                      href="/skills"
+                      variant="secondary"
+                      size="sm"
+                      className="shrink-0"
+                      data-topic-more
+                    >
+                      More
+                      <PlusIcon className="size-4" aria-hidden="true" />
+                    </Button>
                   </div>
                 </div>
               ) : null}
