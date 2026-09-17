@@ -81,7 +81,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
             </label>
           </div>
           <div class="flex justify-between gap-2">
-            <Button type="submit" name="action" value="contact" variant="secondary" size="md">Get in touch</Button>
+            <Button type="button" variant="secondary" size="md">Get in touch</Button>
             <Button type="submit" variant="primary" size="md">Submit and purchase</Button>
           </div>
         </form>
@@ -219,6 +219,15 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
     line-height: 1.5;
     letter-spacing: normal;
     white-space: nowrap;
+  }
+
+  :global(input:-webkit-autofill),
+  :global(input:-webkit-autofill:hover),
+  :global(input:-webkit-autofill:focus) {
+    -webkit-text-fill-color: var(--color-content-primary);
+    -webkit-box-shadow: 0 0 0 1000px var(--color-surface-default) inset;
+    box-shadow: 0 0 0 1000px var(--color-surface-default) inset;
+    caret-color: var(--color-content-primary);
   }
 
 </style>
