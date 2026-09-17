@@ -59,8 +59,7 @@ const nextPlaybook =
     : undefined;
 
 const breadcrumbItems = [
-  { label: "Explore", href: "/" },
-  { label: "Playbook", href: "/playbook" },
+  { label: "Learn", href: "/playbook" },
   { label: entry?.title ?? slug },
 ];
 
@@ -136,7 +135,7 @@ const breadcrumbStructuredData = {
             <Breadcrumbs items={breadcrumbItems} />
 
             <div class="flex items-start justify-between gap-4 ">
-              <div class="space-y-3">
+              <div class="flex flex-col gap-3">
                 <h1 class="type-h2 text-content-primary text-balance">
                   {entry.title}
                 </h1>

@@ -5,12 +5,14 @@ type CopyButtonProps = {
   content: string;
   className?: string;
   showText?: boolean;
+  variant?: "ghost" | "secondary";
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export function CopyButton({
   content,
   className,
   showText = true,
+  variant = "ghost",
   ...props
 }: CopyButtonProps) {
   const [isCopied, setIsCopied] = useState(false);
@@ -29,7 +31,7 @@ export function CopyButton({
     <button
       onClick={handleCopy}
       type="button"
-      className={`type-body-md ${showText ? "h-7 px-2" : "size-7"} text-content-secondary hover:bg-fill-strong hover:text-content-primary flex items-center justify-center gap-1 rounded-lg border border-transparent transition-[background-color,color] duration-150 ease-out ${className}`}
+      className={`type-body-md ${showText ? "h-7 px-2" : "size-7"} flex items-center justify-center gap-1 rounded-lg transition-[background-color,color] duration-150 ease-out ${variant === "secondary" ? "border border-line-default bg-fill-default text-content-primary hover:bg-fill-subtle" : "border border-transparent text-content-secondary hover:bg-fill-strong hover:text-content-primary"} ${className ?? ""}`}
       aria-label="Copy to clipboard"
       {...props}
     >

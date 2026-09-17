@@ -6,10 +6,11 @@ type Props = {
   name?: string;
   description?: string;
   dataEvent?: string;
+  copyVariant?: "ghost" | "secondary";
   class?: string;
 };
 
-const { copyContent, name, description, dataEvent, class: className } = Astro.props as Props;
+const { copyContent, name, description, dataEvent, copyVariant = "ghost", class: className } = Astro.props as Props;
 const hasFrontmatter = Boolean(name ?? description);
 ---
 
@@ -19,9 +20,9 @@ const hasFrontmatter = Boolean(name ?? description);
     className,
   ]}
 >
-  <div class="sticky top-1 right-0 z-10">
+  <div class="sticky top-3 right-0 z-10">
     <div class="absolute top-0 right-0">
-      <CopyButton content={copyContent} client:load data-s-event={dataEvent} />
+      <CopyButton content={copyContent} variant={copyVariant} client:load data-s-event={dataEvent} />
     </div>
   </div>
   <div

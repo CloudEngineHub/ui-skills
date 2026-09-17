@@ -1,0 +1,55 @@
+---
+export const prerender = true;
+
+import Layout from "../layouts/Layout.astro";
+import Button from "../ui/button.astro";
+import JobItem from "../ui/job-item.astro";
+import { jobs } from "../data/jobs";
+
+const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
+const jobsUrl = new URL("/jobs", siteOrigin).toString();
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Design engineering jobs",
+  description: "The latest design engineering jobs from companies building thoughtful digital products.",
+  url: jobsUrl,
+  hasPart: {
+    "@type": "ItemList",
+    itemListElement: jobs.map((job, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: `${job.title} at ${job.company}`,
+      url: job.url,
+    })),
+  },
+};
+---
+
+<Layout
+  structuredData={structuredData}
+  title="Design engineering jobs | UI Skills"
+  description="Browse the latest design engineering jobs from companies hiring designers who can think in systems and build exceptional interfaces."
+>
+  <div class="relative flex min-h-dvh flex-col items-center justify-start">
+    <main class="relative mt-20 container-3xl">
+      <div class="mx-auto flex w-full flex-col gap-10">
+        <div class="flex items-start justify-between gap-5">
+          <div class="flex flex-col gap-3">
+            <h1 class="type-h1 text-content-primary">Jobs</h1>
+            <p class="type-body-md text-content-secondary">
+              The latest design engineering jobs from companies building thoughtful digital products.
+            </p>
+          </div>
+          <Button href="https://www.designengineerjob.com/" variant="secondary" size="md" target="_blank" rel="noreferrer">
+            Post a job
+          </Button>
+        </div>
+
+        <div class="flex flex-col">
+          {jobs.map((job) => <JobItem {...job} />)}
+        </div>
+      </div>
+    </main>
+  </div>
+</Layout>

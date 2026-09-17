@@ -106,7 +106,7 @@ const breadcrumbStructuredData = {
               height="40"
               class="size-10 rounded-xl border border-line-default"
             />
-            <div class="flex flex-col">
+            <div class="flex flex-col gap-3">
               <h1 class="type-h2 text-content-primary">{entry.name}</h1>
               <p class="type-body-md text-content-secondary">
                 {entry.description}
@@ -156,6 +156,7 @@ const breadcrumbStructuredData = {
         >
           <SkillContentCard
             copyContent={content}
+            copyVariant="secondary"
             class="max-w-none rounded-none border-0 shadow-none"
           >
             <pre class="not-prose m-0 w-full overflow-x-auto whitespace-pre text-left text-content-primary"><code class="type-code block text-left">{content}</code></pre>

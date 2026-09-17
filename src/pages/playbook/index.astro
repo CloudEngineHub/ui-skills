@@ -2,12 +2,10 @@
 export const prerender = true;
 
 import Layout from "../../layouts/Layout.astro";
-import Breadcrumbs from "../../ui/breadcrumbs.astro";
 import PlaybookCard from "../../ui/playbook-card.astro";
 import { playbook } from "../../data/playbook.ts";
 import { skills } from "../../data/skills.ts";
 
-const breadcrumbItems = [{ label: "Explore", href: "/" }, { label: "Learn" }];
 
 const playbookCards = playbook
   .map((entry) => {
@@ -46,16 +44,14 @@ const structuredData = {
   <div class="relative flex min-h-dvh flex-col items-center">
     <div class="relative mt-20 container-3xl">
       <div class="mx-auto flex w-full flex-col gap-8">
-        <Breadcrumbs items={breadcrumbItems} />
-
-        <div class="">
+        <div class="flex flex-col gap-3">
           <h1
             class="type-h1 text-content-primary text-balance"
           >
             Learn
           </h1>
           <p
-            class="type-body-md mt-3 max-w-2xl text-content-secondary text-pretty"
+            class="type-body-md max-w-2xl text-content-secondary text-pretty"
           >
             Interactive playground and lessons from the best design engineering skills
           </p>
