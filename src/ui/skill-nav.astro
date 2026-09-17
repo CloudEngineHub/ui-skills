@@ -1,5 +1,5 @@
 ---
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
 type Props = {
   previousHref?: string;
@@ -10,42 +10,41 @@ const { previousHref, nextHref } = Astro.props as Props;
 ---
 
 <div
-  class="border-line-default inline-flex items-stretch overflow-hidden rounded-[8px] border bg-surface-default"
+  class="flex items-center gap-1"
 >
   {
     previousHref ? (
       <a
         href={previousHref}
         aria-label="Previous skill"
-        class="text-content-primary hover:bg-fill-subtle inline-flex size-8 items-center justify-center transition-colors"
+        class="inline-flex size-7 items-center justify-center rounded-lg bg-transparent p-1 text-content-secondary transition-colors hover:bg-fill-strong hover:text-content-primary"
       >
-        <ChevronLeftIcon className="size-4" aria-hidden="true" />
+        <ArrowLeftIcon className="size-4" aria-hidden="true" />
       </a>
     ) : (
       <span
         aria-label="Previous skill unavailable"
-        class="text-content-extra-muted inline-flex size-8 items-center justify-center"
+        class="inline-flex size-7 items-center justify-center rounded-lg bg-transparent p-1 text-content-muted"
       >
-        <ChevronLeftIcon className="size-4" aria-hidden="true" />
+        <ArrowLeftIcon className="size-4" aria-hidden="true" />
       </span>
     )
   }
-  <span class="bg-fill-strong w-px self-stretch" aria-hidden="true"></span>
   {
     nextHref ? (
       <a
         href={nextHref}
         aria-label="Next skill"
-        class="text-content-primary hover:bg-fill-subtle inline-flex size-8 items-center justify-center transition-colors"
+        class="inline-flex size-7 items-center justify-center rounded-lg bg-transparent p-1 text-content-secondary transition-colors hover:bg-fill-strong hover:text-content-primary"
       >
-        <ChevronRightIcon className="size-4" aria-hidden="true" />
+        <ArrowRightIcon className="size-4" aria-hidden="true" />
       </a>
     ) : (
       <span
         aria-label="Next skill unavailable"
-        class="text-content-extra-muted inline-flex size-8 items-center justify-center"
+        class="inline-flex size-7 items-center justify-center rounded-lg bg-transparent p-1 text-content-muted"
       >
-        <ChevronRightIcon className="size-4" aria-hidden="true" />
+        <ArrowRightIcon className="size-4" aria-hidden="true" />
       </span>
     )
   }

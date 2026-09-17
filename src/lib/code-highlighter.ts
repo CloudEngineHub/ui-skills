@@ -7,9 +7,9 @@ import type { LanguageRegistration } from "shiki";
 
 export const CODE_HIGHLIGHT_THEME = "github-light-high-contrast";
 export const CODE_HIGHLIGHT_FOREGROUND = "#0e1116";
-export const SKILL_CODE_THEME = "github-dark-default";
-export const SKILL_CODE_BACKGROUND = "#24292e";
-export const SKILL_CODE_FOREGROUND = "#f0f6fc";
+export const SKILL_CODE_THEME = CODE_HIGHLIGHT_THEME;
+export const SKILL_CODE_BACKGROUND = "transparent";
+export const SKILL_CODE_FOREGROUND = CODE_HIGHLIGHT_FOREGROUND;
 
 export type CodeHighlightLanguage = "bash" | "plaintext";
 
@@ -112,7 +112,7 @@ const HIGHLIGHT_SURFACES: Record<
     theme: SKILL_CODE_THEME,
     foreground: SKILL_CODE_FOREGROUND,
     background: SKILL_CODE_BACKGROUND,
-    transparentBackground: false,
+    transparentBackground: true,
   },
 };
 

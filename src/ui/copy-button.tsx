@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { CheckIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
-import { TextMorph } from "./text-morph";
 
 type CopyButtonProps = {
   content: string;
@@ -35,9 +34,14 @@ export function CopyButton({
       {...props}
     >
       {showText ? (
-        <div className="flex w-[70px] items-center justify-center text-sm font-medium">
-          <TextMorph>{isCopied ? "Copied" : "Copy"}</TextMorph>
-        </div>
+        <>
+          {isCopied ? (
+            <CheckIcon className="size-4" aria-hidden="true" />
+          ) : (
+            <DocumentDuplicateIcon className="size-4" aria-hidden="true" />
+          )}
+          <span className="font-medium">{isCopied ? "Copied" : "Copy"}</span>
+        </>
       ) : isCopied ? (
           <CheckIcon className="size-4" aria-hidden="true" />
         ) : (
