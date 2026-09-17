@@ -20,8 +20,8 @@ const structuredData = {
     itemListElement: designMd.map((entry, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      url: new URL(`/design-md/${entry.slug}`, siteOrigin).toString(),
-      name: entry.title,
+      url: new URL(`/design-md/${entry.id}`, siteOrigin).toString(),
+      name: entry.name,
     })),
   },
 };

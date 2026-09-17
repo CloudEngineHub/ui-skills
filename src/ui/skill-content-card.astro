@@ -6,14 +6,18 @@ type Props = {
   name?: string;
   description?: string;
   dataEvent?: string;
+  class?: string;
 };
 
-const { copyContent, name, description, dataEvent } = Astro.props as Props;
+const { copyContent, name, description, dataEvent, class: className } = Astro.props as Props;
 const hasFrontmatter = Boolean(name ?? description);
 ---
 
 <div
-  class="relative w-full max-w-3xl rounded-lg border border-line-default bg-surface-default px-3 pt-3 pb-10 shadow-2xs"
+  class:list={[
+    "relative w-full max-w-3xl rounded-lg border border-line-default bg-surface-default px-3 pt-3 pb-10 shadow-2xs",
+    className,
+  ]}
 >
   <div class="sticky top-1 right-0 z-10">
     <div class="absolute top-0 right-0">

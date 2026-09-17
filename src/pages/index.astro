@@ -4,6 +4,7 @@ export const prerender = true;
 import Layout from "../layouts/Layout.astro";
 import { playbook } from "../data/playbook";
 import { skills } from "../data/skills";
+import { designMd } from "../data/design-md";
 import AgentAccessStart from "../ui/agent-access-start.astro";
 import PlaybookCard from "../ui/playbook-card.astro";
 import SkillCard from "../ui/skill-card.astro";
@@ -61,23 +62,6 @@ const featuredPlaybook = playbook
   })
   .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
 
-const designMdAssets = [
-  ["Mintlify", "https://assets.querrel.com/design.md/mintlify/mintlify-logo.webp"],
-  ["Atlassian", "https://assets.querrel.com/design.md/atlassian/atlassian-logo.webp"],
-  ["Amplitude", "https://assets.querrel.com/design.md/amplitude/amplitude-logo.webp"],
-  ["Firecrawl", "https://assets.querrel.com/design.md/firecrawl/firecrawl-logo.webp"],
-  ["Vercel", "https://assets.querrel.com/design.md/vercel/vercel-logo.webp"],
-  ["QuiverAI", "https://assets.querrel.com/design.md/quiverai/quiverai-logo.webp"],
-  ["Voltagent", "https://assets.querrel.com/design.md/voltagent/voltagent-logo.webp"],
-  ["UNICEF", "https://assets.querrel.com/design.md/unicef/unicef-logo.webp"],
-  ["Open Food Facts", "https://assets.querrel.com/design.md/openfoodfacts/openfoodfacts-logo.webp"],
-  ["Nuxt", "https://assets.querrel.com/design.md/nuxt/nuxt-logo.webp"],
-  ["Hyperframes", "https://assets.querrel.com/design.md/hyperframes/hyperframes-logo.webp"],
-  ["Culture Amp", "https://assets.querrel.com/design.md/cultureamp/cultureamp-logo.webp"],
-  ["DSFR", "https://assets.querrel.com/design.md/dsfr/dsfr-logo.webp"],
-  ["Ant Design", "https://assets.querrel.com/design.md/antdesign/antdesign-logo.webp"],
-  ["Executor", "https://assets.querrel.com/design.md/executor/executor-logo.webp"],
-] as const;
 ---
 
 <Layout
@@ -133,10 +117,10 @@ const designMdAssets = [
           </a>
           <div class="flex gap-3 overflow-x-clip overflow-y-visible">
             {
-              designMdAssets.map(([name, src]) => (
+              designMd.map(({ name, logoImage }) => (
                 <div class="group relative size-10 shrink-0">
                   <img
-                    src={src}
+                    src={logoImage}
                     alt={name}
                     width="40"
                     height="40"
