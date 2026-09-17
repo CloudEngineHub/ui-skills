@@ -3,7 +3,7 @@ export const prerender = true;
 
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../ui/breadcrumbs.astro";
-import CodeBlock from "../../ui/code-block.astro";
+import Command from "../../ui/command.astro";
 
 const breadcrumbItems = [{ label: "Explore", href: "/" }, { label: "MCP" }];
 
@@ -50,61 +50,40 @@ const structuredData = {
         <Breadcrumbs items={breadcrumbItems} />
 
         <div class="">
-          <h1 class="text-content-primary text-3xl font-medium tracking-tight">
+          <h1 class="type-h1 text-content-primary">
             MCP
           </h1>
-          <p class="text-content-secondary mt-3 max-w-2xl text-base leading-snug">
+          <p class="type-body-md mt-3 text-content-secondary">
             Connect agents to the UI Skills catalog over Model Context Protocol.
             The server exposes the same registry as the
             <code class="text-[0.875em]">ui-skills</code> CLI.
           </p>
         </div>
 
-        <section>
-          <h2 class="text-content-primary mb-3 px-4 text-lg font-medium sm:px-0">
+        <section class="flex flex-col gap-5">
+          <h2 class="type-body-md font-[450] text-content-secondary">
             Endpoint
           </h2>
-          <CodeBlock
-            code={mcpEndpoint}
-            language="bash"
-            variant="inline"
-            truncate={false}
-            wrapOnMobile={true}
-            copyContent={mcpEndpoint}
-          />
+          <Command command={mcpEndpoint} />
         </section>
 
-        <section>
-          <h2 class="text-content-primary mb-3 px-4 text-lg font-medium sm:px-0">
+        <section class="flex flex-col gap-5">
+          <h2 class="type-body-md font-[450] text-content-secondary">
             Server card
           </h2>
-          <CodeBlock
-            code={serverCardUrl}
-            language="bash"
-            variant="inline"
-            truncate={false}
-            wrapOnMobile={true}
-            copyContent={serverCardUrl}
-          />
+          <Command command={serverCardUrl} />
         </section>
 
-        <section class="pb-6">
-          <h2 class="text-content-primary mb-3 px-4 text-lg font-medium sm:px-0">
+        <section class="flex flex-col gap-5 pb-6">
+          <h2 class="type-body-md font-[450] text-content-secondary">
             Tools
           </h2>
-          <div class="flex flex-col gap-10">
+          <div class="flex flex-col gap-7">
             {
               tools.map((tool) => (
-                <article class="flex w-full flex-col gap-4">
-                  <CodeBlock
-                    code={tool.name}
-                    language="bash"
-                    variant="inline"
-                    truncate={false}
-                    wrapOnMobile={true}
-                    copyContent={tool.name}
-                  />
-                  <p class="text-content-secondary max-w-2xl text-base leading-snug">
+                <article class="flex w-full flex-col gap-3">
+                  <Command command={tool.name} />
+                  <p class="type-body-md text-content-secondary">
                     {tool.description}
                   </p>
                 </article>
