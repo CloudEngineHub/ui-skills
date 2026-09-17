@@ -3,6 +3,8 @@ import Layout from "../../layouts/Layout.astro";
 import AgentStartHere from "../../ui/agent-start-here.astro";
 
 import Breadcrumbs from "../../ui/breadcrumbs.astro";
+import Button from "../../ui/button.astro";
+import { PlusIcon } from "@heroicons/react/24/outline";
 import { agentById, agents } from "../../data/agents";
 
 export const prerender = true;
@@ -125,61 +127,68 @@ const structuredDataItems = agent
           <div class="mx-auto flex w-full flex-col gap-10">
             <Breadcrumbs items={breadcrumbItems} />
 
-            <div class="">
+            <div class="flex flex-col gap-5">
               <div class="flex items-center gap-3">
                 <img
                   src={agent.faviconUrl}
                   alt={`${agent.name} logo`}
-                  width="32"
-                  height="32"
+                  width="40"
+                  height="40"
                   loading="lazy"
-                  class="border-line-default size-8 rounded-full border"
+                  class="size-10 rounded-xl border border-line-default"
                 />
-                <h1 class="text-content-primary text-3xl font-medium tracking-tight">
+                <h1 class="type-h2 text-content-primary">
                   {agent.name}
                 </h1>
               </div>
 
-              <p class="text-content-secondary mt-3 max-w-2xl text-lg leading-snug">
-                {agent.description}
-              </p>
-
-              <p class="text-content-secondary mt-4 max-w-2xl text-lg leading-snug text-pretty">
-                UI Skills helps you find the right skills depending on the
-                current context so {agent.name} can load the most useful
-                guidance across sessions.
-              </p>
-
-              {focusSentence ? (
-                <p class="text-content-secondary mt-3 max-w-2xl text-base leading-snug text-pretty">
-                  {focusSentence}
+              <div class="flex flex-col gap-2">
+                <p class="type-body-md font-[450] text-content-secondary">
+                  {agent.description}
                 </p>
-              ) : null}
+
+                <p class="type-body-md font-[450] text-content-secondary text-pretty">
+                  UI Skills helps you find the right skills depending on the
+                  current context so {agent.name} can load the most useful
+                  guidance across sessions.
+                </p>
+
+                {focusSentence ? (
+                  <p class="type-body-md font-[450] text-content-secondary text-pretty">
+                    {focusSentence}
+                  </p>
+                ) : null}
+              </div>
             </div>
 
             <AgentStartHere />
 
-            <section class="">
-              <h2 class="text-content-primary mb-3 text-lg font-medium">
+            <section class="flex flex-col gap-5">
+              <h2 class="type-body-md font-[450] text-content-secondary">
                 Explore topics
               </h2>
-              <div class="mt-3 flex flex-wrap gap-2">
+              <div class="flex flex-wrap gap-2">
                 {exploreTopics.map((topic) => (
-                  <a
+                  <Button
                     href={topic.href}
-                    class="text-content-primary hover:bg-fill-subtle border-line-default inline-flex h-8 items-center gap-1.5 rounded-lg border bg-transparent px-2.5 text-sm font-medium tracking-normal transition-colors"
+                    variant="secondary"
+                    size="sm"
                   >
-                    <span>{topic.label}</span>
-                  </a>
+                    {topic.label}
+                  </Button>
                 ))}
+                <Button href="/skills" variant="secondary" size="sm">
+                  More
+                  <PlusIcon className="size-4" aria-hidden="true" />
+                </Button>
               </div>
             </section>
 
-            <section class="">
-              <h2 class="text-content-primary text-base font-medium">
+            <section class="flex flex-col gap-5">
+              <h2 class="type-body-md font-[450] text-content-secondary">
                 Other agents
               </h2>
-              <div class="mt-3 grid gap-3 sm:grid-cols-2">
+              <div class="grid gap-3 sm:grid-cols-2">
                 {otherAgents.map((otherAgent) => (
                   <a
                     href={`/agents/${otherAgent.id}`}
@@ -194,24 +203,15 @@ const structuredDataItems = agent
                         loading="lazy"
                         class="border-line-default size-6 rounded-full border"
                       />
-                      <div class="text-content-primary font-[450]">
+                      <div class="type-body-md font-[450] text-content-primary">
                         {otherAgent.name}
                       </div>
                     </div>
-                    <div class="text-content-secondary mt-1 line-clamp-2 text-[14px] leading-snug">
+                    <div class="type-body-md mt-1 line-clamp-2 text-content-secondary">
                       {otherAgent.description}
                     </div>
                   </a>
                 ))}
-                <a
-                  href="/agents"
-                  class="hover:border-content-extra-muted hover:bg-fill-subtle border-line-default rounded-[10px] border px-4 py-3 transition-colors"
-                >
-                  <div class="text-content-primary font-[450]">More</div>
-                  <div class="text-content-secondary mt-1 line-clamp-2 text-[14px] leading-snug">
-                    Browse the full agent collection.
-                  </div>
-                </a>
               </div>
             </section>
           </div>
@@ -220,10 +220,10 @@ const structuredDataItems = agent
     ) : (
       <div class="relative flex min-h-dvh flex-col items-center justify-start">
         <div class="relative mt-20 container-3xl">
-          <h1 class="text-content-primary text-3xl font-medium tracking-tight">
+          <h1 class="type-h2 text-content-primary">
             Agent not found
           </h1>
-          <p class="text-content-secondary mt-3 text-base leading-snug">
+          <p class="type-body-md mt-3 text-content-secondary">
             The agent you requested does not exist.
           </p>
         </div>
