@@ -138,19 +138,11 @@ export function PlaybookDemoCard({
           className={cn(
             "absolute inset-0",
             !flush && "flex items-center justify-center",
-            showTip ? "hidden" : "",
           )}
         >
-          <div className={resolvedContentClassName}>{without}</div>
-        </div>
-        <div
-          className={cn(
-            "absolute inset-0",
-            !flush && "flex items-center justify-center",
-            showTip ? "" : "hidden",
-          )}
-        >
-          <div className={resolvedContentClassName}>{withContent}</div>
+          <div className={resolvedContentClassName}>
+            {showTip ? withContent : without}
+          </div>
         </div>
       </div>
     </div>

@@ -8,6 +8,18 @@ type CopyButtonProps = {
   variant?: "ghost" | "secondary";
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
+function fallbackCopy(content: string) {
+  const textarea = document.createElement("textarea");
+  textarea.value = content;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  textarea.remove();
+}
+
 export function CopyButton({
   content,
   className,
@@ -18,12 +30,26 @@ export function CopyButton({
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = async () => {
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 2000);
+
     try {
-      await navigator.clipboard.writeText(content);
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000);
+      if (navigator.clipboard?.writeText) {
+        await Promise.race([
+          navigator.clipboard.writeText(content),
+          new Promise((_, reject) =>
+            window.setTimeout(() => reject(new Error("Clipboard timeout")), 500),
+          ),
+        ]);
+      } else {
+        fallbackCopy(content);
+      }
     } catch {
-      // Ignore error
+      try {
+        fallbackCopy(content);
+      } catch {
+        // Ignore clipboard errors.
+      }
     }
   };
 

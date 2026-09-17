@@ -80,8 +80,9 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
               <input name="jobPostUrl" type="url" required class="type-body-md h-8 rounded-md border border-line-default bg-surface-default px-2 text-content-primary outline-none placeholder:text-content-muted focus:border-[#A5A5A5]/40" />
             </label>
           </div>
-          <div class="flex justify-end">
-            <Button type="submit" variant="primary" size="md">Submit and check-out</Button>
+          <div class="flex justify-between gap-2">
+            <Button type="submit" name="action" value="contact" variant="secondary" size="md">Get in touch</Button>
+            <Button type="submit" variant="primary" size="md">Submit and purchase</Button>
           </div>
         </form>
       </div>
@@ -93,24 +94,31 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
   const jobForm = document.querySelector<HTMLFormElement>('form[novalidate]');
 
   jobForm?.addEventListener("submit", (event) => {
-    const invalidField = jobForm.querySelector<HTMLInputElement | HTMLSelectElement>(":invalid");
-    if (!invalidField) return;
+    const invalidFields = Array.from(
+      jobForm.querySelectorAll<HTMLInputElement | HTMLSelectElement>(":invalid"),
+    );
+    if (!invalidFields.length) return;
 
     event.preventDefault();
     jobForm.querySelectorAll(".input-tooltip").forEach((tooltip) => tooltip.remove());
-    const tooltip = document.createElement("span");
-    tooltip.className = "input-tooltip";
-    tooltip.textContent = "Please fill in this field";
-    document.body.append(tooltip);
-    invalidField.focus();
-    const validationTarget = invalidField.name === "employmentType"
-      ? document.querySelector<HTMLElement>("#employment-type-trigger")
-      : invalidField;
-    const inputBounds = validationTarget?.getBoundingClientRect() ?? invalidField.getBoundingClientRect();
-    const tooltipBounds = tooltip.getBoundingClientRect();
-    tooltip.style.top = `${inputBounds.top - tooltipBounds.height - 4}px`;
-    tooltip.style.left = `${inputBounds.right - tooltipBounds.width}px`;
-    window.setTimeout(() => tooltip.remove(), 2000);
+
+    for (const invalidField of invalidFields) {
+      const tooltip = document.createElement("span");
+      tooltip.className = "input-tooltip";
+      tooltip.textContent = "Please fill in this field";
+      document.body.append(tooltip);
+
+      const validationTarget = invalidField.name === "employmentType"
+        ? document.querySelector<HTMLElement>("#employment-type-trigger")
+        : invalidField;
+      const inputBounds = validationTarget?.getBoundingClientRect() ?? invalidField.getBoundingClientRect();
+      const tooltipBounds = tooltip.getBoundingClientRect();
+      tooltip.style.top = `${inputBounds.top - tooltipBounds.height - 4}px`;
+      tooltip.style.left = `${inputBounds.right - tooltipBounds.width}px`;
+      window.setTimeout(() => tooltip.remove(), 2000);
+    }
+
+    invalidFields[0].focus();
   });
 
   jobForm?.querySelectorAll<HTMLInputElement | HTMLSelectElement>("input, select").forEach((field) => {
@@ -195,4 +203,5 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
     letter-spacing: normal;
     white-space: nowrap;
   }
+
 </style>
