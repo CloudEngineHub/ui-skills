@@ -4,9 +4,13 @@ import Breadcrumbs from "../../ui/breadcrumbs.astro";
 import SkillNav from "../../ui/skill-nav.astro";
 import PlaybookDemo from "../../ui/playbook-demo.astro";
 import SkillCard from "../../ui/skill-card.astro";
+import Button from "../../ui/button.astro";
+import { PlusIcon } from "@heroicons/react/24/outline";
 import { renderSkillMarkdown } from "../../lib/render-skill-markdown";
 import { playbook, playbookBySlug } from "../../data/playbook.ts";
 import { skills } from "../../data/skills.ts";
+import { topicBySlug, relatedTopicSlugs } from "../../data/topics";
+import type { TopicSlug } from "../../data/registry";
 
 export const prerender = true;
 
@@ -28,6 +32,19 @@ const sourceSkill = entry
 const relatedSkills = (entry?.related ?? [])
   .map((skillSlug) => skills.find((skill) => skill.slug === skillSlug))
   .filter((skill): skill is NonNullable<typeof skill> => Boolean(skill));
+const lessonTopicSuggestions = sourceSkill
+  ? Array.from(
+      new Set([
+        ...(sourceSkill.topics ?? []),
+        ...(sourceSkill.topics ?? []).flatMap(
+          (topicSlug) => relatedTopicSlugs[topicSlug] ?? [],
+        ),
+      ]),
+    )
+      .map((topicSlug) => topicBySlug.get(topicSlug as TopicSlug))
+      .filter((topic): topic is NonNullable<typeof topic> => Boolean(topic))
+      .slice(0, 8)
+  : [];
 
 const playbookIndex = entry
   ? playbook.findIndex((item) => item.slug === entry.slug)
@@ -44,7 +61,7 @@ const nextPlaybook =
 const breadcrumbItems = [
   { label: "Explore", href: "/" },
   { label: "Playbook", href: "/playbook" },
-  { label: entry?.slug ?? slug },
+  { label: entry?.title ?? slug },
 ];
 
 const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
@@ -120,11 +137,11 @@ const breadcrumbStructuredData = {
 
             <div class="flex items-start justify-between gap-4 ">
               <div class="space-y-3">
-                <h1 class="text-content-primary text-3xl font-medium tracking-tight text-balance">
+                <h1 class="type-h2 text-content-primary text-balance">
                   {entry.title}
                 </h1>
                 <div
-                  class="prose prose-neutral prose-p:my-0 prose-p:text-base prose-p:leading-snug prose-p:text-content-secondary prose-p:text-pretty max-w-2xl"
+                  class="type-body-md prose prose-neutral prose-p:my-0 prose-p:text-sm prose-p:leading-normal prose-p:text-content-secondary prose-p:text-pretty max-w-2xl"
                   set:html={descriptionHtml}
                 />
               </div>
@@ -144,23 +161,48 @@ const breadcrumbStructuredData = {
 
             <PlaybookDemo entry={entry} />
 
-            {relatedSkills.length > 0 ? (
-              <div class="">
-                <h2 class="text-content-primary mb-3 text-lg font-medium text-balance">
-                  Related skills
-                </h2>
-                <div class="flex flex-col">
-                  {relatedSkills.map((skill) => (
-                    <SkillCard
-                      href={`/skills/${skill.pathSlug}`}
-                      slug={skill.label}
-                      description={skill.description}
-                      ownerLabel={skill.sourceLabel ?? skill.label}
-                      avatarUrl={`https://github.com/${skill.sourceKey ?? "ibelick"}.png?size=160`}
-                      variant="list"
-                    />
-                  ))}
+            {relatedSkills.length > 0 || lessonTopicSuggestions.length > 0 ? (
+              <div class="flex flex-col gap-5">
+                <div class="flex flex-col gap-2">
+                  <h2 class="type-body-md font-[450] text-content-secondary">
+                    Related skills
+                  </h2>
+                  <div class="flex flex-col">
+                    {relatedSkills.map((skill) => (
+                      <SkillCard
+                        href={`/skills/${skill.pathSlug}`}
+                        slug={skill.label}
+                        description={skill.description}
+                        ownerLabel={skill.sourceLabel ?? skill.label}
+                        avatarUrl={`https://github.com/${skill.sourceKey ?? "ibelick"}.png?size=160`}
+                        variant="list"
+                      />
+                    ))}
+                  </div>
                 </div>
+                {lessonTopicSuggestions.length > 0 ? (
+                  <div class="flex min-w-0 flex-nowrap items-center gap-2 overflow-hidden">
+                    {lessonTopicSuggestions.map((topic) => (
+                      <Button
+                        href={`/skills/${topic.slug}`}
+                        variant="secondary"
+                        size="sm"
+                        className="shrink-0"
+                      >
+                        {topic.label}
+                      </Button>
+                    ))}
+                    <Button
+                      href="/skills"
+                      variant="secondary"
+                      size="sm"
+                      className="shrink-0"
+                    >
+                      More
+                      <PlusIcon className="size-4" aria-hidden="true" />
+                    </Button>
+                  </div>
+                ) : null}
               </div>
             ) : null}
           </div>
@@ -170,15 +212,15 @@ const breadcrumbStructuredData = {
       <div class="relative flex min-h-dvh flex-col items-center">
         <div class="relative mt-20 container-3xl">
           <Breadcrumbs items={breadcrumbItems} />
-          <h1 class="text-content-primary mt-8 text-3xl font-medium text-balance">
+          <h1 class="type-h1 text-content-primary mt-8 text-balance">
             Playbook entry not found
           </h1>
-          <p class="text-content-secondary mt-3 text-base leading-snug text-pretty">
+          <p class="type-body-md text-content-secondary mt-3 text-pretty">
             The route does not match a Playbook slug.
           </p>
           <a
             href="/playbook"
-            class="text-content-primary mt-5 inline-block text-base font-medium"
+            class="type-body-md text-content-primary mt-5 inline-block font-medium"
           >
             Back to Playbook
           </a>
