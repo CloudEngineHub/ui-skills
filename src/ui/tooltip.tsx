@@ -21,7 +21,7 @@ export function Tooltip({ content, children, side = "bottom" }: TooltipProps) {
       <TooltipPrimitive.Trigger delay={0} render={children} />
       <TooltipPrimitive.Portal>
         <TooltipPrimitive.Positioner side={side} sideOffset={6}>
-          <TooltipPrimitive.Popup className="z-50 rounded-[6px] border-0 bg-fill-inverse px-2 py-1 text-xs font-medium text-content-inverse shadow-none">
+          <TooltipPrimitive.Popup className="type-body-sm z-50 rounded-md border-0 bg-fill-inverse px-2 py-1 font-normal text-content-inverse shadow-none">
             {content}
           </TooltipPrimitive.Popup>
         </TooltipPrimitive.Positioner>

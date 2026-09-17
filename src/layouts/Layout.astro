@@ -22,6 +22,8 @@ type Props = {
   twitterSite?: string;
   ogType?: string;
   siteName?: string;
+  showNewsletter?: boolean;
+  showFooter?: boolean;
 };
 
 const {
@@ -36,6 +38,8 @@ const {
   twitterSite,
   ogType,
   siteName,
+  showNewsletter = true,
+  showFooter = true,
 } = Astro.props as Props;
 const canonicalPath =
   Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/+$/, "");
@@ -234,8 +238,8 @@ const commandItems = [
       <main id="main-content">
         <slot />
       </main>
-      <NewsletterInput client:visible />
-      <Footer />
+      {showNewsletter && <NewsletterInput client:visible />}
+      {showFooter && <Footer />}
     </div>
   </body>
 </html>
