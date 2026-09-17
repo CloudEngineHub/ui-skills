@@ -104,7 +104,11 @@
 
 :where(code):not(:where(pre code)) {
   background-color: var(--color-fill-subtle);
-  font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
   padding: 0.1em 0.35em;
   border-radius: 0.25rem;
   outline: 1px solid var(--color-line-default);
@@ -144,7 +148,8 @@
 
 .prose :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   background-color: var(--color-fill-subtle);
-  font-weight: 500;
+  font-family: var(--font-mono);
+  font-weight: 400;
   padding: 0.1em 0.35em;
   border-radius: 0.25rem;
   outline: 1px solid var(--color-line-default);

@@ -404,7 +404,7 @@ const installCommand = (() => {
                         class="border-line-default size-8 rounded-full border"
                       />
                     </a>
-                    <h1 class="text-content-primary text-3xl font-medium tracking-tight">
+                    <h1 class="type-h1 text-content-primary">
                       <a
                         href={ownerGithubUrl}
                         target="_blank"
@@ -416,12 +416,12 @@ const installCommand = (() => {
                     </h1>
                   </div>
                 ) : (
-                  <h1 class="text-content-primary text-3xl font-medium tracking-tight">
+                  <h1 class="type-h1 text-content-primary">
                     {groupTitle}
                   </h1>
                 )}
                 {isTopicGroup && topic?.description ? (
-                  <p class="text-content-secondary mt-3 text-base">
+                  <p class="type-body-md mt-3 text-content-secondary">
                     {topic.description}
                   </p>
                 ) : null}
@@ -610,10 +610,10 @@ const installCommand = (() => {
         {
           isInvalidSkillsRoute ? (
             <div class="">
-              <h1 class="text-content-primary text-3xl font-medium">
+              <h1 class="type-h1 text-content-primary">
                 Skill page not found
               </h1>
-              <p class="text-content-secondary mt-3 text-base">
+              <p class="type-body-md mt-3 text-content-secondary">
                 The route you requested does not match a skill, topic, or source
                 page.
               </p>

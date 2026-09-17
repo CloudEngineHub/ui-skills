@@ -6,17 +6,26 @@ type Props = {
 };
 
 const { command } = Astro.props as Props;
+const isMultiline = command.includes("\n");
 ---
 
 <div
   data-command-row={command}
-  class="relative z-30 flex h-9 cursor-pointer items-center justify-between rounded-lg bg-surface-subtle pl-3 pr-1"
+  class:list={[
+    "relative z-30 flex cursor-pointer rounded-lg bg-surface-subtle pl-3",
+    isMultiline
+      ? "min-h-9 items-start py-3 pr-10"
+      : "h-9 items-center justify-between pr-1",
+  ]}
 >
-  <span class="type-code text-content-primary">{command}</span>
+  <span class:list={["type-code text-content-primary", isMultiline && "whitespace-pre-wrap"]}>{command}</span>
   <button
     type="button"
     aria-label="Copy command"
-    class="type-body-md relative z-30 inline-flex size-7 shrink-0 items-center justify-center rounded-lg border border-transparent p-1 text-content-secondary transition-colors hover:bg-fill-strong hover:text-content-primary"
+    class:list={[
+      "type-body-md relative z-30 inline-flex size-7 shrink-0 items-center justify-center rounded-lg border border-transparent p-1 text-content-secondary transition-colors hover:bg-fill-strong hover:text-content-primary",
+      isMultiline ? "absolute top-1 right-1" : "",
+    ]}
   >
     <span data-copy-icon="copy">
       <DocumentDuplicateIcon className="size-4" aria-hidden="true" />
@@ -52,7 +61,7 @@ const { command } = Astro.props as Props;
           const copyDocument = document as Document & {
             execCommand(commandId: string): boolean;
           };
-          // @ts-expect-error Deprecated but supported clipboard fallback.
+          // @ts-ignore Deprecated but supported clipboard fallback.
           copyDocument.execCommand("copy");
           textarea.remove();
         }
