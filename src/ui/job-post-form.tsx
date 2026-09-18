@@ -47,8 +47,7 @@ function newIdempotencyKey() {
 }
 
 export default function JobPostForm() {
-  const turnstileEnabled =
-    import.meta.env.PROD || import.meta.env.PUBLIC_TURNSTILE_ENABLED === "true";
+  const turnstileEnabled = import.meta.env.PROD;
   const [values, setValues] = useState(initialValues);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [formError, setFormError] = useState<string | null>(null);
@@ -189,7 +188,7 @@ export default function JobPostForm() {
   }
 
   function inputClass(name: keyof FormValues) {
-    return `type-body-md h-8 rounded-md border bg-surface-default px-2 text-content-primary outline-none placeholder:text-content-muted focus:border-[#A5A5A5]/40 ${fieldErrors[name] ? "border-content-primary" : "border-line-default"}`;
+    return `type-body-md h-11 sm:h-8 rounded-md border bg-surface-default px-2 text-content-primary outline-none placeholder:text-content-muted focus:border-[#A5A5A5]/40 focus-visible:ring-2 focus-visible:ring-line-default ${fieldErrors[name] ? "border-content-primary" : "border-line-default"}`;
   }
 
   async function copyContactEmail() {

@@ -2,14 +2,12 @@
 export const prerender = true;
 
 import Layout from "../../../layouts/Layout.astro";
-import { SHOW_JOBS } from "../../../config/features";
-
-if (!SHOW_JOBS) return Astro.redirect("/");
 ---
 
 <Layout
   title="Payment processing | UI Skills"
   description="Your UI Skills job post payment is being processed."
+  robots="noindex,follow"
   showNewsletter={false}
   showFooter={false}
 >

@@ -2,9 +2,6 @@
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../ui/breadcrumbs.astro";
 import JobDetail from "../../ui/job-detail";
-import { SHOW_JOBS } from "../../config/features";
-
-if (!SHOW_JOBS) return Astro.redirect("/");
 
 const id = Astro.params.id ?? "";
 const breadcrumbItems = [

@@ -3,22 +3,22 @@ export const prerender = true;
 
 import Layout from "../../layouts/Layout.astro";
 import JobPostForm from "../../ui/job-post-form";
-import { SHOW_JOBS } from "../../config/features";
-
-if (!SHOW_JOBS) return Astro.redirect("/");
 ---
 
 <Layout
   title="Post a design engineering job | UI Skills"
   description="Post a design engineering job and reach more than 80,000 qualified experts."
+  robots="noindex,follow"
   showNewsletter={false}
   showFooter={false}
 >
-  <div class="relative flex h-dvh flex-col items-center overflow-hidden">
-    <main class="flex min-h-dvh w-full items-center container-3xl">
+  <div class="relative flex min-h-dvh flex-col items-center overflow-y-auto">
+    <main
+      class="flex min-h-dvh w-full items-start py-8 sm:items-center sm:py-0 container-3xl"
+    >
       <div class="mx-auto flex w-full max-w-2xl flex-col gap-10">
         <header class="flex flex-col gap-3">
-          <div class="flex items-start justify-between gap-5">
+          <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
             <div class="flex flex-col gap-3">
               <h1 class="type-h2 text-content-primary">
                 Hire top design engineers

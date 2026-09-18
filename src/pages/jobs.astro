@@ -1,17 +1,12 @@
 ---
-export const prerender = true;
-
 import Layout from "../layouts/Layout.astro";
 import Button from "../ui/button.astro";
 import JobsList from "../ui/jobs-list";
-import { SHOW_JOBS } from "../config/features";
 import {
   getJobs,
   JobsApiError,
   type JobsResponse,
 } from "../lib/jobs-api";
-
-if (!SHOW_JOBS) return Astro.redirect("/");
 
 const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
 const jobsUrl = new URL("/jobs", siteOrigin).toString();
@@ -55,7 +50,12 @@ const structuredData = {
               companies building thoughtful digital products.
             </p>
           </div>
-          <Button href="/jobs/post" variant="secondary" size="md">
+          <Button
+            href="/jobs/post"
+            variant="secondary"
+            size="md"
+            className="shrink-0 whitespace-nowrap"
+          >
             Post a job
           </Button>
         </div>

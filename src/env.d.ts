@@ -1,7 +1,5 @@
 interface ImportMetaEnv {
-  readonly ENABLE_JOBS?: string;
   readonly PUBLIC_JOBS_API_URL?: string;
-  readonly PUBLIC_TURNSTILE_ENABLED?: string;
   readonly PUBLIC_TURNSTILE_SITE_KEY?: string;
 }
 
