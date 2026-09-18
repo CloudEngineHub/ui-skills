@@ -73,19 +73,11 @@ export type JobsRuntimeEnv = {
 };
 
 export function resolveJobsApiUrl(runtimeEnv?: JobsRuntimeEnv) {
-  return (
-    runtimeEnv?.PUBLIC_JOBS_API_URL ??
-    import.meta.env.PUBLIC_JOBS_API_URL ??
-    ""
-  ).replace(/\/$/, "");
+  return (runtimeEnv?.PUBLIC_JOBS_API_URL ?? "").replace(/\/$/, "");
 }
 
 export function resolveTurnstileSiteKey(runtimeEnv?: JobsRuntimeEnv) {
-  return (
-    runtimeEnv?.PUBLIC_TURNSTILE_SITE_KEY ??
-    import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ??
-    ""
-  );
+  return runtimeEnv?.PUBLIC_TURNSTILE_SITE_KEY ?? "";
 }
 
 function getErrorMessage(code: JobsApiErrorCode) {

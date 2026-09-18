@@ -34,7 +34,7 @@ export default defineConfig({
         "react-dom/client",
         "@base-ui/react",
       ],
-      exclude: ["marked"],
+      exclude: ["marked", "@astrojs/cloudflare/entrypoints/server"],
     },
     ssr: {
       external: ["node:fs", "node:path"],

@@ -143,7 +143,7 @@ export default function NewsletterInput({
                   void submit();
                 }
               }}
-              className="type-body-md text-content-primary placeholder:type-body-md placeholder:text-content-muted focus:border-content-extra-muted relative z-0 h-12 w-full rounded-full border border-line-default bg-surface-default px-4 pr-36 shadow-2xs transition-colors outline-none"
+              className="type-body-md text-content-primary placeholder:type-body-md placeholder:text-content-muted focus:border-content-extra-muted relative z-0 h-12 w-full rounded-full border border-line-default bg-white px-4 pr-36 shadow-2xs transition-colors outline-none"
             />
 
             <button

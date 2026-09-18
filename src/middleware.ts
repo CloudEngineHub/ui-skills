@@ -4,9 +4,10 @@ import { buildDiscoveryLinkHeader, getSiteOrigin } from "./lib/agent-discovery";
 import { getHtmlCacheControl } from "./lib/cache-headers";
 import { maybeNegotiateMarkdown } from "./lib/markdown-negotiation";
 
+const localJobsApiSource = import.meta.env.DEV ? " http://localhost:8787" : "";
+
 const securityHeaders = {
-  "Content-Security-Policy":
-    "default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; font-src 'self'; connect-src 'self' https://api.interfaceoffice.com https://collector.onedollarstats.com https://jobs-api.ui-skills.com https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'",
+  "Content-Security-Policy": `default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; font-src 'self'; connect-src 'self' https://api.interfaceoffice.com https://collector.onedollarstats.com https://jobs-api.ui-skills.com https://challenges.cloudflare.com${localJobsApiSource}; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'`,
   "Permissions-Policy": "camera=(), geolocation=(), microphone=()",
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "X-Content-Type-Options": "nosniff",

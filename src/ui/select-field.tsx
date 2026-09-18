@@ -63,7 +63,7 @@ export function SelectField({
           ref={triggerRef}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? errorId : undefined}
-           className={`type-body-md bg-surface-default text-content-primary data-placeholder:text-content-muted inline-flex h-11 w-full items-center justify-between rounded-md border px-2 text-left outline-none focus:border-[#A5A5A5]/40 focus-visible:ring-2 focus-visible:ring-line-default sm:h-8 ${error ? "border-content-primary" : "border-line-default"}`}
+          className={`type-body-md bg-surface-default text-content-primary data-placeholder:text-content-muted inline-flex h-11 w-full items-center justify-between rounded-md border px-2 text-left outline-none focus:border-[#A5A5A5]/40 data-popup-open:border-[#A5A5A5]/40 focus:outline-none focus-visible:outline-none focus-visible:ring-0 sm:h-8 ${error ? "border-content-primary" : "border-line-default"}`}
         >
           <Select.Value placeholder={placeholder} />
           <Select.Icon>
@@ -89,7 +89,7 @@ export function SelectField({
                   <Select.Item
                     key={option.value}
                     value={option.value}
-                     className="type-body-sm text-content-secondary data-highlighted:bg-fill-strong data-selected:text-content-primary relative flex h-10 w-full items-center rounded-xs px-1.5 pl-7 text-left outline-none sm:h-7"
+                    className="type-body-sm text-content-secondary data-highlighted:bg-fill-strong data-selected:text-content-primary relative flex h-10 w-full items-center rounded-xs px-1.5 pl-7 text-left outline-none focus:outline-none focus-visible:outline-none sm:h-7"
                   >
                     <Select.ItemIndicator className="text-content-primary absolute left-1.5 inline-flex items-center">
                       <CheckIcon className="size-3.5" aria-hidden="true" />

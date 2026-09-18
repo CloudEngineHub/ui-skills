@@ -42,6 +42,17 @@ const fieldLabels: Record<keyof FormValues, string> = {
   jobPostUrl: "Job post URL",
 };
 
+const fieldPlaceholders: Record<keyof FormValues, string> = {
+  companyName: "UI Skills",
+  logoUrl: "https://ui-skills.com/logo.png",
+  contactEmail: "hello@ui-skills.com",
+  website: "https://ui-skills.com",
+  roleTitle: "Senior design engineer",
+  employmentType: "Select employment type",
+  location: "Remote, worldwide",
+  jobPostUrl: "https://ui-skills.com/jobs",
+};
+
 function newIdempotencyKey() {
   return crypto.randomUUID();
 }
@@ -196,7 +207,7 @@ export default function JobPostForm({
   }
 
   function inputClass(name: keyof FormValues) {
-    return `type-body-md h-11 sm:h-8 rounded-md border bg-surface-default px-2 text-content-primary outline-none placeholder:text-content-muted focus:border-[#A5A5A5]/40 focus-visible:ring-2 focus-visible:ring-line-default ${fieldErrors[name] ? "border-content-primary" : "border-line-default"}`;
+    return `type-body-md h-11 sm:h-8 rounded-md border bg-surface-default px-2 text-content-primary outline-none placeholder:text-content-muted focus:border-[#A5A5A5]/40 ${fieldErrors[name] ? "border-content-primary" : "border-line-default"}`;
   }
 
   async function copyContactEmail() {
@@ -240,7 +251,7 @@ export default function JobPostForm({
                     { label: "Contract", value: "Contract" },
                     { label: "Internship", value: "Internship" },
                   ]}
-                  placeholder="Select type"
+                  placeholder={fieldPlaceholders[name]}
                   error={fieldErrors[name]}
                   onValueChange={(value) => {
                     setValues((current) => ({ ...current, [name]: value }));
@@ -262,6 +273,7 @@ export default function JobPostForm({
                         : "text"
                   }
                   value={values[name]}
+                  placeholder={fieldPlaceholders[name]}
                   onChange={handleChange}
                   required
                   autoComplete="off"
