@@ -1,6 +1,6 @@
 # UI Skills
 
-![UI Skills](./public/UI-OG.webp)
+![UI Skills](./public/UI-OG.png)
 
 Skills for Design Engineers.
 

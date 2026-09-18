@@ -87,6 +87,8 @@ const breadcrumbStructuredData = {
     : breadcrumbStructuredData}
   title={entry ? `${entry.name} Design.md | UI Skills` : "Design.md Not Found | UI Skills"}
   description={entry?.description ?? "The requested Design.md file could not be found."}
+  ogImage="https://www.ui-skills.com/designmd-ogimage.png"
+  twitterImage="https://www.ui-skills.com/designmd-ogimage-x.png"
   robots={!entry ? "noindex,follow" : undefined}
 >
   {entry ? (
