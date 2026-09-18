@@ -77,6 +77,7 @@ export default function JobPostForm({
       widgetId.current = window.turnstile.render(turnstileContainer.current, {
         sitekey: siteKey,
         action: "jobs-submit",
+        appearance: "interaction-only",
         callback: (token) => {
           setTurnstileToken(token);
           setFormError(null);

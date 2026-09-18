@@ -17,6 +17,7 @@ declare module "cloudflare:workers" {
 interface TurnstileWidgetOptions {
   sitekey: string;
   action?: string;
+  appearance?: "always" | "execute" | "interaction-only";
   callback?: (token: string) => void;
   "expired-callback"?: () => void;
   "error-callback"?: () => void;
