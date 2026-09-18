@@ -67,8 +67,26 @@ export class JobsApiError extends Error {
   }
 }
 
-export const jobsApiUrl =
-  import.meta.env.PUBLIC_JOBS_API_URL?.replace(/\/$/, "") ?? "";
+export type JobsRuntimeEnv = {
+  PUBLIC_JOBS_API_URL?: string;
+  PUBLIC_TURNSTILE_SITE_KEY?: string;
+};
+
+export function resolveJobsApiUrl(runtimeEnv?: JobsRuntimeEnv) {
+  return (
+    runtimeEnv?.PUBLIC_JOBS_API_URL ??
+    import.meta.env.PUBLIC_JOBS_API_URL ??
+    ""
+  ).replace(/\/$/, "");
+}
+
+export function resolveTurnstileSiteKey(runtimeEnv?: JobsRuntimeEnv) {
+  return (
+    runtimeEnv?.PUBLIC_TURNSTILE_SITE_KEY ??
+    import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ??
+    ""
+  );
+}
 
 function getErrorMessage(code: JobsApiErrorCode) {
   switch (code) {
@@ -91,7 +109,9 @@ function getErrorMessage(code: JobsApiErrorCode) {
   }
 }
 
-function isJobsApiErrorCode(value: string | undefined): value is JobsApiErrorCode {
+function isJobsApiErrorCode(
+  value: string | undefined,
+): value is JobsApiErrorCode {
   return (
     value === "invalid_job" ||
     value === "invalid_idempotency_key" ||
@@ -105,8 +125,12 @@ function isJobsApiErrorCode(value: string | undefined): value is JobsApiErrorCod
   );
 }
 
-async function request<T>(path: string, options?: RequestInit): Promise<T> {
-  if (!jobsApiUrl) {
+async function request<T>(
+  apiUrl: string,
+  path: string,
+  options?: RequestInit,
+): Promise<T> {
+  if (!apiUrl) {
     throw new JobsApiError(
       "network_error",
       0,
@@ -116,7 +140,7 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
 
   let response: Response;
   try {
-    response = await fetch(`${jobsApiUrl}${path}`, options);
+    response = await fetch(`${apiUrl}${path}`, options);
   } catch {
     throw new JobsApiError(
       "network_error",
@@ -155,20 +179,28 @@ function statusToErrorCode(status: number): JobsApiErrorCode {
   return "network_error";
 }
 
-export function getJobs(limit = 50, offset = 0) {
-  return request<JobsResponse>(`/jobs?limit=${limit}&offset=${offset}`, {
+export function getJobs(apiUrl: string, limit = 50, offset = 0) {
+  return request<JobsResponse>(
+    apiUrl,
+    `/jobs?limit=${limit}&offset=${offset}`,
+    {
+      headers: { Accept: "application/json" },
+    },
+  );
+}
+
+export function getJob(apiUrl: string, id: string) {
+  return request<PublicJob>(apiUrl, `/jobs/${encodeURIComponent(id)}`, {
     headers: { Accept: "application/json" },
   });
 }
 
-export function getJob(id: string) {
-  return request<PublicJob>(`/jobs/${encodeURIComponent(id)}`, {
-    headers: { Accept: "application/json" },
-  });
-}
-
-export function createJob(input: CreateJobInput, idempotencyKey: string) {
-  return request<CreateJobResponse>("/jobs", {
+export function createJob(
+  apiUrl: string,
+  input: CreateJobInput,
+  idempotencyKey: string,
+) {
+  return request<CreateJobResponse>(apiUrl, "/jobs", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -180,6 +212,6 @@ export function createJob(input: CreateJobInput, idempotencyKey: string) {
   });
 }
 
-export function getApplyUrl(applicationUrl: string) {
-  return new URL(applicationUrl, `${jobsApiUrl}/`).toString();
+export function getApplyUrl(apiUrl: string, applicationUrl: string) {
+  return new URL(applicationUrl, `${apiUrl}/`).toString();
 }

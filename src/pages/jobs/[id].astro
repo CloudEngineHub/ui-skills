@@ -2,8 +2,11 @@
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../ui/breadcrumbs.astro";
 import JobDetail from "../../ui/job-detail";
+import { env } from "cloudflare:workers";
+import { resolveJobsApiUrl } from "../../lib/jobs-api";
 
 const id = Astro.params.id ?? "";
+const jobsApiUrl = resolveJobsApiUrl(env);
 const breadcrumbItems = [
   { label: "Jobs", href: "/jobs" },
   { label: "Job details" },
@@ -19,7 +22,7 @@ const breadcrumbItems = [
     <main class="container-3xl relative mt-20">
       <div class="mx-auto flex w-full flex-col gap-10">
         <Breadcrumbs items={breadcrumbItems} />
-        <JobDetail client:load id={id} />
+        <JobDetail client:load apiUrl={jobsApiUrl} id={id} />
       </div>
     </main>
   </div>

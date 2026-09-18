@@ -22,12 +22,12 @@ function logoUrl(companyWebsite: string | null) {
   }
 }
 
-function JobRow({ job }: { job: PublicJob }) {
+function JobRow({ apiUrl, job }: { apiUrl: string; job: PublicJob }) {
   const logo = logoUrl(job.companyWebsite);
 
   return (
     <a
-      href={getApplyUrl(job.applicationUrl)}
+      href={getApplyUrl(apiUrl, job.applicationUrl)}
       target="_blank"
       rel="noreferrer"
       className="group border-line-default flex items-center gap-3 border-b pt-3 pb-4"
@@ -61,17 +61,17 @@ function JobRow({ job }: { job: PublicJob }) {
 }
 
 type JobsListProps = {
+  apiUrl: string;
   initialResponse: JobsResponse | null;
   initialError: string | null;
 };
 
 export default function JobsList({
+  apiUrl,
   initialResponse,
   initialError,
 }: JobsListProps) {
-  const [jobs, setJobs] = useState<PublicJob[]>(
-    initialResponse?.jobs ?? [],
-  );
+  const [jobs, setJobs] = useState<PublicJob[]>(initialResponse?.jobs ?? []);
   const [hasMore, setHasMore] = useState(initialResponse?.hasMore ?? false);
   const [offset, setOffset] = useState(
     initialResponse ? initialResponse.offset + initialResponse.jobs.length : 0,
@@ -83,7 +83,7 @@ export default function JobsList({
   useEffect(() => {
     if (initialResponse || initialError) return;
 
-    getJobs()
+    getJobs(apiUrl)
       .then((response) => {
         setJobs(response.jobs);
         setHasMore(response.hasMore);
@@ -103,7 +103,7 @@ export default function JobsList({
     setLoadingMore(true);
     setError(null);
     try {
-      const response = await getJobs(50, offset);
+      const response = await getJobs(apiUrl, 50, offset);
       setJobs((current) => [...current, ...response.jobs]);
       setHasMore(response.hasMore);
       setOffset(response.offset + response.jobs.length);
@@ -150,7 +150,7 @@ export default function JobsList({
   return (
     <div className="flex flex-col">
       {jobs.map((job) => (
-        <JobRow key={job.id} job={job} />
+        <JobRow key={job.id} apiUrl={apiUrl} job={job} />
       ))}
       {error ? (
         <p className="type-body-sm text-content-secondary mt-3">{error}</p>

@@ -7,6 +7,13 @@ interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
 
+declare module "cloudflare:workers" {
+  export const env: {
+    PUBLIC_JOBS_API_URL?: string;
+    PUBLIC_TURNSTILE_SITE_KEY?: string;
+  };
+}
+
 interface TurnstileWidgetOptions {
   sitekey: string;
   action?: string;

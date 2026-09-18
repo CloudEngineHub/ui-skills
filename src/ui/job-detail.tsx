@@ -16,12 +16,18 @@ function formatDate(value: string) {
   }).format(date);
 }
 
-export default function JobDetail({ id }: { id: string }) {
+export default function JobDetail({
+  apiUrl,
+  id,
+}: {
+  apiUrl: string;
+  id: string;
+}) {
   const [job, setJob] = useState<PublicJob | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    getJob(id)
+    getJob(apiUrl, id)
       .then(setJob)
       .catch((reason: unknown) => {
         setError(
@@ -75,7 +81,7 @@ export default function JobDetail({ id }: { id: string }) {
 
       <div className="flex items-center gap-3">
         <a
-          href={getApplyUrl(job.applicationUrl)}
+          href={getApplyUrl(apiUrl, job.applicationUrl)}
           className="type-body-md bg-fill-inverse text-content-inverse inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium"
         >
           Apply for this job

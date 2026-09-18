@@ -1,8 +1,11 @@
 ---
-export const prerender = true;
-
 import Layout from "../../layouts/Layout.astro";
 import JobPostForm from "../../ui/job-post-form";
+import { env } from "cloudflare:workers";
+import { resolveJobsApiUrl, resolveTurnstileSiteKey } from "../../lib/jobs-api";
+
+const jobsApiUrl = resolveJobsApiUrl(env);
+const turnstileSiteKey = resolveTurnstileSiteKey(env);
 ---
 
 <Layout
@@ -14,11 +17,13 @@ import JobPostForm from "../../ui/job-post-form";
 >
   <div class="relative flex min-h-dvh flex-col items-center overflow-y-auto">
     <main
-      class="flex min-h-dvh w-full items-start py-8 sm:items-center sm:py-0 container-3xl"
+      class="container-3xl flex min-h-dvh w-full items-start py-8 sm:items-center sm:py-0"
     >
       <div class="mx-auto flex w-full max-w-2xl flex-col gap-10">
         <header class="flex flex-col gap-3">
-          <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+          <div
+            class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between"
+          >
             <div class="flex flex-col gap-3">
               <h1 class="type-h2 text-content-primary">
                 Hire top design engineers
@@ -34,7 +39,11 @@ import JobPostForm from "../../ui/job-post-form";
             </span>
           </div>
         </header>
-        <JobPostForm client:load />
+        <JobPostForm
+          client:load
+          apiUrl={jobsApiUrl}
+          turnstileSiteKey={turnstileSiteKey}
+        />
       </div>
     </main>
   </div>

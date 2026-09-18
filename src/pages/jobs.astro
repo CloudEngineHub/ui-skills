@@ -2,12 +2,15 @@
 import Layout from "../layouts/Layout.astro";
 import Button from "../ui/button.astro";
 import JobsList from "../ui/jobs-list";
+import { env } from "cloudflare:workers";
 import {
   getJobs,
   JobsApiError,
+  resolveJobsApiUrl,
   type JobsResponse,
 } from "../lib/jobs-api";
 
+const jobsApiUrl = resolveJobsApiUrl(env);
 const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
 const jobsUrl = new URL("/jobs", siteOrigin).toString();
 const pageTitle = "Design engineering and product designer jobs | UI Skills";
@@ -17,7 +20,7 @@ let initialJobs: JobsResponse | null = null;
 let initialJobsError: string | null = null;
 
 try {
-  initialJobs = await getJobs();
+  initialJobs = await getJobs(jobsApiUrl);
 } catch (reason) {
   initialJobsError =
     reason instanceof JobsApiError
@@ -62,6 +65,7 @@ const structuredData = {
 
         <JobsList
           client:load
+          apiUrl={jobsApiUrl}
           initialResponse={initialJobs}
           initialError={initialJobsError}
         />

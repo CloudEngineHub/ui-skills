@@ -46,7 +46,15 @@ function newIdempotencyKey() {
   return crypto.randomUUID();
 }
 
-export default function JobPostForm() {
+type JobPostFormProps = {
+  apiUrl: string;
+  turnstileSiteKey: string;
+};
+
+export default function JobPostForm({
+  apiUrl,
+  turnstileSiteKey,
+}: JobPostFormProps) {
   const turnstileEnabled = import.meta.env.PROD;
   const [values, setValues] = useState(initialValues);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
@@ -60,7 +68,7 @@ export default function JobPostForm() {
 
   useEffect(() => {
     if (!turnstileEnabled) return;
-    const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+    const siteKey = turnstileSiteKey;
     if (!siteKey || !turnstileContainer.current) return;
 
     const render = () => {
@@ -147,6 +155,7 @@ export default function JobPostForm() {
       // TODO(DB/API): add `logoUrl` to the public job schema if company
       // logos should be stored separately from the company website.
       const response = await createJob(
+        apiUrl,
         {
           companyName: values.companyName,
           companyEmail: values.contactEmail,
@@ -251,8 +260,8 @@ export default function JobPostForm() {
                     name === "contactEmail"
                       ? "email"
                       : name.includes("Url") ||
-                        name === "logoUrl" ||
-                        name === "website"
+                          name === "logoUrl" ||
+                          name === "website"
                         ? "url"
                         : "text"
                   }
@@ -275,7 +284,7 @@ export default function JobPostForm() {
 
       <div className="flex flex-col gap-2">
         {turnstileEnabled ? <div ref={turnstileContainer} /> : null}
-        {turnstileEnabled && !import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ? (
+        {turnstileEnabled && !turnstileSiteKey ? (
           <p className="type-body-sm text-content-secondary">
             Bot verification is not configured.
           </p>
