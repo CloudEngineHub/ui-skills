@@ -11,6 +11,8 @@
       "/mcp",
       "/mcp/rpc",
       "/oauth/*",
+      "/jobs",
+      "/jobs/*",
       "/_server-islands/*",
       "/_image",
     ],

@@ -12,13 +12,13 @@ const isMultiline = command.includes("\n");
 <div
   data-command-row={command}
   class:list={[
-    "relative z-30 flex cursor-pointer rounded-lg bg-surface-subtle pl-3",
+    "relative z-30 flex min-w-0 cursor-pointer rounded-lg bg-surface-subtle pl-3",
     isMultiline
       ? "min-h-9 items-start py-3 pr-10"
       : "h-9 items-center justify-between pr-1",
   ]}
 >
-  <span class:list={["type-code text-content-primary", isMultiline && "whitespace-pre-wrap"]}>{command}</span>
+  <span class:list={["type-code min-w-0 truncate text-content-primary", isMultiline && "whitespace-pre-wrap"]}>{command}</span>
   <button
     type="button"
     aria-label="Copy command"

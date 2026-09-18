@@ -29,14 +29,14 @@ const mcpAssets = [
 ] as const;
 ---
 
-<div>
-  <div class="grid gap-3 sm:grid-cols-2">
+<div class="min-w-0 w-full">
+  <div class="grid min-w-0 gap-3 sm:grid-cols-2">
     {
       accessOptions.map((option) => (
         <Card
           dataHref={option.href}
           ariaLabel={`Open ${option.label} installation guide`}
-          className="h-full cursor-pointer transition-colors hover:border-content-extra-muted"
+          className="h-full min-w-0 cursor-pointer overflow-hidden transition-colors hover:border-content-extra-muted"
         >
           <Button
             href={option.href}
@@ -53,9 +53,9 @@ const mcpAssets = [
               {option.description}
             </div>
           </div>
-          {option.label === "CLI" ? <div class="relative z-20 w-full"><Command command="npx ui-skills" /></div> : null}
+          {option.label === "CLI" ? <div class="relative z-20 min-w-0 w-full"><Command command="npx ui-skills" /></div> : null}
           {option.label === "MCP" ? (
-            <div class="relative z-20 flex overflow-hidden" aria-label="Supported agents">
+            <div class="relative z-20 flex min-w-0 w-full overflow-hidden" aria-label="Supported agents">
               {[0, 1].map((copy) => (
                 <div
                   class="mcp-assets-track flex shrink-0 gap-2"
