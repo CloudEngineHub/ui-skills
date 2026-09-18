@@ -4,6 +4,7 @@ import {
   getJobs,
   JobsApiError,
   type PublicJob,
+  type JobsResponse,
 } from "../lib/jobs-api";
 
 function formatDate(value: string) {
@@ -59,15 +60,29 @@ function JobRow({ job }: { job: PublicJob }) {
   );
 }
 
-export default function JobsList() {
-  const [jobs, setJobs] = useState<PublicJob[]>([]);
-  const [hasMore, setHasMore] = useState(false);
-  const [offset, setOffset] = useState(0);
-  const [loading, setLoading] = useState(true);
+type JobsListProps = {
+  initialResponse: JobsResponse | null;
+  initialError: string | null;
+};
+
+export default function JobsList({
+  initialResponse,
+  initialError,
+}: JobsListProps) {
+  const [jobs, setJobs] = useState<PublicJob[]>(
+    initialResponse?.jobs ?? [],
+  );
+  const [hasMore, setHasMore] = useState(initialResponse?.hasMore ?? false);
+  const [offset, setOffset] = useState(
+    initialResponse ? initialResponse.offset + initialResponse.jobs.length : 0,
+  );
+  const [loading, setLoading] = useState(!initialResponse && !initialError);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(initialError);
 
   useEffect(() => {
+    if (initialResponse || initialError) return;
+
     getJobs()
       .then((response) => {
         setJobs(response.jobs);

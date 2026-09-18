@@ -5,25 +5,44 @@ import Layout from "../layouts/Layout.astro";
 import Button from "../ui/button.astro";
 import JobsList from "../ui/jobs-list";
 import { SHOW_JOBS } from "../config/features";
+import {
+  getJobs,
+  JobsApiError,
+  type JobsResponse,
+} from "../lib/jobs-api";
 
 if (!SHOW_JOBS) return Astro.redirect("/");
 
 const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
 const jobsUrl = new URL("/jobs", siteOrigin).toString();
+const pageTitle = "Design engineering and product designer jobs | UI Skills";
+const pageDescription =
+  "Browse design engineering and product designer jobs from companies building thoughtful digital products.";
+let initialJobs: JobsResponse | null = null;
+let initialJobsError: string | null = null;
+
+try {
+  initialJobs = await getJobs();
+} catch (reason) {
+  initialJobsError =
+    reason instanceof JobsApiError
+      ? reason.message
+      : "Unable to load jobs right now.";
+}
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "Design engineering jobs",
-  description:
-    "The latest design engineering jobs from companies building thoughtful digital products.",
+  name: pageTitle,
+  description: pageDescription,
   url: jobsUrl,
 };
 ---
 
 <Layout
   structuredData={structuredData}
-  title="Design engineering jobs | UI Skills"
-  description="Browse the latest design engineering jobs from companies hiring designers who can think in systems and build exceptional interfaces."
+  title={pageTitle}
+  description={pageDescription}
 >
   <div class="relative flex min-h-dvh flex-col items-center justify-start">
     <main class="container-3xl relative mt-20">
@@ -32,8 +51,8 @@ const structuredData = {
           <div class="flex flex-col gap-3">
             <h1 class="type-h1 text-content-primary">Jobs</h1>
             <p class="type-body-md text-content-secondary">
-              The latest design engineering jobs from companies building
-              thoughtful digital products.
+              The latest design engineering and product designer jobs from
+              companies building thoughtful digital products.
             </p>
           </div>
           <Button href="/jobs/post" variant="secondary" size="md">
@@ -41,7 +60,11 @@ const structuredData = {
           </Button>
         </div>
 
-        <JobsList client:load />
+        <JobsList
+          client:load
+          initialResponse={initialJobs}
+          initialError={initialJobsError}
+        />
       </div>
     </main>
   </div>
