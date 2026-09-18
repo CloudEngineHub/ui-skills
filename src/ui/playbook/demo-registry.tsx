@@ -1,4 +1,3 @@
-import type { ComponentType } from "react";
 import { playbookDemoSlugs } from "../../data/playbook-demos";
 import AspectRatioDemo from "./aspect-ratio-demo";
 import TextBalanceDemo from "./text-balance-demo";
@@ -47,8 +46,6 @@ import ModalScrimDemo from "./modal-scrim-demo";
 import SoftTruncateDemo from "./soft-truncate-demo";
 import SamePathMotionDemo from "./same-path-motion-demo";
 import LabelMorphDemo from "./label-morph-demo";
-
-const demo = (component: ComponentType) => component;
 
 export const demos = {
   "reserve-space-with-aspect-ratio": AspectRatioDemo,
