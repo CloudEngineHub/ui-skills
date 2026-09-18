@@ -101,8 +101,8 @@ try {
       `Homepage did not return HTML: ${homepageBody.slice(0, 200)}`,
     );
   }
-  if (!homepageBody.includes("Agent, start here.")) {
-    throw new Error("Homepage is missing the agent access section");
+  if (!homepageBody.includes("Run the UI Skills CLI from your terminal.")) {
+    throw new Error("Homepage is missing the CLI access section");
   }
   if (!homepageBody.includes(">CLI<")) {
     throw new Error("Homepage is missing the CLI access card");
@@ -177,8 +177,8 @@ try {
   ) {
     throw new Error("MCP docs are missing the server card code block");
   }
-  if (!/style="color:#/i.test(mcpDocsBody)) {
-    throw new Error("MCP docs code blocks are missing Shiki theme colors");
+  if (!mcpDocsBody.includes('data-command-row="https://www.ui-skills.com/mcp"')) {
+    throw new Error("MCP docs are missing the endpoint command row");
   }
 
   const legacyAgent = await fetchLocal("/agent/claude-code", {
