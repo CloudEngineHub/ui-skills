@@ -143,16 +143,15 @@ export default function NewsletterInput({
                   void submit();
                 }
               }}
-              className="type-body-md text-content-primary placeholder:type-body-md placeholder:text-content-muted focus:border-content-extra-muted relative z-0 h-12 w-full rounded-full border border-line-default bg-white px-4 pr-36 shadow-2xs transition-colors outline-none"
+              className="type-body-md text-content-primary placeholder:type-body-md placeholder:text-content-muted focus:border-[#A5A5A5]/40 relative z-0 h-12 w-full rounded-full border border-line-default bg-white px-4 pr-36 transition-colors outline-none"
             />
 
             <button
               type="button"
               disabled={status !== "idle"}
               onClick={() => void submit()}
-              className={`type-body-md bg-fill-inverse text-content-inverse hover:bg-fill-inverse focus-visible:outline-content-primary disabled:hover:bg-fill-inverse absolute top-1/2 right-1 z-10 inline-flex h-10 min-w-[112px] -translate-y-1/2 cursor-pointer items-center justify-center gap-2 rounded-full border border-transparent px-5 transition-[opacity,background-color] duration-150 ease-out focus-visible:outline focus-visible:outline-offset-2 disabled:cursor-not-allowed ${
-                status === "subscribing" ? "opacity-70" : "opacity-100"
-              }`}
+              className={`type-body-md bg-fill-inverse text-content-inverse hover:bg-fill-inverse focus-visible:outline-content-primary disabled:hover:bg-fill-inverse absolute top-1/2 right-1 z-10 inline-flex h-10 min-w-[112px] -translate-y-1/2 cursor-pointer items-center justify-center gap-2 rounded-full border border-transparent px-5 transition-[opacity,background-color] duration-150 ease-out focus-visible:outline focus-visible:outline-offset-2 disabled:cursor-not-allowed ${status === "subscribing" ? "opacity-70" : "opacity-100"
+                }`}
             >
               <AnimatePresence mode="popLayout" initial={false}>
                 {status === "idle" ? (
