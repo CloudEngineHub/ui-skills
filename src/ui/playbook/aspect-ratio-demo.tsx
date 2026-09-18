@@ -71,8 +71,16 @@ export default function AspectRatioDemo() {
         />
       }
       contentClassName="flex w-full justify-center"
-      without={<PaintingCard stable={false} replay={replay} />}
-      with={<PaintingCard stable replay={replay} />}
+       without={
+         <PaintingCard
+           key="without-aspect-ratio"
+           stable={false}
+           replay={replay}
+         />
+       }
+       with={
+         <PaintingCard key="with-aspect-ratio" stable replay={replay} />
+       }
     />
   );
 }
