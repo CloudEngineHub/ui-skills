@@ -129,9 +129,7 @@ export default function JobPostForm({
     setValues((current) => ({ ...current, [name]: value }));
     setFieldErrors((current) => ({ ...current, [name]: "" }));
     setFormError(null);
-    setTurnstileToken(null);
     setIdempotencyKey(newIdempotencyKey());
-    if (widgetId.current) window.turnstile?.reset(widgetId.current);
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -247,10 +245,7 @@ export default function JobPostForm({
                     setValues((current) => ({ ...current, [name]: value }));
                     setFieldErrors((current) => ({ ...current, [name]: "" }));
                     setFormError(null);
-                    setTurnstileToken(null);
                     setIdempotencyKey(newIdempotencyKey());
-                    if (widgetId.current)
-                      window.turnstile?.reset(widgetId.current);
                   }}
                 />
               ) : (
