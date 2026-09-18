@@ -52,7 +52,7 @@ export function ReplayButton({
         <span
           id={tooltipId}
           role="tooltip"
-          className="bg-parchment-900 pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 rounded-md px-2 py-1 text-xs whitespace-nowrap text-white"
+          className="bg-fill-inverse pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 rounded-md px-2 py-1 text-xs whitespace-nowrap text-content-inverse"
         >
           {label}
         </span>

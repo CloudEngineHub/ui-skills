@@ -51,23 +51,23 @@ function OptionsMenu({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition }}
             exit={{ opacity: 0, transition }}
-            className="absolute top-full left-0 z-10 mt-1.5 w-40 overflow-hidden rounded-lg bg-white py-1 shadow-lg ring-1 ring-black/10"
+            className="absolute top-full left-0 z-10 mt-1.5 w-40 overflow-hidden rounded-lg bg-surface-default py-1 shadow-lg ring-1 ring-line-default"
           >
             {["Rename", "Duplicate", "Share"].map((item) => (
               <button
                 key={item}
                 type="button"
                 onClick={() => setOpen(false)}
-                className="text-parchment-900 hover:bg-parchment-50 block w-full px-3 py-1.5 text-left text-sm"
+                className="text-content-primary hover:bg-fill-subtle block w-full px-3 py-1.5 text-left text-sm"
               >
                 {item}
               </button>
             ))}
-            <div className="bg-parchment-200 my-1 h-px" />
+            <div className="bg-fill-strong my-1 h-px" />
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="text-red-600 hover:bg-parchment-50 block w-full px-3 py-1.5 text-left text-sm"
+              className="text-red-600 hover:bg-fill-subtle block w-full px-3 py-1.5 text-left text-sm"
             >
               Delete
             </button>

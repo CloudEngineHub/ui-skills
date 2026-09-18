@@ -12,7 +12,7 @@ function SidebarApp({ interruptible = false }: { interruptible?: boolean }) {
     <div className="relative h-full w-full overflow-hidden">
       <aside
         className={cn(
-          "border-parchment-200 absolute inset-y-0 left-0 z-10 flex w-32 flex-col justify-center border-r bg-white px-4",
+          "border-line-default absolute inset-y-0 left-0 z-10 flex w-32 flex-col justify-center border-r bg-surface-default px-4",
           interruptible
             ? cn(
                 "transition-transform duration-300 ease-out",
@@ -26,7 +26,7 @@ function SidebarApp({ interruptible = false }: { interruptible?: boolean }) {
       >
         <nav className="space-y-1" aria-label="Main">
           {NAV.map((item) => (
-            <span key={item} className="text-parchment-600 block text-sm">
+            <span key={item} className="text-content-secondary block text-sm">
               {item}
             </span>
           ))}

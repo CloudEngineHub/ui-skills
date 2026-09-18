@@ -64,7 +64,7 @@ function SaveToastDemo({ natural = false }: { natural?: boolean }) {
                 transition: exitTransition,
               }}
               style={{ transformOrigin: "top center" }}
-              className="bg-parchment-900 absolute top-0 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-lg px-3.5 py-2 text-sm whitespace-nowrap text-white shadow-lg"
+              className="bg-fill-inverse absolute top-0 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-lg px-3.5 py-2 text-sm whitespace-nowrap text-content-inverse shadow-lg"
             >
               <CheckIcon />
               Saved to library

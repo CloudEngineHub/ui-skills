@@ -1,4 +1,3 @@
-import { Switch as SwitchPrimitive } from "@base-ui/react/switch";
 import { cn } from "../../lib/cn";
 
 type PlaybookSwitchProps = {
@@ -17,20 +16,39 @@ export function PlaybookSwitch({
   "aria-label": ariaLabel = "Show tip",
 }: PlaybookSwitchProps) {
   return (
-    <SwitchPrimitive.Root
+    <button
+      type="button"
       id={id}
-      nativeButton
-      render={<button type="button" aria-label={ariaLabel} />}
-      checked={checked}
-      onCheckedChange={onCheckedChange}
+      role="switch"
+      aria-checked={checked}
+      aria-pressed={checked}
+      aria-label={ariaLabel}
+      onPointerDown={(event) => {
+        event.preventDefault();
+        onCheckedChange(!checked);
+      }}
+      onClick={(event) => {
+        if (event.detail === 0) {
+          onCheckedChange(!checked);
+        }
+      }}
+      style={{
+        backgroundColor: checked
+          ? "var(--color-fill-inverse)"
+          : "var(--color-fill-strong)",
+      }}
       className={cn(
-        "bg-parchment-200 focus-visible:outline-parchment-900 relative inline-flex h-6 w-10 shrink-0 items-center rounded-full p-0.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 data-checked:bg-parchment-800",
+        "focus-visible:outline-content-primary relative inline-flex h-6 w-10 shrink-0 items-center rounded-full p-0.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2",
         className,
       )}
     >
-      <SwitchPrimitive.Thumb
-        className="bg-white size-5 rounded-full shadow-sm transition-transform data-checked:translate-x-4"
+      <span
+        aria-hidden="true"
+        className={cn(
+          "bg-surface-default size-5 rounded-full shadow-sm transition-transform",
+          checked && "translate-x-4",
+        )}
       />
-    </SwitchPrimitive.Root>
+    </button>
   );
 }

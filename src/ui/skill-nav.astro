@@ -1,4 +1,6 @@
 ---
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
+
 type Props = {
   previousHref?: string;
   nextHref?: string;
@@ -8,90 +10,41 @@ const { previousHref, nextHref } = Astro.props as Props;
 ---
 
 <div
-  class="border-parchment-200 inline-flex items-stretch overflow-hidden rounded-[8px] border bg-white"
+  class="flex items-center gap-1"
 >
   {
     previousHref ? (
       <a
         href={previousHref}
         aria-label="Previous skill"
-        class="text-parchment-700 hover:bg-parchment-100 inline-flex size-8 items-center justify-center transition-colors"
+        class="inline-flex size-7 items-center justify-center rounded-lg bg-transparent p-1 text-content-secondary transition-colors hover:bg-fill-strong hover:text-content-primary"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="size-4"
-          aria-hidden="true"
-        >
-          <path d="m15 18-6-6 6-6" />
-        </svg>
+        <ArrowLeftIcon className="size-4" aria-hidden="true" />
       </a>
     ) : (
       <span
         aria-label="Previous skill unavailable"
-        class="text-parchment-300 inline-flex size-8 items-center justify-center"
+        class="inline-flex size-7 items-center justify-center rounded-lg bg-transparent p-1 text-content-muted"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="size-4"
-          aria-hidden="true"
-        >
-          <path d="m15 18-6-6 6-6" />
-        </svg>
+        <ArrowLeftIcon className="size-4" aria-hidden="true" />
       </span>
     )
   }
-  <span class="bg-parchment-200 w-px self-stretch" aria-hidden="true"></span>
   {
     nextHref ? (
       <a
         href={nextHref}
         aria-label="Next skill"
-        class="text-parchment-700 hover:bg-parchment-100 inline-flex size-8 items-center justify-center transition-colors"
+        class="inline-flex size-7 items-center justify-center rounded-lg bg-transparent p-1 text-content-secondary transition-colors hover:bg-fill-strong hover:text-content-primary"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="size-4"
-          aria-hidden="true"
-        >
-          <path d="m9 18 6-6-6-6" />
-        </svg>
+        <ArrowRightIcon className="size-4" aria-hidden="true" />
       </a>
     ) : (
       <span
         aria-label="Next skill unavailable"
-        class="text-parchment-300 inline-flex size-8 items-center justify-center"
+        class="inline-flex size-7 items-center justify-center rounded-lg bg-transparent p-1 text-content-muted"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="size-4"
-          aria-hidden="true"
-        >
-          <path d="m9 18 6-6-6-6" />
-        </svg>
+        <ArrowRightIcon className="size-4" aria-hidden="true" />
       </span>
     )
   }

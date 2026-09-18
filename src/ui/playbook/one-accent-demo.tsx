@@ -22,13 +22,13 @@ function ActionRow({ singleAccent = false }: { singleAccent?: boolean }) {
 
   return (
     <div className="flex flex-wrap items-center justify-center gap-2">
-      <button type="button" className={`${compactButtonClass} bg-blue-600 text-white`}>
+      <button type="button" className={`${compactButtonClass} bg-content-accent text-content-inverse`}>
         Save
       </button>
-      <button type="button" className={`${compactButtonClass} bg-emerald-600 text-white`}>
+      <button type="button" className={`${compactButtonClass} bg-emerald-600 text-content-inverse`}>
         Publish
       </button>
-      <button type="button" className={`${compactButtonClass} bg-orange-500 text-white`}>
+      <button type="button" className={`${compactButtonClass} bg-orange-500 text-content-inverse`}>
         Share
       </button>
     </div>

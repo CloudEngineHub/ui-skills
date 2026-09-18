@@ -1,79 +1,100 @@
-import { lazy, type ComponentType } from "react";
 import { playbookDemoSlugs } from "../../data/playbook-demos";
-
-const demo = (loader: () => Promise<{ default: ComponentType }>) =>
-  lazy(loader);
+import AspectRatioDemo from "./aspect-ratio-demo";
+import TextBalanceDemo from "./text-balance-demo";
+import TabularNumsDemo from "./tabular-nums-demo";
+import TouchTargetDemo from "./touch-target-demo";
+import ConcentricRadiusDemo from "./concentric-radius-demo";
+import ScaleOnPressDemo from "./scale-on-press-demo";
+import PopoverOriginDemo from "./popover-origin-demo";
+import SpaceNotLinesDemo from "./space-not-lines-demo";
+import ScrollPeekDemo from "./scroll-peek-demo";
+import ImageOutlineDemo from "./image-outline-demo";
+import LineClampDemo from "./line-clamp-demo";
+import TextContrastDemo from "./text-contrast-demo";
+import ScaleEnterDemo from "./scale-enter-demo";
+import SkeletonLoadingDemo from "./skeleton-loading-demo";
+import OneAccentDemo from "./one-accent-demo";
+import LineMeasureDemo from "./line-measure-demo";
+import ShadowElevationDemo from "./shadow-elevation-demo";
+import FocusRingDemo from "./focus-ring-demo";
+import InlineErrorDemo from "./inline-error-demo";
+import LabelFormFieldsDemo from "./label-form-fields-demo";
+import EmptyStateCtaDemo from "./empty-state-cta-demo";
+import SentenceCaseLabelsDemo from "./sentence-case-labels-demo";
+import StatusNotColorAloneDemo from "./status-not-color-alone-demo";
+import EaseOutEnterDemo from "./ease-out-enter-demo";
+import OpticalAlignmentDemo from "./optical-alignment-demo";
+import IconStrokeWeightDemo from "./icon-stroke-weight-demo";
+import OutlineIconsDefaultDemo from "./outline-icons-default-demo";
+import NoGlowCtaDemo from "./no-glow-cta-demo";
+import IconStateCrossfadeDemo from "./icon-state-crossfade-demo";
+import BreathingRoomDemo from "./breathing-room-demo";
+import InsetCtaDemo from "./inset-cta-demo";
+import HeadingLineHeightDemo from "./heading-line-height-demo";
+import TrackingBySizeDemo from "./tracking-by-size-demo";
+import DestructiveDialogDemo from "./destructive-dialog-demo";
+import ScrollEdgeFadeDemo from "./scroll-edge-fade-demo";
+import StaggerEnterDemo from "./stagger-enter-demo";
+import SubtleExitDemo from "./subtle-exit-demo";
+import TooltipWarmDemo from "./tooltip-warm-demo";
+import InterruptibleTransitionDemo from "./interruptible-transition-demo";
+import MotionRestraintDemo from "./motion-restraint-demo";
+import SpringVsEaseDemo from "./spring-vs-ease-demo";
+import MenuExitDemo from "./menu-exit-demo";
+import ColorMeansLinkDemo from "./color-means-link-demo";
+import ModalScrimDemo from "./modal-scrim-demo";
+import SoftTruncateDemo from "./soft-truncate-demo";
+import SamePathMotionDemo from "./same-path-motion-demo";
+import LabelMorphDemo from "./label-morph-demo";
 
 export const demos = {
-  "reserve-space-with-aspect-ratio": demo(() => import("./aspect-ratio-demo")),
-  "use-text-balance": demo(() => import("./text-balance-demo")),
-  "use-tabular-nums-for-data": demo(() => import("./tabular-nums-demo")),
-  "use-large-touch-targets": demo(() => import("./touch-target-demo")),
-  "use-concentric-border-radius": demo(
-    () => import("./concentric-radius-demo"),
-  ),
-  "add-scale-on-press": demo(() => import("./scale-on-press-demo")),
-  "anchor-popovers-to-triggers": demo(() => import("./popover-origin-demo")),
-  "group-with-space-not-lines": demo(() => import("./space-not-lines-demo")),
-  "peek-the-next-scroll-item": demo(() => import("./scroll-peek-demo")),
-  "outline-images-neutrally": demo(() => import("./image-outline-demo")),
-  "clamp-overflowing-titles": demo(() => import("./line-clamp-demo")),
-  "keep-secondary-text-readable": demo(() => import("./text-contrast-demo")),
-  "avoid-entering-from-scale-zero": demo(() => import("./scale-enter-demo")),
-  "use-structural-skeletons": demo(() => import("./skeleton-loading-demo")),
-  "limit-accent-color-usage": demo(() => import("./one-accent-demo")),
-  "cap-line-length": demo(() => import("./line-measure-demo")),
-  "use-shadow-for-elevation": demo(() => import("./shadow-elevation-demo")),
-  "show-visible-focus-rings": demo(() => import("./focus-ring-demo")),
-  "show-errors-beside-fields": demo(() => import("./inline-error-demo")),
-  "label-every-form-field": demo(() => import("./label-form-fields-demo")),
-  "give-empty-states-one-action": demo(() => import("./empty-state-cta-demo")),
-  "use-sentence-case-labels": demo(() => import("./sentence-case-labels-demo")),
-  "pair-status-with-labels": demo(
-    () => import("./status-not-color-alone-demo"),
-  ),
-  "use-ease-out-on-enter": demo(() => import("./ease-out-enter-demo")),
-  "align-icons-optically": demo(() => import("./optical-alignment-demo")),
-  "match-icon-stroke-weight": demo(() => import("./icon-stroke-weight-demo")),
-  "use-outline-icons-by-default": demo(
-    () => import("./outline-icons-default-demo"),
-  ),
-  "avoid-glow-primary-actions": demo(() => import("./no-glow-cta-demo")),
-  "animate-icon-state-changes": demo(
-    () => import("./icon-state-crossfade-demo"),
-  ),
-  "give-targets-breathing-room": demo(() => import("./breathing-room-demo")),
-  "inset-primary-actions": demo(() => import("./inset-cta-demo")),
-  "tighten-heading-line-height": demo(
-    () => import("./heading-line-height-demo"),
-  ),
-  "tune-tracking-by-size": demo(() => import("./tracking-by-size-demo")),
-  "confirm-destructive-actions": demo(
-    () => import("./destructive-dialog-demo"),
-  ),
-  "fade-scroll-edges": demo(() => import("./scroll-edge-fade-demo")),
-  "stagger-infrequent-entrances": demo(() => import("./stagger-enter-demo")),
-  "keep-exits-subtle": demo(() => import("./subtle-exit-demo")),
-  "warm-toolbar-tooltips": demo(() => import("./tooltip-warm-demo")),
-  "use-interruptible-transitions": demo(
-    () => import("./interruptible-transition-demo"),
-  ),
-  "restrain-high-frequency-motion": demo(
-    () => import("./motion-restraint-demo"),
-  ),
-  "use-ease-not-spring-for-feedback": demo(
-    () => import("./spring-vs-ease-demo"),
-  ),
-  "fade-menus-out": demo(() => import("./menu-exit-demo")),
-  "reserve-brand-color-for-links": demo(
-    () => import("./color-means-link-demo"),
-  ),
-  "use-solid-modal-scrims": demo(() => import("./modal-scrim-demo")),
-  "fade-truncated-text": demo(() => import("./soft-truncate-demo")),
-  "enter-and-exit-on-the-same-path": demo(
-    () => import("./same-path-motion-demo"),
-  ),
-  "blur-imperfect-label-morphs": demo(() => import("./label-morph-demo")),
+  "reserve-space-with-aspect-ratio": AspectRatioDemo,
+  "use-text-balance": TextBalanceDemo,
+  "use-tabular-nums-for-data": TabularNumsDemo,
+  "use-large-touch-targets": TouchTargetDemo,
+  "use-concentric-border-radius": ConcentricRadiusDemo,
+  "add-scale-on-press": ScaleOnPressDemo,
+  "anchor-popovers-to-triggers": PopoverOriginDemo,
+  "group-with-space-not-lines": SpaceNotLinesDemo,
+  "peek-the-next-scroll-item": ScrollPeekDemo,
+  "outline-images-neutrally": ImageOutlineDemo,
+  "clamp-overflowing-titles": LineClampDemo,
+  "keep-secondary-text-readable": TextContrastDemo,
+  "avoid-entering-from-scale-zero": ScaleEnterDemo,
+  "use-structural-skeletons": SkeletonLoadingDemo,
+  "limit-accent-color-usage": OneAccentDemo,
+  "cap-line-length": LineMeasureDemo,
+  "use-shadow-for-elevation": ShadowElevationDemo,
+  "show-visible-focus-rings": FocusRingDemo,
+  "show-errors-beside-fields": InlineErrorDemo,
+  "label-every-form-field": LabelFormFieldsDemo,
+  "give-empty-states-one-action": EmptyStateCtaDemo,
+  "use-sentence-case-labels": SentenceCaseLabelsDemo,
+  "pair-status-with-labels": StatusNotColorAloneDemo,
+  "use-ease-out-on-enter": EaseOutEnterDemo,
+  "align-icons-optically": OpticalAlignmentDemo,
+  "match-icon-stroke-weight": IconStrokeWeightDemo,
+  "use-outline-icons-by-default": OutlineIconsDefaultDemo,
+  "avoid-glow-primary-actions": NoGlowCtaDemo,
+  "animate-icon-state-changes": IconStateCrossfadeDemo,
+  "give-targets-breathing-room": BreathingRoomDemo,
+  "inset-primary-actions": InsetCtaDemo,
+  "tighten-heading-line-height": HeadingLineHeightDemo,
+  "tune-tracking-by-size": TrackingBySizeDemo,
+  "confirm-destructive-actions": DestructiveDialogDemo,
+  "fade-scroll-edges": ScrollEdgeFadeDemo,
+  "stagger-infrequent-entrances": StaggerEnterDemo,
+  "keep-exits-subtle": SubtleExitDemo,
+  "warm-toolbar-tooltips": TooltipWarmDemo,
+  "use-interruptible-transitions": InterruptibleTransitionDemo,
+  "restrain-high-frequency-motion": MotionRestraintDemo,
+  "use-ease-not-spring-for-feedback": SpringVsEaseDemo,
+  "fade-menus-out": MenuExitDemo,
+  "reserve-brand-color-for-links": ColorMeansLinkDemo,
+  "use-solid-modal-scrims": ModalScrimDemo,
+  "fade-truncated-text": SoftTruncateDemo,
+  "enter-and-exit-on-the-same-path": SamePathMotionDemo,
+  "blur-imperfect-label-morphs": LabelMorphDemo,
 } as const;
 
 export const registeredDemoSlugs = Object.keys(demos);

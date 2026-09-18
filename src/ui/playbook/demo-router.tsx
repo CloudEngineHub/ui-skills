@@ -17,3 +17,5 @@ export function PlaybookDemoRouter({ slug }: PlaybookDemoRouterProps) {
     </Suspense>
   );
 }
+
+export default PlaybookDemoRouter;

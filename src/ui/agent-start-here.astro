@@ -3,18 +3,18 @@ import CodeBlock from "./code-block.astro";
 import { UI_SKILLS_AGENT_START_COPY } from "../lib/ui-skills-cli";
 ---
 
-<div class="bg-parchment-200/40 rounded-[12px] p-4 sm:p-5">
-  <h2 class="text-parchment-900 text-base font-medium text-balance">
+<div class="rounded-lg bg-surface-default p-3 ring-1 ring-line-default">
+  <h2 class="type-body-md font-[450] text-content-secondary text-balance">
     Agent, start here.
   </h2>
   <p
-    class="text-parchment-600 mt-3 max-w-2xl text-base leading-snug text-pretty"
+    class="type-body-md mt-3 text-content-secondary text-pretty"
   >
     You are working on a UI task. Before reading or changing code, run:
   </p>
-  <div class="mt-4 flex w-full">
+  <div class="mt-3 flex w-full">
     <CodeBlock
-      className="w-full"
+      className="w-full !rounded-sm !border-0 !bg-surface-subtle !py-3 !pr-1 !pl-3 !shadow-none !ring-0 [&_pre]:font-mono [&_pre]:text-xs [&_pre]:leading-normal [&_pre]:tracking-normal"
       variant="stacked"
       code={UI_SKILLS_AGENT_START_COPY}
       language="bash"
@@ -23,9 +23,9 @@ import { UI_SKILLS_AGENT_START_COPY } from "../lib/ui-skills-cli";
   </div>
 
   <p
-    class="text-parchment-600 mt-4 max-w-2xl text-base leading-snug text-pretty"
+    class="type-body-md mt-3 text-content-secondary text-pretty"
   >
-    Start with <code class="text-[0.875em]">npx ui-skills start</code>. Load the
+    Start with <code class="type-code">npx ui-skills start</code>. Load the
     smallest relevant skill, then implement. Do not choose manually from the
     collection below.
   </p>

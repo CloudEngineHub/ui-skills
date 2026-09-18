@@ -8,7 +8,7 @@ function EmailField({ labeled = false }: { labeled?: boolean }) {
   if (labeled) {
     return (
       <div className="w-56 text-left">
-        <label htmlFor={emailId} className="text-parchment-900 text-sm font-medium">
+        <label htmlFor={emailId} className="text-content-primary text-sm font-medium">
           Email address
         </label>
         <Input id={emailId} type="email" defaultValue="hello@example.com" className="mt-1.5" />

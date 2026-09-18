@@ -15,7 +15,7 @@ function SubscribeField({ concentric = false }: { concentric?: boolean }) {
   return (
     <div className="flex h-full items-center justify-center">
       <div
-        className="focus-within:ring-parchment-900 relative flex w-96 items-center bg-white p-1 shadow-2xs ring-1 ring-black/10 transition-shadow focus-within:ring-2"
+        className="focus-within:ring-content-primary relative flex w-96 items-center bg-surface-default p-1 shadow-2xs ring-1 ring-line-default transition-shadow focus-within:ring-2"
         style={{ borderRadius: OUTER_RADIUS_PX }}
       >
         <label htmlFor={inputId} className="sr-only">
@@ -25,7 +25,7 @@ function SubscribeField({ concentric = false }: { concentric?: boolean }) {
           id={inputId}
           type="email"
           placeholder="Enter your email"
-          className="text-parchment-900 placeholder:text-parchment-400 min-w-0 flex-1 bg-transparent pr-2 pl-3 text-sm outline-none"
+          className="text-content-primary placeholder:text-content-muted min-w-0 flex-1 bg-transparent pr-2 pl-3 text-sm outline-none"
         />
 
         <Button

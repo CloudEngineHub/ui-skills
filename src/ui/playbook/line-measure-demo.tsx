@@ -7,7 +7,7 @@ function MeasureText({ capped = false }: { capped?: boolean }) {
   return (
     <div className="w-[75ch] max-w-full text-left">
       <p
-        className={`text-parchment-700 text-base leading-relaxed ${capped ? "max-w-[60ch]" : "w-full"}`}
+        className={`text-content-primary text-base leading-relaxed ${capped ? "max-w-[60ch]" : "w-full"}`}
       >
         {copy}
       </p>

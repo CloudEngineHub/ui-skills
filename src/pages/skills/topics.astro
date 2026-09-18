@@ -8,7 +8,7 @@ import { skills } from "../../data/skills";
 import { topics } from "../../data/topics";
 
 const breadcrumbItems = [
-  { label: "Home", href: "/" },
+  { label: "Explore", href: "/" },
   { label: "Skills", href: "/skills" },
   { label: "Topics" },
 ];
@@ -47,22 +47,22 @@ const structuredData = {
   title="Browse Skills by Topic | UI Skills"
   description="Browse all UI Skills topics and jump into filtered skill collections."
 >
-  <div class="relative flex min-h-dvh flex-col items-center justify-start px-0 sm:px-4">
-    <div class="relative mt-20 w-full max-w-3xl sm:px-0">
+  <div class="relative flex min-h-dvh flex-col items-center justify-start">
+    <div class="relative mt-20 container-3xl">
       <div class="mx-auto flex w-full flex-col gap-10">
         <Breadcrumbs items={breadcrumbItems} />
 
-        <div class="px-4 sm:px-0">
-          <h1 class="text-parchment-900 text-3xl font-medium tracking-tight">
+        <div class="">
+          <h1 class="text-content-primary text-3xl font-medium tracking-tight">
             Browse topics
           </h1>
-          <p class="text-parchment-500 mt-3 text-base">
+          <p class="text-content-secondary mt-3 text-base">
             Explore all topic filters and discover relevant skills faster.
           </p>
         </div>
 
-        <section class="px-4 sm:px-0">
-          <h2 class="text-parchment-900 mb-3 text-lg font-medium tracking-tight">
+        <section class="">
+          <h2 class="text-content-primary mb-3 text-lg font-medium tracking-tight">
             Design Engineering
           </h2>
           <div class="flex flex-wrap gap-2">
@@ -75,7 +75,7 @@ const structuredData = {
         </section>
 
         <section class="px-4 pb-6 sm:px-0">
-          <h2 class="text-parchment-900 mb-3 text-lg font-medium tracking-tight">
+          <h2 class="text-content-primary mb-3 text-lg font-medium tracking-tight">
             Frontend & Frameworks
           </h2>
           <div class="flex flex-wrap gap-2">

@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "motion/react";
+import { ArrowPathIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 
 type Props = {
@@ -16,44 +17,24 @@ function LoaderIcon({
   size?: number;
 }) {
   return (
-    <svg
-      aria-hidden="true"
+    <motion.span
+      animate={{ rotate: 360 }}
+      transition={{
+        repeat: Number.POSITIVE_INFINITY,
+        duration: 0.8,
+        ease: "linear",
+      }}
       className={className}
-      fill="none"
-      height={size}
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-      width={size}
-      xmlns="http://www.w3.org/2000/svg"
+      style={{ display: "inline-flex" }}
     >
-      <motion.g
-        animate={{ rotate: 360 }}
-        style={{ transformOrigin: "12px 12px" }}
-        transition={{
-          repeat: Number.POSITIVE_INFINITY,
-          duration: 0.8,
-          ease: "linear",
-        }}
-      >
-        <path d="M12 2v4" />
-        <path d="m16.2 7.8 2.9-2.9" />
-        <path d="M18 12h4" />
-        <path d="m16.2 16.2 2.9 2.9" />
-        <path d="M12 18v4" />
-        <path d="m4.9 19.1 2.9-2.9" />
-        <path d="M2 12h4" />
-        <path d="m4.9 4.9 2.9 2.9" />
-      </motion.g>
-    </svg>
+      <ArrowPathIcon className="size-4" width={size} height={size} aria-hidden="true" />
+    </motion.span>
   );
 }
 
 export default function NewsletterInput({
   title = "Get updates",
-  description = "Fresh UI skills and design engineering notes.",
+  description = "Fresh design engineering skills, news and jobs",
   placeholder = "Enter your email",
   buttonLabel = "Subscribe",
 }: Props) {
@@ -115,14 +96,14 @@ export default function NewsletterInput({
   };
 
   return (
-    <div className="px-4 pt-16 sm:px-8 sm:pt-20" data-newsletter-widget>
-      <hr className="border-parchment-200 border-px mx-auto w-1/4 pb-16 sm:pb-20" />
-      <div className="mx-auto w-full max-w-3xl">
-        <div className="max-w-xl">
-          <h2 className="text-parchment-900 text-lg font-medium text-balance">
+    <div className="pt-16 sm:pt-20" data-newsletter-widget>
+      <hr className="border-line-default border-px mx-auto w-1/4 pb-16 sm:pb-20" />
+      <div className="container-3xl">
+        <div className="mx-auto w-full max-w-xl">
+          <h2 className="type-body-md w-full text-content-primary text-center font-medium text-balance">
             {title}
           </h2>
-          <p className="text-parchment-600 mt-2 max-w-lg text-base text-pretty">
+          <p className="type-body-md w-full text-content-secondary mt-0.5 text-center text-pretty">
             {description}
           </p>
         </div>
@@ -162,14 +143,14 @@ export default function NewsletterInput({
                   void submit();
                 }
               }}
-              className="text-parchment-900 placeholder:text-parchment-400 focus:border-parchment-300 relative z-0 h-12 w-full rounded-full bg-white px-4 pr-36 text-sm shadow-2xs ring-1 ring-black/10 transition-colors outline-none"
+              className="type-body-md text-content-primary placeholder:type-body-md placeholder:text-content-muted focus:border-content-extra-muted relative z-0 h-12 w-full rounded-full border border-line-default bg-surface-default px-4 pr-36 shadow-2xs transition-colors outline-none"
             />
 
             <button
               type="button"
               disabled={status !== "idle"}
               onClick={() => void submit()}
-              className={`bg-parchment-900 text-parchment-50 hover:bg-parchment-800 focus-visible:outline-primary disabled:hover:bg-parchment-900 absolute top-1/2 right-1 z-10 inline-flex h-10 min-w-[112px] -translate-y-1/2 cursor-pointer items-center justify-center rounded-full px-3.5 text-sm font-medium transition-[opacity,background-color] duration-150 ease-out focus-visible:outline focus-visible:outline-offset-2 disabled:cursor-not-allowed ${
+              className={`type-body-md bg-fill-inverse text-content-inverse hover:bg-fill-inverse focus-visible:outline-content-primary disabled:hover:bg-fill-inverse absolute top-1/2 right-1 z-10 inline-flex h-10 min-w-[112px] -translate-y-1/2 cursor-pointer items-center justify-center gap-2 rounded-full border border-transparent px-5 transition-[opacity,background-color] duration-150 ease-out focus-visible:outline focus-visible:outline-offset-2 disabled:cursor-not-allowed ${
                 status === "subscribing" ? "opacity-70" : "opacity-100"
               }`}
             >
@@ -209,20 +190,7 @@ export default function NewsletterInput({
                     transition={{ duration: 0.14, ease: "easeOut" }}
                     className="pointer-events-none inline-flex items-center whitespace-nowrap"
                   >
-                    <svg
-                      aria-hidden="true"
-                      className="size-4 shrink-0"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                      />
-                    </svg>
+                    <CheckCircleIcon className="size-4 shrink-0" aria-hidden="true" />
                   </motion.span>
                 ) : null}
               </AnimatePresence>

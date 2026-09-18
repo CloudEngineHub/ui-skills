@@ -11,7 +11,7 @@ const topics = [
 function Phone({ peek = false }: { peek?: boolean }) {
   return (
     <div className="absolute inset-x-0 bottom-0 flex justify-center">
-      <div className="border-parchment-200 flex h-56 w-[18.5rem] flex-col overflow-hidden rounded-t-[2rem] border border-b-0 bg-white">
+      <div className="border-line-default flex h-56 w-[18.5rem] flex-col overflow-hidden rounded-t-[2rem] border border-b-0 bg-surface-default">
         <div className="mt-auto pb-5">
           <div
             className="scrollbar-none overflow-x-auto"
@@ -23,14 +23,14 @@ function Phone({ peek = false }: { peek?: boolean }) {
                 <article
                   key={topic.name}
                   className={cn(
-                    "border-parchment-200 flex shrink-0 flex-col justify-between rounded-xl border bg-white p-3",
+                    "border-line-default flex shrink-0 flex-col justify-between rounded-xl border bg-surface-default p-3",
                     peek ? "w-40" : "w-64",
                   )}
                 >
-                  <p className="text-parchment-900 text-sm font-medium">
+                  <p className="text-content-primary text-sm font-medium">
                     {topic.name}
                   </p>
-                  <p className="text-parchment-500 mt-8 text-xs">
+                  <p className="text-content-secondary mt-8 text-xs">
                     {topic.count}
                   </p>
                 </article>

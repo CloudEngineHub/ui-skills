@@ -27,7 +27,14 @@ export default defineConfig({
       // an unnecessary optimizer pass during production builds.
       force: process.argv.includes("dev"),
       // These SSR imports are incompatible with Cloudflare's workerd optimizer.
-      exclude: ["marked", "@base-ui/react/switch"],
+      include: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "react-dom/client",
+        "@base-ui/react",
+      ],
+      exclude: ["marked"],
     },
     ssr: {
       external: ["node:fs", "node:path"],

@@ -31,10 +31,10 @@ function ToastDemo({ samePath = false }: { samePath?: boolean }) {
                 ? { opacity: 0, y: 28, transition: TRANSITION }
                 : { opacity: 0, x: 40, transition: TRANSITION }
             }
-            className="absolute right-5 bottom-5 w-48 rounded-xl bg-white p-3 shadow-lg ring-1 ring-black/10"
+            className="absolute right-5 bottom-5 w-48 rounded-xl bg-surface-default p-3 shadow-lg ring-1 ring-line-default"
           >
-            <p className="text-parchment-900 text-sm font-medium">Draft saved</p>
-            <p className="text-parchment-600 mt-1 text-xs">Your changes are up to date.</p>
+            <p className="text-content-primary text-sm font-medium">Draft saved</p>
+            <p className="text-content-secondary mt-1 text-xs">Your changes are up to date.</p>
           </motion.div>
         ) : null}
       </AnimatePresence>

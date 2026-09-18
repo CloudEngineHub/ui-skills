@@ -31,10 +31,10 @@ function PopoverOrigin({ fromTrigger = false }: { fromTrigger?: boolean }) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
-            className={`absolute bottom-full left-0 mb-2 w-44 rounded-lg bg-white p-3 shadow-lg ring-1 ring-black/10 ${fromTrigger ? "origin-bottom-left" : "origin-center"}`}
+            className={`absolute bottom-full left-0 mb-2 w-44 rounded-lg bg-surface-default p-3 shadow-lg ring-1 ring-line-default ${fromTrigger ? "origin-bottom-left" : "origin-center"}`}
           >
-            <p className="text-parchment-900 text-sm font-medium">Sort by</p>
-            <p className="text-parchment-500 mt-1 text-xs">
+            <p className="text-content-primary text-sm font-medium">Sort by</p>
+            <p className="text-content-secondary mt-1 text-xs">
               Name, date, or size
             </p>
           </motion.div>

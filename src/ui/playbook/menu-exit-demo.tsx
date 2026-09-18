@@ -41,14 +41,14 @@ function OptionsMenu({ exitAnimation = false }: { exitAnimation?: boolean }) {
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1, transition: { duration: 0.15, ease: [0.16, 1, 0.3, 1] } }}
               exit={{ opacity: 0, scale: 0.96, transition: EXIT_TRANSITION }}
-              className="absolute top-full left-0 z-10 mt-1.5 w-40 overflow-hidden rounded-lg bg-white py-1 shadow-lg ring-1 ring-black/10"
+              className="absolute top-full left-0 z-10 mt-1.5 w-40 overflow-hidden rounded-lg bg-surface-default py-1 shadow-lg ring-1 ring-line-default"
             >
               {items.map((item) => (
                 <button
                   key={item}
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="text-parchment-900 hover:bg-parchment-50 block w-full px-3 py-1.5 text-left text-sm"
+                  className="text-content-primary hover:bg-fill-subtle block w-full px-3 py-1.5 text-left text-sm"
                 >
                   {item}
                 </button>
@@ -57,13 +57,13 @@ function OptionsMenu({ exitAnimation = false }: { exitAnimation?: boolean }) {
           ) : null}
         </AnimatePresence>
       ) : open ? (
-        <div className="absolute top-full left-0 z-10 mt-1.5 w-40 overflow-hidden rounded-lg bg-white py-1 shadow-lg ring-1 ring-black/10">
+        <div className="absolute top-full left-0 z-10 mt-1.5 w-40 overflow-hidden rounded-lg bg-surface-default py-1 shadow-lg ring-1 ring-line-default">
           {items.map((item) => (
             <button
               key={item}
               type="button"
               onClick={() => setOpen(false)}
-              className="text-parchment-900 hover:bg-parchment-50 block w-full px-3 py-1.5 text-left text-sm"
+              className="text-content-primary hover:bg-fill-subtle block w-full px-3 py-1.5 text-left text-sm"
             >
               {item}
             </button>

@@ -7,7 +7,7 @@ import Breadcrumbs from "../../ui/breadcrumbs.astro";
 import CollectionCard from "../../ui/collection-card.astro";
 
 const breadcrumbItems = [
-  { label: "Home", href: "/" },
+  { label: "Explore", href: "/" },
   { label: "Collections" },
 ];
 const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
@@ -36,19 +36,19 @@ const structuredData = {
   title="UI Design Collections | UI Skills"
   description="Explore UI Skills collections for common design problems, from mobile app design and website layout to forms, navigation, and design systems."
 >
-  <div class="relative flex min-h-dvh flex-col items-center px-0 sm:px-4">
-    <div class="relative mt-20 w-full max-w-3xl sm:px-0">
+  <div class="relative flex min-h-dvh flex-col items-center">
+    <div class="relative mt-20 container-3xl">
       <div class="mx-auto flex w-full flex-col gap-8">
         <Breadcrumbs items={breadcrumbItems} />
 
-        <div class="px-4 sm:px-0">
+        <div class="flex flex-col gap-3">
           <h1
-            class="text-parchment-900 text-3xl font-medium tracking-tight text-balance"
+            class="type-h1 text-content-primary text-balance"
           >
             Collections
           </h1>
           <p
-            class="text-parchment-600 mt-3 max-w-2xl text-base leading-snug text-pretty"
+            class="type-body-md text-content-secondary text-pretty"
           >
             Collections group UI skills by the problem you are solving. Choose
             the collection that matches your work, then explore the recommended
@@ -56,7 +56,7 @@ const structuredData = {
           </p>
         </div>
 
-        <div class="grid gap-4 px-4 sm:grid-cols-2 sm:px-0">
+        <div class="grid gap-4 sm:grid-cols-2">
           {
             collections.map((collection) => (
               <CollectionCard

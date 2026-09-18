@@ -1,0 +1,247 @@
+---
+export const prerender = true;
+
+import Layout from "../../layouts/Layout.astro";
+import Button from "../../ui/button.astro";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { SHOW_JOBS } from "../../config/features";
+
+if (!SHOW_JOBS) return Astro.redirect("/");
+---
+
+<Layout
+  title="Post a design engineering job | UI Skills"
+  description="Post a design engineering job and reach more than 80,000 qualified experts."
+  showNewsletter={false}
+  showFooter={false}
+>
+  <div class="relative flex h-dvh flex-col items-center overflow-hidden">
+    <main class="flex min-h-dvh w-full items-center container-3xl">
+      <div class="mx-auto flex w-full max-w-2xl flex-col gap-10">
+        <header class="flex items-start justify-between gap-5">
+          <div class="flex flex-col gap-3">
+            <h1 class="type-h2 text-content-primary">Hire top design engineers</h1>
+            <p class="type-body-md text-content-secondary">
+              Post your job and reach +80k qualified experts
+            </p>
+          </div>
+          <span class="type-body-md inline-flex h-7 w-fit items-center rounded-full bg-fill-accent px-3 font-[450] text-content-accent">
+            $199 one month listing
+          </span>
+        </header>
+
+        <form class="flex flex-col gap-10" method="post" novalidate autocomplete="off">
+          <div class="grid gap-5 sm:grid-cols-2">
+            <label class="relative flex flex-col gap-1">
+              <span class="type-body-sm font-[450] text-content-secondary">Company name</span>
+              <input name="companyName" type="text" required class="type-body-md h-8 rounded-md border border-line-default bg-surface-default px-2 text-content-primary outline-none placeholder:text-content-muted focus:border-[#A5A5A5]/40" />
+            </label>
+            <label class="relative flex flex-col gap-1">
+              <span class="type-body-sm font-[450] text-content-secondary">Logo URL</span>
+              <input name="logoUrl" type="url" required class="type-body-md h-8 rounded-md border border-line-default bg-surface-default px-2 text-content-primary outline-none placeholder:text-content-muted focus:border-[#A5A5A5]/40" />
+            </label>
+            <label class="relative flex flex-col gap-1">
+              <span class="type-body-sm font-[450] text-content-secondary">Contact email</span>
+              <input name="contactEmail" type="email" autocomplete="off" required class="type-body-md h-8 rounded-md border border-line-default bg-surface-default px-2 text-content-primary outline-none placeholder:text-content-muted focus:border-[#A5A5A5]/40" />
+            </label>
+            <label class="relative flex flex-col gap-1">
+              <span class="type-body-sm font-[450] text-content-secondary">Website</span>
+              <input name="website" type="url" required class="type-body-md h-8 rounded-md border border-line-default bg-surface-default px-2 text-content-primary outline-none placeholder:text-content-muted focus:border-[#A5A5A5]/40" />
+            </label>
+            <label class="relative flex flex-col gap-1">
+              <span class="type-body-sm font-[450] text-content-secondary">Role title</span>
+              <input name="roleTitle" type="text" required class="type-body-md h-8 rounded-md border border-line-default bg-surface-default px-2 text-content-primary outline-none placeholder:text-content-muted focus:border-[#A5A5A5]/40" />
+            </label>
+            <label class="relative flex flex-col gap-1">
+              <span class="type-body-sm font-[450] text-content-secondary">Employment type</span>
+              <span class="relative block w-full">
+                <select id="employment-type" name="employmentType" required tabindex="-1" aria-hidden="true" class="absolute h-px w-px opacity-0">
+                  <option value="" disabled selected>Select type</option>
+                  <option>Full-time</option>
+                  <option>Part-time</option>
+                  <option>Contract</option>
+                  <option>Internship</option>
+                </select>
+                <button id="employment-type-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="employment-type-menu" class="type-body-md inline-flex h-8 w-full items-center justify-between rounded-md border border-line-default bg-surface-default px-2 text-content-muted outline-none focus:border-[#A5A5A5]/40">
+                  <span id="employment-type-value">Select type</span>
+                  <ChevronDownIcon className="size-4 text-content-primary" aria-hidden="true" />
+                </button>
+                <div id="employment-type-menu" role="listbox" hidden class="absolute top-0 right-0 left-0 z-30 w-full rounded-md border border-line-default bg-surface-default p-1">
+                  <button type="button" role="option" data-value="Full-time" class="type-body-sm flex h-7 w-full items-center rounded-xs px-1.5 text-left text-content-secondary hover:bg-fill-strong">Full-time</button>
+                  <button type="button" role="option" data-value="Part-time" class="type-body-sm flex h-7 w-full items-center rounded-xs px-1.5 text-left text-content-secondary hover:bg-fill-strong">Part-time</button>
+                  <button type="button" role="option" data-value="Contract" class="type-body-sm flex h-7 w-full items-center rounded-xs px-1.5 text-left text-content-secondary hover:bg-fill-strong">Contract</button>
+                  <button type="button" role="option" data-value="Internship" class="type-body-sm flex h-7 w-full items-center rounded-xs px-1.5 text-left text-content-secondary hover:bg-fill-strong">Internship</button>
+                </div>
+              </span>
+            </label>
+            <label class="relative flex flex-col gap-1">
+              <span class="type-body-sm font-[450] text-content-secondary">Location</span>
+              <input name="location" type="text" required class="type-body-md h-8 rounded-md border border-line-default bg-surface-default px-2 text-content-primary outline-none placeholder:text-content-muted focus:border-[#A5A5A5]/40" />
+            </label>
+            <label class="relative flex flex-col gap-1">
+              <span class="type-body-sm font-[450] text-content-secondary">Job post URL</span>
+              <input name="jobPostUrl" type="url" required class="type-body-md h-8 rounded-md border border-line-default bg-surface-default px-2 text-content-primary outline-none placeholder:text-content-muted focus:border-[#A5A5A5]/40" />
+            </label>
+          </div>
+          <div class="flex justify-between gap-2">
+            <Button type="button" variant="secondary" size="md">Get in touch</Button>
+            <Button type="submit" variant="primary" size="md">Submit and purchase</Button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+</Layout>
+
+<script>
+  const jobForm = document.querySelector<HTMLFormElement>('form[novalidate]');
+
+  jobForm?.addEventListener("submit", (event) => {
+    const invalidFields = Array.from(
+      jobForm.querySelectorAll<HTMLInputElement | HTMLSelectElement>(":invalid"),
+    );
+    if (!invalidFields.length) return;
+
+    event.preventDefault();
+    jobForm.querySelectorAll(".input-tooltip").forEach((tooltip) => tooltip.remove());
+
+    for (const invalidField of invalidFields) {
+      const tooltip = document.createElement("span");
+      tooltip.className = "input-tooltip";
+      tooltip.textContent = "Please fill in this field";
+      document.body.append(tooltip);
+
+      const validationTarget = invalidField.name === "employmentType"
+        ? document.querySelector<HTMLElement>("#employment-type-trigger")
+        : invalidField;
+      const inputBounds = validationTarget?.getBoundingClientRect() ?? invalidField.getBoundingClientRect();
+      const tooltipBounds = tooltip.getBoundingClientRect();
+      tooltip.style.top = `${inputBounds.top - tooltipBounds.height - 4}px`;
+      tooltip.style.left = `${inputBounds.right - tooltipBounds.width}px`;
+      window.setTimeout(() => tooltip.remove(), 2000);
+    }
+
+    invalidFields[0].focus();
+    return;
+  });
+
+  jobForm?.addEventListener("submit", (event) => {
+    const submitter = event.submitter as HTMLButtonElement | null;
+    if (submitter?.value !== "contact") return;
+    if (!jobForm.checkValidity()) return;
+
+    event.preventDefault();
+    const formData = new FormData(jobForm);
+    const companyName = String(formData.get("companyName") ?? "").trim();
+    const subject = `${companyName} wants to get in touch for a job post`;
+    const body = Array.from(formData.entries())
+      .filter(([name]) => name !== "action")
+      .map(([name, value]) => `${name}: ${value}`)
+      .join("\n");
+    window.location.href = `mailto:julien.thibeaut@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+
+  jobForm?.querySelectorAll<HTMLInputElement | HTMLSelectElement>("input, select").forEach((field) => {
+    const clearTooltip = () => document.querySelectorAll(".input-tooltip").forEach((tooltip) => tooltip.remove());
+    field.addEventListener("input", clearTooltip);
+    field.addEventListener("change", clearTooltip);
+  });
+
+  const employmentType = document.querySelector<HTMLSelectElement>(
+    'select[name="employmentType"]',
+  );
+  const employmentTypeTrigger = document.querySelector<HTMLButtonElement>(
+    "#employment-type-trigger",
+  );
+  const employmentTypeValue = document.querySelector<HTMLElement>(
+    "#employment-type-value",
+  );
+  const employmentTypeMenu = document.querySelector<HTMLElement>(
+    "#employment-type-menu",
+  );
+  const employmentTypeOptions = employmentTypeMenu?.querySelectorAll<HTMLButtonElement>(
+    "[role=option]",
+  );
+
+  const closeEmploymentTypeMenu = () => {
+    if (!employmentTypeMenu || !employmentTypeTrigger) return;
+    employmentTypeMenu.hidden = true;
+    employmentTypeTrigger.setAttribute("aria-expanded", "false");
+  };
+
+  employmentTypeTrigger?.addEventListener("click", () => {
+    if (!employmentTypeMenu) return;
+    employmentTypeMenu.hidden = !employmentTypeMenu.hidden;
+    employmentTypeTrigger.setAttribute(
+      "aria-expanded",
+      String(!employmentTypeMenu.hidden),
+    );
+  });
+
+  employmentTypeOptions?.forEach((option) => {
+    option.addEventListener("click", () => {
+      if (!employmentType || !employmentTypeValue || !employmentTypeTrigger) return;
+      employmentType.value = option.dataset.value ?? "";
+      employmentTypeValue.textContent = employmentType.value;
+      employmentTypeValue.classList.remove("text-content-muted");
+      employmentTypeValue.classList.add("text-content-primary");
+      employmentTypeOptions.forEach((item) => {
+        item.classList.toggle("text-content-muted", item === option);
+        item.setAttribute("aria-selected", String(item === option));
+      });
+      employmentType.dispatchEvent(new Event("change", { bubbles: true }));
+      closeEmploymentTypeMenu();
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!(event.target instanceof Node) || employmentTypeTrigger?.contains(event.target) || employmentTypeMenu?.contains(event.target)) return;
+    closeEmploymentTypeMenu();
+  });
+
+  employmentType?.addEventListener("change", () => {
+    employmentTypeTrigger?.classList.toggle("text-content-muted", !employmentType.value);
+    employmentTypeTrigger?.classList.toggle("text-content-primary", Boolean(employmentType.value));
+  });
+</script>
+
+<style>
+  :global(.input-tooltip) {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    border-radius: 0.375rem;
+    background-color: var(--color-fill-inverse);
+    padding: 0.25rem 0.5rem;
+    color: var(--color-content-inverse);
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: normal;
+    white-space: nowrap;
+  }
+
+  :global(input:-webkit-autofill),
+  :global(input:-webkit-autofill:hover),
+  :global(input:-webkit-autofill:focus) {
+    -webkit-text-fill-color: var(--color-content-primary);
+    -webkit-box-shadow: 0 0 0 1000px var(--color-surface-default) inset;
+    box-shadow: 0 0 0 1000px var(--color-surface-default) inset;
+    caret-color: var(--color-content-primary);
+    border-color: rgb(165 165 165 / 40%) !important;
+  }
+
+  :global(input:-webkit-autofill),
+  :global(input:-webkit-autofill:hover) {
+    border-color: rgb(165 165 165 / 40%) !important;
+  }
+
+  :global(input:-webkit-autofill),
+  :global(input:-webkit-autofill:hover) {
+    border-color: var(--color-line-default) !important;
+  }
+
+</style>

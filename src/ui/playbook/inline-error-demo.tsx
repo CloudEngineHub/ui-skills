@@ -10,7 +10,7 @@ function SignInForm({ inlineError = false }: { inlineError?: boolean }) {
   return (
     <div className="w-56 text-left">
       <div>
-        <label htmlFor={emailId} className="text-parchment-900 text-sm font-medium">
+        <label htmlFor={emailId} className="text-content-primary text-sm font-medium">
           Email
         </label>
         <Input
@@ -29,7 +29,7 @@ function SignInForm({ inlineError = false }: { inlineError?: boolean }) {
       </div>
 
       <div className="mt-4">
-        <label htmlFor={passwordId} className="text-parchment-900 text-sm font-medium">
+        <label htmlFor={passwordId} className="text-content-primary text-sm font-medium">
           Password
         </label>
         <Input

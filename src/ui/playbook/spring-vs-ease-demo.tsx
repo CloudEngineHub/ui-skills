@@ -14,12 +14,12 @@ function NotificationsToggle({ useSpring = false }: { useSpring?: boolean }) {
       onClick={() => setOn((value) => !value)}
       className={cn(
         "relative h-7 w-12 rounded-full transition-colors duration-150 ease-out",
-        on ? "bg-parchment-900" : "bg-parchment-200",
+        on ? "bg-fill-inverse" : "bg-fill-strong",
       )}
     >
       <motion.span
         aria-hidden="true"
-        className="absolute top-0.5 left-0.5 size-6 rounded-full bg-white shadow-sm"
+        className="absolute top-0.5 left-0.5 size-6 rounded-full bg-surface-default shadow-sm"
         animate={{ x: on ? 20 : 0 }}
         transition={
           useSpring

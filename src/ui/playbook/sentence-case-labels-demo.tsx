@@ -7,8 +7,8 @@ function ProfileForm({ sentenceCase = false }: { sentenceCase?: boolean }) {
   const emailId = useId();
 
   const labelClass = sentenceCase
-    ? "text-parchment-900 text-sm font-medium"
-    : "text-parchment-900 text-xs font-semibold tracking-wide uppercase";
+    ? "text-content-primary text-sm font-medium"
+    : "text-content-primary text-xs font-semibold tracking-wide uppercase";
 
   return (
     <div className="w-56 space-y-4 text-left">

@@ -13,7 +13,7 @@ function UpgradeCta({ solid = false }: { solid?: boolean }) {
   return (
     <button
       type="button"
-      className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow-[0_0_28px_rgba(37,99,235,0.65)]"
+      className="rounded-full bg-content-accent px-5 py-2.5 text-sm font-medium text-content-inverse shadow-[0_0_28px_rgba(37,99,235,0.65)]"
     >
       Upgrade plan
     </button>

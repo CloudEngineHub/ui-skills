@@ -1,0 +1,32 @@
+---
+export const prerender = true;
+
+import Layout from "../../../layouts/Layout.astro";
+import { SHOW_JOBS } from "../../../config/features";
+
+if (!SHOW_JOBS) return Astro.redirect("/");
+---
+
+<Layout
+  title="Thank you for your purchase | UI Skills"
+  description="Your UI Skills job post purchase was successful."
+  showNewsletter={false}
+  showFooter={false}
+>
+  <div class="flex h-dvh items-center justify-center overflow-hidden container-3xl">
+    <main class="flex w-full flex-col items-center gap-10 text-center">
+      <div class="flex w-full flex-col gap-2">
+        <h1 class="type-h2 text-content-primary">Thank you for your purchase</h1>
+        <p class="type-body-md text-content-secondary">
+          Your job post will be processed within 24h
+        </p>
+      </div>
+      <img
+        src="https://assets.querrel.com/ui-skills/thanks.webp"
+        alt="Thank you"
+        class="max-w-full rounded-lg border border-line-default"
+        style="width: 480px;"
+      />
+    </main>
+  </div>
+</Layout>

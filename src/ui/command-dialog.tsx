@@ -1,4 +1,5 @@
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import {
   useEffect,
   useMemo,
@@ -22,7 +23,14 @@ type CommandItem = {
 
 type CommandDialogProps = {
   items: CommandItem[];
+  hideTrigger?: boolean;
 };
+
+declare global {
+  interface Window {
+    openCommandDialog?: () => void;
+  }
+}
 
 type SearchResult = CommandItem & {
   score: number;
@@ -62,7 +70,7 @@ const escapeRegExp = (value: string) =>
 const idForPath = (pathSlug: string) =>
   `command-search-item-${pathSlug.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
 const keycapClass =
-  "bg-parchment-200/70 text-parchment-700 rounded-[4px] px-1.5 py-0.5 text-[10px] font-medium leading-none font-mono";
+  "bg-fill-strong/70 text-content-primary rounded-[4px] px-1.5 py-0.5 text-[10px] font-medium leading-none font-mono";
 const plainText = (value?: string) =>
   (value ?? "")
     .replace(/^---[\s\S]*?---/, " ")
@@ -109,7 +117,7 @@ const highlightText = (value: string, query: string): ReactNode => {
 
   return parts.map((part, index) =>
     part.toLowerCase() === normalizedQuery.toLowerCase() ? (
-      <mark key={`${part}-${index}`} className="text-parchment-900">
+      <mark key={`${part}-${index}`} className="text-content-primary">
         {part}
       </mark>
     ) : (
@@ -118,7 +126,7 @@ const highlightText = (value: string, query: string): ReactNode => {
   );
 };
 
-export function CommandDialog({ items }: CommandDialogProps) {
+export function CommandDialog({ items, hideTrigger = false }: CommandDialogProps) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -162,7 +170,20 @@ export function CommandDialog({ items }: CommandDialogProps) {
     };
 
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    const openDialog = () => {
+      setActiveIndex(0);
+      setOpen(true);
+    };
+
+    window.openCommandDialog = openDialog;
+    window.addEventListener("open-command-dialog", openDialog);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("open-command-dialog", openDialog);
+      if (window.openCommandDialog === openDialog) {
+        delete window.openCommandDialog;
+      }
+    };
   }, []);
 
   const filteredItems = useMemo<SearchResult[]>(() => {
@@ -305,65 +326,39 @@ export function CommandDialog({ items }: CommandDialogProps) {
   return (
     <TooltipProvider>
       <DialogPrimitive.Root open={open} onOpenChange={handleOpenChange}>
-        <Tooltip
-          content={
-            <span className="inline-flex items-center gap-2">
-              Search
-              <CommandKShortcut />
-            </span>
-          }
-        >
-          <DialogPrimitive.Trigger
-            aria-label="Search skills and playbook"
-            className="border-parchment-200 text-parchment-900 hover:border-parchment-300 hover:bg-parchment-100 focus-visible:outline-primary inline-flex h-8 w-8 items-center justify-center rounded-[6px] border bg-transparent text-[14px] font-[450] transition-colors focus-visible:outline-1 focus-visible:outline-offset-2"
+        {!hideTrigger ? (
+          <Tooltip
+            content={
+              <span className="inline-flex items-center gap-2">
+                Search
+                <CommandKShortcut />
+              </span>
+            }
           >
-            <svg
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="size-4 shrink-0"
+            <DialogPrimitive.Trigger
+              aria-label="Search skills and playbook"
+              className="border-line-default bg-fill-default text-content-primary hover:bg-fill-subtle focus-visible:outline-content-primary inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border text-sm transition-colors focus-visible:outline-1 focus-visible:outline-offset-2"
             >
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.3-4.3" />
-            </svg>
-          </DialogPrimitive.Trigger>
-        </Tooltip>
+              <MagnifyingGlassIcon className="size-4 shrink-0" aria-hidden="true" />
+            </DialogPrimitive.Trigger>
+          </Tooltip>
+        ) : null}
 
         <DialogPrimitive.Portal>
-          <DialogPrimitive.Backdrop className="fixed inset-0 z-50 bg-black/35 backdrop-blur-sm" />
-          <DialogPrimitive.Popup className="border-parchment-200 fixed top-24 left-1/2 z-50 w-[min(92vw,680px)] -translate-x-1/2 rounded-[12px] border bg-white shadow-xl outline-none">
+          <DialogPrimitive.Backdrop className="fixed inset-0 z-50 bg-fill-inverse/35 backdrop-blur-sm" />
+          <DialogPrimitive.Popup className="border-line-default fixed top-24 left-1/2 z-50 w-[min(92vw,680px)] -translate-x-1/2 rounded-[12px] border bg-surface-default shadow-xl outline-none">
             <DialogPrimitive.Title className="sr-only">
               Search skills and playbook
             </DialogPrimitive.Title>
-            <div className="border-parchment-200 flex items-center gap-2 border-b px-4 py-3">
-              <svg
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-parchment-500"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
+            <div className="border-line-default flex items-center gap-2 border-b px-4 py-3">
+              <MagnifyingGlassIcon className="size-4 text-content-secondary" aria-hidden="true" />
               <input
                 autoFocus
                 value={query}
                 onChange={onInputChange}
                 onKeyDown={onInputKeyDown}
                 placeholder="Search skills and playbook..."
-                className="text-parchment-900 placeholder:text-parchment-400 w-full bg-transparent text-base outline-none sm:text-base"
+                className="text-content-primary placeholder:text-content-muted w-full bg-transparent text-base outline-none sm:text-base"
                 role="combobox"
                 aria-expanded={open}
                 aria-controls="command-search-results"
@@ -381,7 +376,7 @@ export function CommandDialog({ items }: CommandDialogProps) {
               id="command-search-results"
             >
               {filteredItems.length === 0 ? (
-                <div className="text-parchment-500 px-2 py-8 text-center text-sm">
+                <div className="text-content-secondary px-2 py-8 text-center text-sm">
                   No skills or playbook entries found.
                 </div>
               ) : (
@@ -400,7 +395,7 @@ export function CommandDialog({ items }: CommandDialogProps) {
                       role="group"
                       aria-label={kind === "skill" ? "Skills" : "Playbook"}
                     >
-                      <div className="text-parchment-500 px-3 pt-3 pb-1 text-xs font-medium tracking-wide">
+                      <div className="text-content-secondary px-3 pt-3 pb-1 text-xs font-medium tracking-wide">
                         {kind === "skill" ? "Skills" : "Playbook"}
                       </div>
                       {sectionItems.map(({ item, index }) => (
@@ -413,17 +408,17 @@ export function CommandDialog({ items }: CommandDialogProps) {
                           onClick={() => onSelect(item.pathSlug)}
                           onMouseEnter={() => setActiveIndex(index)}
                           className={`w-full rounded-[8px] px-3 py-2 text-left transition-colors ${index === activeIndex
-                            ? "bg-parchment-100"
-                            : "hover:bg-parchment-100"
+                            ? "bg-fill-subtle"
+                            : "hover:bg-fill-subtle"
                             }`}
                         >
-                          <div className="text-parchment-900 text-sm font-medium">
+                          <div className="text-content-primary text-sm font-medium">
                             {highlightText(
                               item.kind === "playbook" ? item.label : item.slug,
                               query,
                             )}
                             {item.kind === "skill" ? (
-                              <span className="text-parchment-500 ml-px text-xs font-normal">
+                              <span className="text-content-secondary ml-px text-xs font-normal">
                                 {" "}
                                 {highlightText(
                                   item.sourceLabel ?? "Ibelick",
@@ -433,7 +428,7 @@ export function CommandDialog({ items }: CommandDialogProps) {
                             ) : null}
                           </div>
                           {item.snippet ? (
-                            <div className="text-parchment-500 mt-0.5 line-clamp-2 text-xs leading-snug">
+                            <div className="text-content-secondary mt-0.5 line-clamp-2 text-xs leading-snug">
                               {highlightText(item.snippet, query)}
                             </div>
                           ) : null}
@@ -445,7 +440,7 @@ export function CommandDialog({ items }: CommandDialogProps) {
               )}
             </div>
 
-            <div className="text-parchment-500 border-parchment-200 flex items-center justify-between border-t px-4 py-2 text-[11px]">
+            <div className="text-content-secondary border-line-default flex items-center justify-between border-t px-4 py-2 text-[11px]">
               <span>{filteredItems.length} results</span>
               <div className="flex items-center gap-3">
                 <span className="flex items-center gap-1.5">

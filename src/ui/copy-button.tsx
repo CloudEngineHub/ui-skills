@@ -1,27 +1,55 @@
 import { useState } from "react";
-import { TextMorph } from "./text-morph";
+import { CheckIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 
 type CopyButtonProps = {
   content: string;
   className?: string;
   showText?: boolean;
+  variant?: "ghost" | "secondary";
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+function fallbackCopy(content: string) {
+  const textarea = document.createElement("textarea");
+  textarea.value = content;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  textarea.remove();
+}
 
 export function CopyButton({
   content,
   className,
   showText = true,
+  variant = "ghost",
   ...props
 }: CopyButtonProps) {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = async () => {
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 2000);
+
     try {
-      await navigator.clipboard.writeText(content);
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000);
+      if (navigator.clipboard?.writeText) {
+        await Promise.race([
+          navigator.clipboard.writeText(content),
+          new Promise((_, reject) =>
+            window.setTimeout(() => reject(new Error("Clipboard timeout")), 500),
+          ),
+        ]);
+      } else {
+        fallbackCopy(content);
+      }
     } catch {
-      // Ignore error
+      try {
+        fallbackCopy(content);
+      } catch {
+        // Ignore clipboard errors.
+      }
     }
   };
 
@@ -29,35 +57,23 @@ export function CopyButton({
     <button
       onClick={handleCopy}
       type="button"
-      className={`text-parchment-400 hover:text-parchment-900 flex h-8 items-center justify-center rounded-full transition-colors ${className}`}
+      className={`type-body-md ${showText ? "h-7 px-2" : "size-7"} flex items-center justify-center gap-1 rounded-lg transition-[background-color,color] duration-150 ease-out ${variant === "secondary" ? "border border-line-default bg-fill-default text-content-primary hover:bg-fill-subtle" : "border border-transparent text-content-secondary hover:bg-fill-strong hover:text-content-primary"} ${className ?? ""}`}
       aria-label="Copy to clipboard"
       {...props}
     >
       {showText ? (
-        <div className="flex w-[70px] items-center justify-center text-sm font-medium">
-          <TextMorph>{isCopied ? "Copied" : "Copy"}</TextMorph>
-        </div>
-      ) : (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
+        <>
           {isCopied ? (
-            <path d="M20 6 9 17l-5-5" />
+            <CheckIcon className="size-4" aria-hidden="true" />
           ) : (
-            <>
-              <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-              <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-            </>
+            <DocumentDuplicateIcon className="size-4" aria-hidden="true" />
           )}
-        </svg>
+          <span className="font-medium">{isCopied ? "Copied" : "Copy"}</span>
+        </>
+      ) : isCopied ? (
+          <CheckIcon className="size-4" aria-hidden="true" />
+        ) : (
+          <DocumentDuplicateIcon className="size-4" aria-hidden="true" />
       )}
     </button>
   );
