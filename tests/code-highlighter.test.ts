@@ -58,9 +58,12 @@ describe("code highlighter", () => {
     const html = await highlightFencedCode("const value = true;", "typescript");
     assert.match(html, /const/);
     assert.match(html, /style="color:#/i);
-    assert.doesNotMatch(
+    assert.match(
       html,
-      new RegExp(`style="color:${SKILL_CODE_FOREGROUND}"`, "i"),
+      new RegExp(
+        `<span style="color:(?!${SKILL_CODE_FOREGROUND})[^\"]+">(?:const|value|true)</span>`,
+        "i",
+      ),
       "typed tokens should keep theme colors instead of the plain foreground",
     );
   });

@@ -1,57 +1,70 @@
 ---
-export const prerender = true;
-
 import Layout from "../layouts/Layout.astro";
 import Button from "../ui/button.astro";
-import JobItem from "../ui/job-item.astro";
-import { jobs } from "../data/jobs";
-import { SHOW_JOBS } from "../config/features";
-
-if (!SHOW_JOBS) return Astro.redirect("/");
+import JobsList from "../ui/jobs-list";
+import {
+  getJobs,
+  JobsApiError,
+  type JobsResponse,
+} from "../lib/jobs-api";
 
 const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
 const jobsUrl = new URL("/jobs", siteOrigin).toString();
+const pageTitle = "Design engineering and product designer jobs | UI Skills";
+const pageDescription =
+  "Browse design engineering and product designer jobs from companies building thoughtful digital products.";
+let initialJobs: JobsResponse | null = null;
+let initialJobsError: string | null = null;
+
+try {
+  initialJobs = await getJobs();
+} catch (reason) {
+  initialJobsError =
+    reason instanceof JobsApiError
+      ? reason.message
+      : "Unable to load jobs right now.";
+}
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "Design engineering jobs",
-  description: "The latest design engineering jobs from companies building thoughtful digital products.",
+  name: pageTitle,
+  description: pageDescription,
   url: jobsUrl,
-  hasPart: {
-    "@type": "ItemList",
-    itemListElement: jobs.map((job, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: `${job.title} at ${job.company}`,
-      url: job.url,
-    })),
-  },
 };
 ---
 
 <Layout
   structuredData={structuredData}
-  title="Design engineering jobs | UI Skills"
-  description="Browse the latest design engineering jobs from companies hiring designers who can think in systems and build exceptional interfaces."
+  title={pageTitle}
+  description={pageDescription}
 >
   <div class="relative flex min-h-dvh flex-col items-center justify-start">
-    <main class="relative mt-20 container-3xl">
+    <main class="container-3xl relative mt-20">
       <div class="mx-auto flex w-full flex-col gap-10">
         <div class="flex items-start justify-between gap-5">
           <div class="flex flex-col gap-3">
             <h1 class="type-h1 text-content-primary">Jobs</h1>
             <p class="type-body-md text-content-secondary">
-              The latest design engineering jobs from companies building thoughtful digital products.
+              The latest design engineering and product designer jobs from
+              companies building thoughtful digital products.
             </p>
           </div>
-          <Button href="/jobs/post" variant="secondary" size="md">
+          <Button
+            href="/jobs/post"
+            variant="secondary"
+            size="md"
+            className="shrink-0 whitespace-nowrap"
+          >
             Post a job
           </Button>
         </div>
 
-        <div class="flex flex-col">
-          {jobs.map((job) => <JobItem {...job} />)}
-        </div>
+        <JobsList
+          client:load
+          initialResponse={initialJobs}
+          initialError={initialJobsError}
+        />
       </div>
     </main>
   </div>

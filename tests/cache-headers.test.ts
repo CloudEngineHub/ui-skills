@@ -19,6 +19,7 @@ describe("cache header routing", () => {
       /s-maxage=86400/,
     );
     assert.match(getHtmlCacheControl("/cli") ?? "", /s-maxage=86400/);
+    assert.match(getHtmlCacheControl("/jobs") ?? "", /s-maxage=3600/);
   });
 
   test("skips cache headers for machine-readable skill routes", () => {

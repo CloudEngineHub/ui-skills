@@ -6,6 +6,10 @@ export const EDGE_HTML_CACHE =
 export const LISTING_HTML_CACHE =
   "public, max-age=300, s-maxage=86400, stale-while-revalidate=86400" as const;
 
+/** Frequently changing jobs listing — keep new postings visible sooner. */
+export const JOBS_HTML_CACHE =
+  "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400" as const;
+
 /** Semi-static discovery and text routes. */
 export const SEMI_STATIC_CACHE =
   "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400" as const;
@@ -31,6 +35,10 @@ const LISTING_EXACT_PATHS = new Set(["/skills"]);
 export function getHtmlCacheControl(pathname: string): string | null {
   const normalized =
     pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+
+  if (normalized === "/jobs") {
+    return JOBS_HTML_CACHE;
+  }
 
   if (LISTING_EXACT_PATHS.has(normalized)) {
     return LISTING_HTML_CACHE;
