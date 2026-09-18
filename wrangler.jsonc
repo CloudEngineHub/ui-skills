@@ -2,6 +2,13 @@
   "name": "ui-skills",
   "compatibility_date": "2026-01-07",
   "compatibility_flags": ["nodejs_compat"],
+  "keep_vars": true,
+  "routes": [
+    {
+      "pattern": "*.ui-skills.com/*",
+      "zone_name": "ui-skills.com",
+    },
+  ],
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
