@@ -5,6 +5,7 @@ import Layout from "../layouts/Layout.astro";
 import { playbook } from "../data/playbook";
 import { skills } from "../data/skills";
 import { designMd } from "../data/design-md";
+import { SHOW_DESIGN_MD } from "../config/features";
 import AgentAccessStart from "../ui/agent-access-start.astro";
 import PlaybookCard from "../ui/playbook-card.astro";
 import SkillCard from "../ui/skill-card.astro";
@@ -107,7 +108,7 @@ const featuredPlaybook = playbook
           </div>
         </section>
 
-        <div class="flex flex-col gap-5">
+        {SHOW_DESIGN_MD && <div class="flex flex-col gap-5">
           <a
             href="/design-md"
             class="section-title type-body-md inline-flex items-center gap-0.5 self-start font-[450] text-content-secondary"
@@ -134,7 +135,7 @@ const featuredPlaybook = playbook
               ))
             }
           </div>
-        </div>
+        </div>}
 
         <div class="flex flex-col gap-5">
           <a

@@ -4,6 +4,9 @@ export const prerender = true;
 import Layout from "../../layouts/Layout.astro";
 import Button from "../../ui/button.astro";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { SHOW_JOBS } from "../../config/features";
+
+if (!SHOW_JOBS) return Astro.redirect("/");
 ---
 
 <Layout

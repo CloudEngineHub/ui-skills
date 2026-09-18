@@ -5,6 +5,9 @@ import Layout from "../layouts/Layout.astro";
 import Button from "../ui/button.astro";
 import JobItem from "../ui/job-item.astro";
 import { jobs } from "../data/jobs";
+import { SHOW_JOBS } from "../config/features";
+
+if (!SHOW_JOBS) return Astro.redirect("/");
 
 const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
 const jobsUrl = new URL("/jobs", siteOrigin).toString();

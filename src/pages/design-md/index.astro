@@ -5,6 +5,9 @@ import { designMd } from "../../data/design-md";
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../ui/breadcrumbs.astro";
 import DesignMdItem from "../../ui/design-md-item.astro";
+import { SHOW_DESIGN_MD } from "../../config/features";
+
+if (!SHOW_DESIGN_MD) return Astro.redirect("/");
 
 const orderedDesignMd = [...designMd].sort((a, b) => a.name.localeCompare(b.name));
 const breadcrumbItems = [{ label: "Explore", href: "/" }, { label: "Design.md" }];

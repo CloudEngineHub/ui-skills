@@ -9,6 +9,9 @@ import SkillNav from "../../ui/skill-nav.astro";
 import Button from "../../ui/button.astro";
 import DesignMdFoundations from "../../ui/design-md-foundations.astro";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import { SHOW_DESIGN_MD } from "../../config/features";
+
+if (!SHOW_DESIGN_MD) return Astro.redirect("/");
 
 const contentModules = import.meta.glob("../../content/design-md/*.md", {
   eager: true,
