@@ -3977,6 +3977,45 @@ const registrySource: RegistrySourceSkill[] = [
     description:
       "Generative video editing, text-to-video, image-referenced video, frame transitions, and extensions using Gemini Omni 1.1 Flash via the official google-genai SDK.",
   },
+  {
+    slug: "mobile-native",
+    user: "emilkowalski",
+    repo: "skills",
+    rawUrl:
+      "https://raw.githubusercontent.com/emilkowalski/skills/main/skills/mobile-native/SKILL.md",
+    githubUrl:
+      "https://github.com/emilkowalski/skills/blob/main/skills/mobile-native/SKILL.md",
+    name: "mobile-native",
+    topics: ["frontend", "interaction", "performance"],
+    description:
+      "Make a web app feel native on a phone with CSS and meta-tag fixes for touch, viewport, scroll, safe areas, inputs, and PWA polish on real hardware.",
+  },
+  {
+    slug: "neo-industrial-design",
+    user: "elithrar",
+    repo: "dotfiles",
+    rawUrl:
+      "https://raw.githubusercontent.com/elithrar/dotfiles/main/.agents/skills/neo-industrial-design/SKILL.md",
+    githubUrl:
+      "https://github.com/elithrar/dotfiles/blob/main/.agents/skills/neo-industrial-design/SKILL.md",
+    name: "neo-industrial-design",
+    topics: ["visual", "craft", "typography"],
+    description:
+      "Design or restyle web interfaces in a neo-industrial or editorial-brutalist style with engineered typography, grid discipline, and physically composed layouts.",
+  },
+  {
+    slug: "web-perf",
+    user: "elithrar",
+    repo: "dotfiles",
+    rawUrl:
+      "https://raw.githubusercontent.com/elithrar/dotfiles/main/.agents/skills/web-perf/SKILL.md",
+    githubUrl:
+      "https://github.com/elithrar/dotfiles/blob/main/.agents/skills/web-perf/SKILL.md",
+    name: "web-perf",
+    topics: ["performance", "frontend", "debugging"],
+    description:
+      "Diagnose page-load and interaction performance using browser traces, network evidence, and source code for Core Web Vitals and layout-shift investigations.",
+  },
 ];
 
 const buildInitialPathSlug = (entry: RegistrySourceSkill) => {
