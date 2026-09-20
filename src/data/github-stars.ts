@@ -1,1 +1,1 @@
-export const githubStars = {"stars":8682,"label":"8.7k+"} as const;
+export const githubStars = {"stars":8775,"label":"8.8k+"} as const;
