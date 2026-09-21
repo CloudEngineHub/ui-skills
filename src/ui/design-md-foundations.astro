@@ -24,9 +24,14 @@ function cssFontSize(value?: string) {
   return `${value}px`;
 }
 
+function cssDimension(value?: string) {
+  if (!value) return "normal";
+  return /^-?(?:\d+(?:\.\d+)?)$/.test(value.trim()) ? `${value}px` : value;
+}
+
 function typographyEntries(style: Record<string, string | undefined>) {
   const entries = Object.entries(style).filter(([key, value]) => key !== "name" && key !== "fontFamily" && value !== undefined) as [string, string][];
-  if (style.fontFamily) entries.unshift(["fontFamily", style.fontFamily]);
+  if (style.fontFamily) entries.unshift(["fontFamily", style.fontFamily.split(",")[0].trim().replace(/^['"]|['"]$/g, "")]);
   return entries;
 }
 
@@ -61,7 +66,7 @@ function isNumericValue(value: string) {
         <div class="mt-3 flex flex-col gap-5">
           {foundations.typography.map((style, index) => (
             <div class="flex flex-col gap-2" data-foundation-item={index >= 3 ? "hidden" : "visible"} hidden={index >= 3}>
-              <div class="token-copy typography-showcase group type-body-md text-content-primary" style={`font-family: var(--font-sans); font-size: ${cssFontSize(style.fontSize)}; font-weight: ${cssWeight(style.fontWeight)}; line-height: ${style.lineHeight ?? "normal"}; letter-spacing: ${style.letterSpacing ?? "normal"};`}>
+              <div class="token-copy typography-showcase group type-body-md text-content-primary" style={`font-family: var(--font-sans); font-size: ${cssFontSize(style.fontSize)}; font-weight: ${cssWeight(style.fontWeight)}; line-height: ${cssDimension(style.lineHeight)}; letter-spacing: ${cssDimension(style.letterSpacing)};`}>
                 Aa
                 <span class="foundation-tooltip typography-name-tooltip" aria-hidden="true">{style.name}</span>
               </div>
@@ -119,7 +124,7 @@ function isNumericValue(value: string) {
 ) : null}
 
 {foundations.colors.length > 10 || foundations.typography.length > 3 || foundations.spacing.length > 5 || foundations.shapes.length > 3 ? (
-  <script is:inline>
+  <script>
     function setupDesignMdFoundations() {
       document.querySelectorAll('[data-show-all]:not([data-foundations-ready])').forEach((button) => {
         button.setAttribute('data-foundations-ready', 'true');
@@ -130,7 +135,7 @@ function isNumericValue(value: string) {
         hidden?.forEach((item) => item.toggleAttribute('hidden', expanded));
         button.setAttribute('aria-expanded', String(!expanded));
         const label = button.querySelector('[data-show-all-label]');
-        if (label) label.innerHTML = expanded ? `Show all <span class="type-body-sm text-content-muted">${button.dataset.count}</span>` : 'Show less';
+        if (label) label.textContent = expanded ? 'Show all ' + button.dataset.count : 'Show less';
         if (expanded) section?.scrollIntoView({ behavior: 'auto', block: 'start' });
       });
       });

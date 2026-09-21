@@ -148,5 +148,35 @@
     "description": "The genuine design.md file published by QuiverAI.",
     "logoImage": "https://assets.querrel.com/design.md/quiverai/quiverai-logo.webp",
     "previewImage": "https://assets.querrel.com/design.md/quiverai/quiverai-preview.webp"
+  },
+  {
+    "id": "clerk",
+    "name": "Clerk",
+    "sourceUrl": "https://clerk.com/design.md",
+    "websiteUrl": "https://clerk.com/",
+    "updatedAt": "2026-09-21",
+    "description": "The genuine design.md file published by Clerk.",
+    "logoImage": "https://assets.querrel.com/design.md/clerk/clerk-logo.webp",
+    "previewImage": "https://assets.querrel.com/design.md/clerk/clerk-preview.webp"
+  },
+  {
+    "id": "juspay",
+    "name": "Juspay",
+    "sourceUrl": "https://raw.githubusercontent.com/juspay/blend-design-system/refs/heads/dev/DESIGN.md",
+    "websiteUrl": "https://juspay.io/",
+    "updatedAt": "2026-09-21",
+    "description": "The genuine design.md file published by Juspay.",
+    "logoImage": "https://assets.querrel.com/design.md/juspay/juspay-logo.webp",
+    "previewImage": "https://assets.querrel.com/design.md/juspay/juspay-preview.webp"
+  },
+  {
+    "id": "oxidecomputer",
+    "name": "Oxide Computer",
+    "sourceUrl": "https://raw.githubusercontent.com/oxidecomputer/design-system/refs/heads/master/design.md",
+    "websiteUrl": "https://oxide.computer/",
+    "updatedAt": "2026-09-21",
+    "description": "The genuine design.md file published by Oxide Computer.",
+    "logoImage": "https://assets.querrel.com/design.md/oxidecomputer/oxidecomputer-logo.webp",
+    "previewImage": "https://assets.querrel.com/design.md/oxidecomputer/oxidecomputer-preview.webp"
   }
 ]

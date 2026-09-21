@@ -1,1 +1,1 @@
-export const SHOW_DESIGN_MD = false;
+export const SHOW_DESIGN_MD = true;
