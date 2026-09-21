@@ -205,5 +205,7 @@ export function createJob(
 }
 
 export function getApplyUrl(apiUrl: string, applicationUrl: string) {
-  return new URL(applicationUrl, `${apiUrl}/`).toString();
+  const url = new URL(applicationUrl, `${apiUrl}/`);
+  url.searchParams.set("utm_source", "ui-skills.com");
+  return url.toString();
 }
