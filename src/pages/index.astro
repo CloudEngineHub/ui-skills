@@ -9,12 +9,10 @@ import { SHOW_DESIGN_MD } from "../config/features";
 import AgentAccessStart from "../ui/agent-access-start.astro";
 import PlaybookCard from "../ui/playbook-card.astro";
 import SkillCard from "../ui/skill-card.astro";
-import LatestJobs from "../ui/latest-jobs.astro";
+import CtaSection from "../ui/cta-section.astro";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
-import { getJobs, type PublicJob } from "../lib/jobs-api";
 
 const MAX_SKILLS = 20;
-const BUILD_JOBS_API_URL = "https://jobs-api.ui-skills.com";
 
 const FEATURED_PATH_SLUGS = [
   "ibelick/ui-skills-root",
@@ -66,18 +64,12 @@ const featuredPlaybook = playbook
   })
   .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
 
-let latestJobs: PublicJob[] = [];
-try {
-  latestJobs = (await getJobs(BUILD_JOBS_API_URL, 3)).jobs.slice(0, 3);
-} catch {
-  // Keep the static homepage build resilient when the jobs API is unavailable.
-}
-
 ---
 
 <Layout
   title="UI Skills for Design Engineers | UI Skills"
   description="UI Skills is a collection of design-engineering skills for accessibility, motion, frontend craft, and interface quality."
+  showNewsletter={false}
 >
   <div
     class="relative flex min-h-dvh flex-col items-center justify-end"
@@ -168,7 +160,10 @@ try {
           </div>
         </div>
 
-        <LatestJobs jobs={latestJobs} />
+        <div class="mt-10">
+          <CtaSection />
+        </div>
+
       </div>
     </div>
   </div>
