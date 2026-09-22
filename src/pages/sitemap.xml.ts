@@ -5,6 +5,8 @@ import { skills, type Skill } from "../data/skills";
 import { agents } from "../data/agents";
 import { collections } from "../data/collections";
 import { playbook } from "../data/playbook";
+import { designMd } from "../data/design-md";
+import { SHOW_DESIGN_MD } from "../config/features";
 
 export const prerender = true;
 
@@ -48,6 +50,7 @@ export const GET: APIRoute = ({ site }) => {
     "/skills/topics",
     "/jobs",
     "/collections",
+    ...(SHOW_DESIGN_MD ? ["/design-md"] : []),
     "/playbook",
     "/agents",
     "/mcp/docs",
@@ -61,6 +64,9 @@ export const GET: APIRoute = ({ site }) => {
   );
   const playbookRoutes = playbook.map((entry) => `/playbook/${entry.slug}`);
   const agentRoutes = agents.map((agent) => `/agents/${agent.id}`);
+  const designMdRoutes = SHOW_DESIGN_MD
+    ? designMd.map((entry) => `/design-md/${entry.id}`)
+    : [];
   const allRoutes = Array.from(
     new Set([
       ...staticRoutes,
@@ -70,6 +76,7 @@ export const GET: APIRoute = ({ site }) => {
       ...collectionRoutes,
       ...playbookRoutes,
       ...agentRoutes,
+      ...designMdRoutes,
     ]),
   );
 

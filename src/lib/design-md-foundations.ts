@@ -75,7 +75,10 @@ function cssDimension(value: string, source: string) {
 }
 
 function firstUnit(value: string) {
-  return value.replace(/\s+\([^)]*\)\s*$/, "").trim();
+  return value
+    .replace(/\s+\([^)]*\)\s*$/, "")
+    .trim()
+    .split(/\s+\/\s+/)[0];
 }
 
 export function parseDesignMdFoundations(markdown: string) {
@@ -104,12 +107,25 @@ export function parseDesignMdFoundations(markdown: string) {
       if (!colors.some((item) => item.name === color.name && item.value === color.value)) colors.push(color);
     }
   }
+  if (colors.length === 0) {
+    for (const match of markdown.matchAll(/^\s*-\s+\*\*([^*]+)\*\*\s*\(\s*`((?:#[\da-f]{3,8}|rgba?\([^)]*\)|hsla?\([^)]*))`\s*\)/gim)) {
+      colors.push({ name: clean(match[1]), value: clean(match[2]) });
+    }
+  }
+  if (colors.length === 0) {
+    for (const match of markdown.matchAll(/--([\w-]*(?:color|background|foreground|accent|border|stroke)[\w-]*)\s*:\s*((?:#[\da-f]{3,8}|rgba?\([^)]*\)|hsla?\([^)]*\)|oklch\([^)]*\)))/gim)) {
+      colors.push({ name: match[1], value: match[2].trim() });
+    }
+  }
 
   const typography: FoundationTypography[] = [];
   const typographyLines = section(markdown, "typography");
   const aliases = new Map<string, string>();
   const typographyDocs = markdownSection(markdown, /typograph|type scale/i);
   let documentedFamily: string | undefined;
+  const typographyBlock = markdown.match(/(?:^|\n)typography:\s*\n([\s\S]*?)(?=\n\S|$)/i)?.[1] ?? "";
+  const yamlFamily = typographyBlock.match(/^\s+(?:sans|font_family|font-family):\s*["']?(.+?)["']?\s*(?:#.*)?$/im)?.[1];
+  if (yamlFamily) documentedFamily = clean(yamlFamily);
   for (const rows of tableBlocks(typographyDocs).map(tableRows)) {
     const header = rows[0]?.map((cell) => cell.toLowerCase()) ?? [];
     if (!header.includes("property") || !header.includes("value")) continue;
@@ -147,7 +163,7 @@ export function parseDesignMdFoundations(markdown: string) {
         const style: FoundationTypography = { name: cells[0] };
         for (const [index, cell] of cells.entries()) {
           const column = header[index] ?? "";
-          if (/font|family|stack/.test(column)) style.fontFamily = cell;
+          if (/(?:^|\s)(?:font|family|stack)(?:\s|$)/.test(column) && !/size|weight/.test(column)) style.fontFamily = cell;
           if (/size/.test(column) && !/line/.test(column)) style.fontSize = cell;
           if (/weight/.test(column)) style.fontWeight = cell;
           if (/line|leading/.test(column) && !/size|desktop|mobile|taille/.test(column)) style.lineHeight = cell;
@@ -212,14 +228,33 @@ export function parseDesignMdFoundations(markdown: string) {
       return match ? [{ name: match[1], value: firstUnit(clean(match[2])) }] : [];
     });
     if (yamlValues.length > 0) return yamlValues;
-    const rows = tableRows(markdownSection(markdown, headingPattern));
-    return rows.slice(1).flatMap((cells) => cells.length > 1 ? [{ name: cells[0], value: firstUnit(cells[1]) }] : []);
+    const rows = tableRows(markdownSection(markdown, headingPattern)).slice(1);
+    const parsed = rows.flatMap((cells) => {
+      if (key === "rounded") {
+        const name = cells.find((cell) => /^rounded-/i.test(cell.trim()));
+        const value = cells.find((cell) => /^(?:[\d.]+(?:px|rem|em|%|vh|vw)?)/i.test(cell.trim()));
+        return name && value ? [{ name: name.trim(), value: firstUnit(value) }] : [];
+      }
+      const value = cells.find((cell, index) => index > 0 && /^(?:[+-]?[\d.]+(?:px|rem|em|%|vh|vw)?|rounded-[\w-]+|radius-[\w-]+)$/i.test(cell.trim()));
+      return cells.length > 1 && value ? [{ name: cells[0], value: firstUnit(value) }] : [];
+    });
+    if (parsed.length > 0) return parsed;
+    return [];
   };
+
+  const yamlFlowRadius = markdown.match(/radius_px:\s*\{([^}]+)\}/i)?.[1];
+  const flowShapes = yamlFlowRadius
+    ? yamlFlowRadius.split(",").flatMap((pair) => {
+        const match = pair.match(/\s*([\w-]+)\s*:\s*([\d.]+)/);
+        return match ? [{ name: match[1], value: `${match[2]}px` }] : [];
+      })
+    : [];
+  const spacingScale = [...markdown.matchAll(/`?(?:space|spacing)[-_]([\w-]+)`?\s*[=:]\s*`?([\d.]+(?:px|rem|em))/gi)].map((match) => ({ name: match[1], value: match[2] }));
 
   return {
     colors,
     typography,
-    spacing: parseValues("spacing", /spacing|grid/i),
-    shapes: parseValues("rounded", /radius|rounded|shape/i),
+    spacing: spacingScale.length > 0 ? spacingScale : parseValues("spacing", /spacing system|layout & spacing|sizing scale/i),
+    shapes: flowShapes.length > 0 ? flowShapes : parseValues("rounded", /radius|rounded|shape/i),
   };
 }

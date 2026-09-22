@@ -16,11 +16,12 @@ const pageUrl = new URL("/design-md", siteOrigin).toString();
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "Design.md",
+  name: "Top DESIGN.md files from real-world companies",
   description: "Curation of public and original design.md files from genuine companies and open source projects",
   url: pageUrl,
-  hasPart: {
+  mainEntity: {
     "@type": "ItemList",
+    numberOfItems: orderedDesignMd.length,
     itemListElement: orderedDesignMd.map((entry, index) => ({
       "@type": "ListItem",
       position: index + 1,
@@ -33,7 +34,7 @@ const structuredData = {
 
 <Layout
   structuredData={structuredData}
-  title="Design.md | UI Skills"
+  title="Top DESIGN.md files from real-world companies | UI Skills"
   description="Curation of public and original design.md files from genuine companies and open source projects"
   ogImage="https://www.ui-skills.com/designmd-ogimage.png"
   twitterImage="https://www.ui-skills.com/designmd-ogimage-x.png"
@@ -43,8 +44,8 @@ const structuredData = {
       <div class="mx-auto flex w-full flex-col gap-8">
         <Breadcrumbs items={breadcrumbItems} />
 
-        <div class="flex flex-col gap-3">
-          <h1 class="type-h1 text-content-primary">Design.md</h1>
+        <div class="container-sm ml-0 px-0 flex flex-col gap-3">
+            <h1 class="type-h1 text-content-primary">Top design.md files from real-world companies</h1>
           <p class="type-body-md text-content-secondary">
             Curation of public and original design.md files from genuine companies and open source projects
           </p>
