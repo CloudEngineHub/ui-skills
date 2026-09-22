@@ -135,7 +135,7 @@ function isNumericValue(value: string) {
         hidden?.forEach((item) => item.toggleAttribute('hidden', expanded));
         button.setAttribute('aria-expanded', String(!expanded));
         const label = button.querySelector('[data-show-all-label]');
-        if (label) label.textContent = expanded ? 'Show all ' + button.dataset.count : 'Show less';
+        if (label) label.textContent = expanded ? 'Show all ' + button.getAttribute('data-count') : 'Show less';
         if (expanded) section?.scrollIntoView({ behavior: 'auto', block: 'start' });
       });
       });

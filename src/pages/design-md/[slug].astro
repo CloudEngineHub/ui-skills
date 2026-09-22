@@ -62,11 +62,19 @@ const structuredData = entry
       headline: entry.name,
       description: entry.description,
       url: pageUrl,
-      mainEntityOfPage: pageUrl,
+      mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+      dateModified: entry.updatedAt,
+      inLanguage: "en",
+      about: { "@type": "Thing", name: `${entry.name} design system` },
+      citation: entry.sourceUrl,
       author: { "@type": "Organization", name: entry.name },
       publisher: { "@type": "Organization", name: "UI Skills" },
       image: entry.previewImage,
-      isPartOf: { "@type": "CollectionPage", name: "Design.md" },
+      isPartOf: {
+        "@type": "CollectionPage",
+        "@id": new URL("/design-md", siteOrigin).toString(),
+        name: "Design.md",
+      },
     }
   : undefined;
 const breadcrumbStructuredData = {
@@ -92,7 +100,7 @@ const breadcrumbStructuredData = {
   robots={!entry ? "noindex,follow" : undefined}
 >
   {entry ? (
-    <main class="container-7xl pt-20">
+    <div class="container-7xl pt-20">
       <div class="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-12">
         <div class="flex flex-col gap-5 pb-20">
           <div class="flex h-8 items-center justify-between gap-3">
@@ -168,7 +176,7 @@ const breadcrumbStructuredData = {
           </SkillContentCard>
         </section>
       </div>
-    </main>
+    </div>
   ) : (
     <div class="relative flex min-h-dvh flex-col items-center">
       <div class="relative mt-20 container-3xl">
