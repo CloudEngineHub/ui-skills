@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import NewsletterInput from "../ui/newsletter-input";
+import CtaSection from "../ui/cta-section.astro";
 import { skills } from "../data/skills";
 import { playbook } from "../data/playbook";
 import Footer from "../ui/footer.astro";
@@ -234,7 +234,7 @@ const commandItems = [
       <main id="main-content">
         <slot />
       </main>
-      {showNewsletter && <NewsletterInput client:visible />}
+      {showNewsletter && <div class="container-3xl mt-10"><CtaSection /></div>}
       {showFooter && <Footer />}
     </div>
   </body>
