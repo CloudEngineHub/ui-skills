@@ -1,0 +1,148 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../ui/breadcrumbs.astro";
+import Button from "../../ui/button.astro";
+import Command from "../../ui/command.astro";
+import SkillCard from "../../ui/skill-card.astro";
+import { allGuides, guideBySlug } from "../../data/guides";
+import { topicBySlug } from "../../data/topics";
+import { getRegistryByPath, getSkillByPath } from "../../lib/skill-catalog";
+import { buildSkillsInstallCommand } from "../../lib/ui-skills-cli";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return allGuides.map((guide) => ({ params: { slug: guide.slug } }));
+}
+
+const guide = guideBySlug.get(Astro.params.slug ?? "");
+
+const breadcrumbItems = [
+  { label: "Explore", href: "/" },
+  { label: "Guides" },
+  { label: guide?.title ?? "Guide" },
+];
+
+const siteOrigin = Astro.site ?? new URL("https://www.ui-skills.com");
+const pageUrl = new URL(`/guides/${guide?.slug ?? ""}`, siteOrigin).toString();
+const pageTitle = guide
+  ? `${guide.title} | UI Skills`
+  : "Guide Not Found | UI Skills";
+const pageDescription =
+  guide?.description ?? "The requested guide could not be found.";
+
+const structuredData = guide
+  ? {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: guide.title,
+      description: guide.description,
+      url: pageUrl,
+      mainEntityOfPage: pageUrl,
+      publisher: {
+        "@type": "Organization",
+        name: "UI Skills",
+        url: new URL("/", siteOrigin).toString(),
+      },
+    }
+  : undefined;
+
+const sections = (guide?.sections ?? []).map((section) => ({
+  ...section,
+  topics: (section.topicSlugs ?? [])
+    .map((slug) => topicBySlug.get(slug))
+    .filter((topic): topic is NonNullable<typeof topic> => Boolean(topic)),
+  skills: (section.skillPathSlugs ?? [])
+    .map((pathSlug) => {
+      const skill = getSkillByPath(pathSlug);
+      const entry = getRegistryByPath(pathSlug);
+      if (!skill || !entry) return null;
+
+      const owner = skill.sourceKey ?? entry.user;
+      return {
+        href: `/skills/${pathSlug}`,
+        slug: skill.slug,
+        description: skill.description,
+        ownerLabel: skill.sourceLabel ?? owner,
+        avatarUrl: `https://github.com/${owner}.png?size=160`,
+        command: buildSkillsInstallCommand(
+          `https://github.com/${entry.user}/${entry.repo}`,
+          entry.name,
+        ),
+      };
+    })
+    .filter((skill): skill is NonNullable<typeof skill> => Boolean(skill)),
+}));
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  structuredData={structuredData}
+>
+  <div class="relative flex min-h-dvh flex-col items-center justify-start">
+    <div class="container-3xl relative mt-20">
+      <div class="mx-auto flex w-full flex-col gap-10">
+        <Breadcrumbs items={breadcrumbItems} />
+
+        <header class="flex flex-col gap-3">
+          <h1 class="type-h1 text-content-primary text-balance">
+            {guide?.title ?? "Guide not found"}
+          </h1>
+          <p class="type-body-md text-content-secondary text-pretty">
+            {pageDescription}
+          </p>
+        </header>
+
+        {
+          sections.map((section) => (
+            <section class="flex flex-col gap-5">
+              <h2 class="type-h2 text-content-primary">{section.heading}</h2>
+              {section.paragraphs.map((paragraph) => (
+                <p class="type-body-md text-content-secondary text-pretty">
+                  {paragraph}
+                </p>
+              ))}
+
+              {section.commands?.map((command) => (
+                <Command command={command} />
+              ))}
+
+              {section.topics.length ? (
+                <div class="flex flex-wrap gap-2">
+                  {section.topics.map((topic) => (
+                    <Button
+                      href={`/skills/${topic.slug}`}
+                      variant="secondary"
+                      size="sm"
+                    >
+                      {topic.label}
+                    </Button>
+                  ))}
+                </div>
+              ) : null}
+
+              {section.skills.length ? (
+                <div class="flex flex-col gap-6">
+                  {section.skills.map((skill) => (
+                    <div class="flex flex-col gap-3">
+                      <SkillCard
+                        href={skill.href}
+                        slug={skill.slug}
+                        description={skill.description}
+                        ownerLabel={skill.ownerLabel}
+                        avatarUrl={skill.avatarUrl}
+                        variant="list"
+                      />
+                      <Command command={skill.command} />
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Layout>

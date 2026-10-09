@@ -6,6 +6,8 @@ export type Agent = {
   sourceUrl: string;
   faviconUrl: string;
   websiteUrl?: string;
+  setupCommand?: string;
+  skills?: { path: string; docsUrl: string };
 };
 
 const favicon = (domain: string) =>
@@ -21,6 +23,8 @@ export const agents: Agent[] = [
     sourceUrl: "https://www.ui-skills.com/?source=ui-skills.com",
     faviconUrl: favicon("anthropic.com"),
     websiteUrl: "https://www.anthropic.com/claude-code",
+    setupCommand: "npx ui-skills start",
+    skills: { path: ".claude/skills/", docsUrl: "https://code.claude.com/docs/en/skills" },
   },
   {
     id: "cursor",
@@ -31,6 +35,7 @@ export const agents: Agent[] = [
     sourceUrl: "https://www.ui-skills.com/?source=ui-skills.com",
     faviconUrl: favicon("cursor.com"),
     websiteUrl: "https://cursor.com/agents",
+    skills: { path: ".cursor/skills/", docsUrl: "https://cursor.com/docs/context/skills" },
   },
   {
     id: "codex",
@@ -71,6 +76,7 @@ export const agents: Agent[] = [
     sourceUrl: "https://www.ui-skills.com/?source=ui-skills.com",
     faviconUrl: favicon("gemini.google.com"),
     websiteUrl: "https://gemini.google.com",
+    skills: { path: ".gemini/skills/", docsUrl: "https://geminicli.com/docs/cli/skills/" },
   },
   {
     id: "cline",
@@ -101,6 +107,7 @@ export const agents: Agent[] = [
     sourceUrl: "https://www.ui-skills.com/?source=ui-skills.com",
     faviconUrl: favicon("google.com"),
     websiteUrl: "https://antigravity.google.com",
+    skills: { path: ".agent/skills/", docsUrl: "https://codelabs.developers.google.com/getting-started-with-antigravity-skills" },
   },
   {
     id: "openclaw",
@@ -131,6 +138,7 @@ export const agents: Agent[] = [
     sourceUrl: "https://www.ui-skills.com/?source=ui-skills.com",
     faviconUrl: favicon("github.com"),
     websiteUrl: "https://github.com/block/goose",
+    skills: { path: ".agents/skills/", docsUrl: "https://goose-docs.ai/docs/guides/context-engineering/using-skills" },
   },
   {
     id: "kilo",
@@ -151,6 +159,7 @@ export const agents: Agent[] = [
     sourceUrl: "https://www.ui-skills.com/?source=ui-skills.com",
     faviconUrl: favicon("kiro.dev"),
     websiteUrl: "https://kiro.dev",
+    skills: { path: ".kiro/skills/", docsUrl: "https://kiro.dev/docs/cli/skills/" },
   },
   {
     id: "nous-research",
@@ -171,6 +180,7 @@ export const agents: Agent[] = [
     sourceUrl: "https://www.ui-skills.com/?source=ui-skills.com",
     faviconUrl: favicon("opencode.ai"),
     websiteUrl: "https://opencode.ai",
+    skills: { path: ".opencode/skills/", docsUrl: "https://opencode.ai/docs/skills" },
   },
   {
     id: "roo",
@@ -181,6 +191,7 @@ export const agents: Agent[] = [
     sourceUrl: "https://www.ui-skills.com/?source=ui-skills.com",
     faviconUrl: favicon("roocode.com"),
     websiteUrl: "https://roocode.com",
+    skills: { path: ".roo/skills/", docsUrl: "https://docs.roocode.com/features/skills" },
   },
   {
     id: "trae",
@@ -211,6 +222,7 @@ export const agents: Agent[] = [
     sourceUrl: "https://www.ui-skills.com/?source=ui-skills.com",
     faviconUrl: favicon("zed.dev"),
     websiteUrl: "https://zed.dev",
+    skills: { path: ".agents/skills/", docsUrl: "https://zed.dev/docs/ai/skills" },
   },
 ];
 

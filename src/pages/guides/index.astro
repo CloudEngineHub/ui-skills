@@ -1,0 +1,68 @@
+---
+export const prerender = true;
+
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../ui/breadcrumbs.astro";
+import { guides, agentGuides } from "../../data/guides";
+
+const breadcrumbItems = [{ label: "Explore", href: "/" }, { label: "Guides" }];
+const pageTitle = "UI Skills guides for design engineers | UI Skills";
+const pageDescription =
+  "Guides for installing UI Skills, choosing frontend design skills, and setting up UI Skills with AI coding agents.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <div class="relative flex min-h-dvh flex-col items-center justify-start">
+    <div class="container-3xl relative mt-20">
+      <div class="mx-auto flex w-full flex-col gap-10">
+        <Breadcrumbs items={breadcrumbItems} />
+
+        <header class="flex flex-col gap-3">
+          <h1 class="type-h1 text-content-primary text-balance">Guides</h1>
+          <p class="type-body-md text-content-secondary text-pretty">
+            {pageDescription}
+          </p>
+        </header>
+
+        <section class="flex flex-col gap-5">
+          <h2 class="type-h2 text-content-primary">Getting started</h2>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {
+              guides.map((guide) => (
+                <a
+                  href={`/guides/${guide.slug}`}
+                  class="hover:border-content-extra-muted hover:bg-fill-subtle border-line-default rounded-[10px] border px-4 py-3 transition-colors"
+                >
+                  <div class="type-body-md text-content-primary font-[450]">
+                    {guide.title}
+                  </div>
+                  <div class="type-body-md text-content-secondary mt-1 line-clamp-2">
+                    {guide.description}
+                  </div>
+                </a>
+              ))
+            }
+          </div>
+        </section>
+
+        <section class="flex flex-col gap-5">
+          <h2 class="type-h2 text-content-primary">Set up with an agent</h2>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {
+              agentGuides.map((guide) => (
+                <a
+                  href={`/guides/${guide.slug}`}
+                  class="hover:border-content-extra-muted hover:bg-fill-subtle border-line-default rounded-[10px] border px-4 py-3 transition-colors"
+                >
+                  <div class="type-body-md text-content-primary font-[450]">
+                    {guide.title}
+                  </div>
+                </a>
+              ))
+            }
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</Layout>

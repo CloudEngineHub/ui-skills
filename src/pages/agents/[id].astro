@@ -5,7 +5,12 @@ import AgentAccessStart from "../../ui/agent-access-start.astro";
 import Breadcrumbs from "../../ui/breadcrumbs.astro";
 import Button from "../../ui/button.astro";
 import { PlusIcon } from "@heroicons/react/24/outline";
+import Command from "../../ui/command.astro";
+import SkillCard from "../../ui/skill-card.astro";
 import { agentById, agents } from "../../data/agents";
+import { FEATURED_PATH_SLUGS } from "../../data/featured-skills";
+import { agentGuides } from "../../data/guides";
+import { getSkillByPath } from "../../lib/skill-catalog";
 
 export const prerender = true;
 
@@ -65,6 +70,23 @@ const exploreTopics = [
   { label: "Tooling", href: "/skills/tooling" },
 ];
 const otherAgents = agents.filter((entry) => entry.id !== agentId).slice(0, 4);
+const agentGuide = agentGuides.find(
+  (guide) => guide.slug === `ui-skills-for-${agentId}`,
+);
+const featuredSkills = FEATURED_PATH_SLUGS.slice(0, 6)
+  .map((pathSlug) => {
+    const skill = getSkillByPath(pathSlug);
+    if (!skill) return null;
+    const owner = skill.sourceKey ?? pathSlug.split("/")[0];
+    return {
+      href: `/skills/${pathSlug}`,
+      slug: skill.slug,
+      description: skill.description,
+      ownerLabel: skill.sourceLabel ?? owner,
+      avatarUrl: `https://github.com/${owner}.png?size=160`,
+    };
+  })
+  .filter((skill): skill is NonNullable<typeof skill> => Boolean(skill));
 const breadcrumbStructuredData = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -161,7 +183,61 @@ const structuredDataItems = agent
               </div>
             </div>
 
+            {agent.setupCommand ? (
+              <section class="flex flex-col gap-5">
+                <h2 class="type-body-md font-[450] text-content-secondary">
+                  Set up with the CLI
+                </h2>
+                <Command command={agent.setupCommand} />
+              </section>
+            ) : null}
+
              <AgentAccessStart />
+
+            <section class="flex flex-col gap-5">
+              <h2 class="type-body-md font-[450] text-content-secondary">
+                Featured skills
+              </h2>
+              <div class="flex flex-col">
+                {featuredSkills.map((skill) => (
+                  <SkillCard
+                    href={skill.href}
+                    slug={skill.slug}
+                    description={skill.description}
+                    ownerLabel={skill.ownerLabel}
+                    avatarUrl={skill.avatarUrl}
+                    variant="list"
+                  />
+                ))}
+              </div>
+              <Button
+                href="/skills"
+                variant="secondary"
+                size="sm"
+                className="self-start"
+              >
+                All skills
+              </Button>
+            </section>
+
+            <section class="flex flex-col gap-5">
+              <h2 class="type-body-md font-[450] text-content-secondary">
+                Guides
+              </h2>
+              {agentGuide ? (
+                <a
+                  href={`/guides/${agentGuide.slug}`}
+                  class="hover:border-content-extra-muted hover:bg-fill-subtle border-line-default rounded-[10px] border px-4 py-3 transition-colors"
+                >
+                  <div class="type-body-md font-[450] text-content-primary">
+                    {agentGuide.title}
+                  </div>
+                  <div class="type-body-md mt-1 line-clamp-2 text-content-secondary">
+                    {agentGuide.description}
+                  </div>
+                </a>
+              ) : null}
+            </section>
 
             <section class="flex flex-col gap-5">
               <h2 class="type-body-md font-[450] text-content-secondary">
