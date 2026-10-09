@@ -6,7 +6,6 @@ export type Agent = {
   sourceUrl: string;
   faviconUrl: string;
   websiteUrl?: string;
-  setupCommand?: string;
   skills?: { path: string; docsUrl: string };
 };
 
@@ -23,7 +22,6 @@ export const agents: Agent[] = [
     sourceUrl: "https://www.ui-skills.com/?source=ui-skills.com",
     faviconUrl: favicon("anthropic.com"),
     websiteUrl: "https://www.anthropic.com/claude-code",
-    setupCommand: "npx ui-skills start",
     skills: { path: ".claude/skills/", docsUrl: "https://code.claude.com/docs/en/skills" },
   },
   {
