@@ -19,6 +19,7 @@ describe("design system directory data", () => {
   test("uses unique names and valid external URLs", () => {
     const names = new Set(designSystems.map((system) => system.name));
 
+    assert.equal(designSystems.length, 182);
     assert.equal(names.size, designSystems.length);
 
     for (const system of designSystems) {
@@ -35,9 +36,9 @@ describe("design system directory data", () => {
       .map((system) => system.name);
 
     assert.deepEqual(featuredNames, [
+      "Carbon Design System",
       "Material Design",
-      "Carbon",
-      "Radix Themes",
+      "Radix UI",
       "shadcn/ui",
       "GOV.UK Design System",
     ]);
