@@ -59,10 +59,10 @@ export const designSystemCollections: Array<{
     description:
       "Design systems published as component libraries, with reusable interface building blocks and public documentation.",
     intro:
-      "Find component libraries and UI kits with public docs, from React systems to framework-agnostic component sets.",
+      "Find component libraries, UI kits, and web components with public docs, from React systems to framework-agnostic sets.",
     seoTitle: "Design System Component Libraries",
     metaDescription:
-      "Browse component libraries and UI kits, including Material Design, shadcn/ui, Radix, Mantine, and Bootstrap.",
+      "Browse component libraries, UI kits, and web components, including Material Design, shadcn/ui, and Radix.",
   },
   {
     slug: "government",
