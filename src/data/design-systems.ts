@@ -18,6 +18,7 @@ export type DesignSystem = {
   name: string;
   description: string;
   websiteUrl: string;
+  faviconUrl?: string;
   githubRepo?: string;
   collection: DesignSystemCollection;
   bestFor: string;
@@ -45,10 +46,10 @@ export const designSystemCollections: Array<{
     description:
       "Design systems from product companies shipping large applications, admin tools, and shared interface foundations.",
     intro:
-      "Compare design systems published by product companies, from enterprise platforms to in-house systems used across large applications.",
+      "Compare design systems published by product companies, including the Carbon Design System and Atlassian Design System.",
     seoTitle: "Enterprise Design Systems",
     metaDescription:
-      "Browse enterprise design systems from product companies, including Carbon, Primer, Fluent, Polaris, and Atlassian.",
+      "Browse enterprise design systems from product companies, including the Carbon Design System and Atlassian Design System.",
   },
   {
     slug: "component-libraries",
@@ -204,7 +205,7 @@ export const designSystems: DesignSystem[] = [
   {
     name: "Atlassian Design System",
     description:
-      "Enterprise design system built with React, including usage guidelines, accessibility guidance, and content guidance.",
+      "Atlassian's design system for product teams, with React components, usage guidelines, accessibility guidance, and content guidance.",
     websiteUrl: "https://atlassian.design/",
     collection: "enterprise",
     bestFor: "Large product teams",
@@ -244,6 +245,8 @@ export const designSystems: DesignSystem[] = [
     name: "Basis",
     description: "Enterprise design system with public documentation.",
     websiteUrl: "https://design.basis.com/",
+    faviconUrl:
+      "https://framerusercontent.com/images/Ml9UTmIJzlnOFuOvyA0ygBBjE.png",
     collection: "enterprise",
     bestFor: "Large product teams",
     platform: "Web",
@@ -323,6 +326,7 @@ export const designSystems: DesignSystem[] = [
     description:
       "Enterprise design system built with Vanilla JS, including usage guidelines.",
     websiteUrl: "https://www.delldesignsystem.com/",
+    faviconUrl: "https://www.delldesignsystem.com/images/favicon.ico",
     collection: "enterprise",
     bestFor: "Large product teams",
     platform: "Vanilla JS",
@@ -427,15 +431,6 @@ export const designSystems: DesignSystem[] = [
     maintainer: "Open source",
   },
   {
-    name: "Ideagen",
-    description: "Enterprise design system with public documentation.",
-    websiteUrl: "https://www.helixui.com/9904796d6/p/19ace3-helix",
-    collection: "enterprise",
-    bestFor: "Large product teams",
-    platform: "Web",
-    maintainer: "Enterprise",
-  },
-  {
     name: "INPS",
     description: "Enterprise design system with public documentation.",
     websiteUrl: "https://www.inps.design/",
@@ -498,6 +493,7 @@ export const designSystems: DesignSystem[] = [
     description:
       "Enterprise design system built with Vue, including usage guidelines.",
     websiteUrl: "https://design.morningstar.com/systems/product",
+    faviconUrl: "https://design.morningstar.com/favicon.ico",
     collection: "enterprise",
     bestFor: "Large product teams",
     platform: "Vue",
@@ -508,6 +504,7 @@ export const designSystems: DesignSystem[] = [
     description: "Enterprise design system with public documentation.",
     websiteUrl:
       "https://thc.motorway.co.uk/0566ad526/p/652544-the-highway-code",
+    faviconUrl: "https://icons.duckduckgo.com/ip3/thc.motorway.co.uk.ico",
     collection: "enterprise",
     bestFor: "Large product teams",
     platform: "Web",
@@ -528,6 +525,7 @@ export const designSystems: DesignSystem[] = [
     description: "Enterprise design system with public documentation.",
     websiteUrl:
       "https://pando.zeroheight.com/92687036d/p/498dc1-pando-design-system",
+    faviconUrl: "https://pando.zeroheight.com/favicon.ico",
     collection: "enterprise",
     bestFor: "Large product teams",
     platform: "Web",
@@ -608,6 +606,8 @@ export const designSystems: DesignSystem[] = [
     name: "Seek",
     description: "Enterprise design system with public documentation.",
     websiteUrl: "https://seek-oss.github.io/braid-design-system",
+    faviconUrl:
+      "https://seek-oss.github.io/braid-design-system/favicon-16x16.png",
     collection: "enterprise",
     bestFor: "Large product teams",
     platform: "Web",
@@ -617,6 +617,7 @@ export const designSystems: DesignSystem[] = [
     name: "Seek style guide",
     description: "Enterprise design system built with React.",
     websiteUrl: "https://seek-oss.github.io/seek-style-guide/",
+    faviconUrl: "https://github.com/seek-oss.png?size=80",
     collection: "enterprise",
     bestFor: "Large product teams",
     platform: "React",
@@ -665,6 +666,7 @@ export const designSystems: DesignSystem[] = [
     name: "Sunrise",
     description: "Enterprise design system with public documentation.",
     websiteUrl: "https://solar.sunrise.net/",
+    faviconUrl: "https://solar.sunrise.net/favicon.ico",
     collection: "enterprise",
     bestFor: "Large product teams",
     platform: "Web",
@@ -714,6 +716,7 @@ export const designSystems: DesignSystem[] = [
     name: "Vibe (monday.com)",
     description: "Enterprise design system with public documentation.",
     websiteUrl: "https://vibe.monday.com/",
+    faviconUrl: "https://vibe.monday.com/favicon.ico",
     collection: "enterprise",
     bestFor: "Large product teams",
     platform: "Web",
@@ -761,6 +764,7 @@ export const designSystems: DesignSystem[] = [
     name: "98.css",
     description: "Open-source component library built with CSS.",
     websiteUrl: "https://jdan.github.io/98.css/",
+    faviconUrl: "https://jdan.github.io/98.css/icon.png",
     collection: "component-libraries",
     bestFor: "Shared component kits",
     platform: "CSS",
@@ -771,6 +775,7 @@ export const designSystems: DesignSystem[] = [
     description:
       "Open-source component library built with jQuery, including usage guidelines and accessibility guidance.",
     websiteUrl: "https://a11y-style-guide.com/style-guide/",
+    faviconUrl: "https://a11y-style-guide.com/favicons/favicon.ico",
     collection: "component-libraries",
     bestFor: "Shared component kits",
     platform: "jQuery",
@@ -946,6 +951,7 @@ export const designSystems: DesignSystem[] = [
     description:
       "Open-source component library built with Web Components, including accessibility guidance.",
     websiteUrl: "https://public-ui.github.io/",
+    faviconUrl: "https://public-ui.github.io/assets/favicon.ico",
     collection: "component-libraries",
     bestFor: "Shared component kits",
     platform: "Web Components",
@@ -1218,6 +1224,7 @@ export const designSystems: DesignSystem[] = [
     description:
       "Open-source government design system built with React and Sass, including usage guidelines and accessibility guidance.",
     websiteUrl: "https://designsystemau.org/",
+    faviconUrl: "https://github.com/designsystemau.png?size=80",
     collection: "government",
     bestFor: "Public services",
     platform: "React and Sass",
@@ -1446,6 +1453,7 @@ export const designSystems: DesignSystem[] = [
     description:
       "Open-source media design system built with Stimulus, including usage guidelines and content guidance.",
     websiteUrl: "https://stackoverflow.design/",
+    faviconUrl: "https://icons.duckduckgo.com/ip3/stackoverflow.design.ico",
     collection: "media",
     bestFor: "Publishing products",
     platform: "Stimulus",
@@ -1482,6 +1490,7 @@ export const designSystems: DesignSystem[] = [
     name: "Aviva",
     description: "Fintech design system with public documentation.",
     websiteUrl: "https://standards.aviva.com/",
+    faviconUrl: "https://static.aviva.io/assets/favicon/favicon.ico",
     collection: "fintech",
     bestFor: "Financial products",
     platform: "Web",
@@ -1501,6 +1510,7 @@ export const designSystems: DesignSystem[] = [
     description:
       "Fintech design system with usage guidelines and content guidance.",
     websiteUrl: "https://brand.klarna.com/",
+    faviconUrl: "https://brand.klarna.com/favicon.ico",
     collection: "fintech",
     bestFor: "Financial products",
     platform: "Web",
@@ -1519,6 +1529,8 @@ export const designSystems: DesignSystem[] = [
     name: "Paysafe",
     description: "Fintech design system with usage guidelines.",
     websiteUrl: "https://brand.paysafe.com/foundation/",
+    faviconUrl:
+      "https://brand.paysafe.com/_assets/4c5ef391ed527ab56e714c403c4c5601/Favicons/favicon.ico",
     collection: "fintech",
     bestFor: "Financial products",
     platform: "Web",
@@ -1537,6 +1549,7 @@ export const designSystems: DesignSystem[] = [
     name: "SubZero",
     description: "Fintech design system with public documentation.",
     websiteUrl: "https://www.subzero.axis.bank.in/",
+    faviconUrl: "https://www.subzero.axis.bank.in/favicon.svg",
     collection: "fintech",
     bestFor: "Financial products",
     platform: "Web",
@@ -1567,6 +1580,7 @@ export const designSystems: DesignSystem[] = [
     description:
       "Fintech design system built with React, including usage guidelines and accessibility guidance.",
     websiteUrl: "https://gel.westpacgroup.com.au/design-system",
+    faviconUrl: "https://icons.duckduckgo.com/ip3/westpac.com.au.ico",
     collection: "fintech",
     bestFor: "Financial products",
     platform: "React",
@@ -1595,6 +1609,7 @@ export const designSystems: DesignSystem[] = [
     name: "Audi",
     description: "Retail design system with public documentation.",
     websiteUrl: "https://styleguide.audi.com/document/2865?#/-/ui-introduction",
+    faviconUrl: "https://icons.duckduckgo.com/ip3/styleguide.audi.com.ico",
     collection: "retail",
     bestFor: "Retail and commerce",
     platform: "Web",
@@ -1680,6 +1695,7 @@ export const designSystems: DesignSystem[] = [
     name: "Skoda",
     description: "Retail design system with public documentation.",
     websiteUrl: "https://flow.skoda-brand.com/d/6aQMrmD6PhWL",
+    faviconUrl: "https://icons.duckduckgo.com/ip3/flow.skoda-brand.com.ico",
     collection: "retail",
     bestFor: "Retail and commerce",
     platform: "Web",
@@ -1737,17 +1753,6 @@ export const designSystems: DesignSystem[] = [
     maintainer: "Transport",
   },
   {
-    name: "Orbit",
-    description:
-      "Kiwi.com's design system for travel products, with React components and public documentation.",
-    websiteUrl: "https://orbit.kiwi/",
-    githubRepo: "kiwicom/orbit",
-    collection: "transport",
-    bestFor: "Travel products",
-    platform: "Web",
-    maintainer: "Kiwi.com",
-  },
-  {
     name: "West Midlands Network Design System",
     description:
       "Open-source transport design system built with HTML, Nunjucks, and Sass, including usage guidelines.",
@@ -1771,6 +1776,7 @@ export const designSystems: DesignSystem[] = [
     description:
       "Education design system built with Sass, including usage guidelines and accessibility guidance.",
     websiteUrl: "https://delphinus.au.dk/",
+    faviconUrl: "https://delphinus.au.dk/assets/delphinus-favicon.ico",
     collection: "education",
     bestFor: "Learning products",
     platform: "Sass",
@@ -1791,6 +1797,7 @@ export const designSystems: DesignSystem[] = [
     description:
       "Open-source education design system built with React and CSS-in-JS, including accessibility guidance.",
     websiteUrl: "https://instructure.design/",
+    faviconUrl: "https://icons.duckduckgo.com/ip3/instructure.design.ico",
     collection: "education",
     bestFor: "Learning products",
     platform: "React and CSS-in-JS",
@@ -1830,6 +1837,7 @@ export const designSystems: DesignSystem[] = [
     name: "Line",
     description: "Telecom design system with public documentation.",
     websiteUrl: "https://designsystem.line.me/",
+    faviconUrl: "https://designsystem.line.me/favicon.ico",
     collection: "telecom",
     bestFor: "Telecom products",
     platform: "Web",
@@ -1850,6 +1858,7 @@ export const designSystems: DesignSystem[] = [
     description:
       "Open-source telecom design system built with Web Components, React, and Angular, including usage guidelines and accessibility guidance.",
     websiteUrl: "https://telekom.github.io/scale/",
+    faviconUrl: "https://telekom.github.io/scale/favicon_180x180.png",
     collection: "telecom",
     bestFor: "Telecom products",
     platform: "Web Components, React, and Angular",
@@ -1859,6 +1868,8 @@ export const designSystems: DesignSystem[] = [
     name: "Amplitude",
     description: "Brand system with usage guidelines and content guidance.",
     websiteUrl: "https://brand.amplitude.com/",
+    faviconUrl:
+      "https://framerusercontent.com/images/vqninpQZmsdOKgDIl5C4C1e3Q.svg",
     collection: "brand",
     bestFor: "Brand expression",
     platform: "Web",
@@ -1869,6 +1880,7 @@ export const designSystems: DesignSystem[] = [
     description:
       "Brand system with usage guidelines, accessibility guidance, and content guidance.",
     websiteUrl: "https://www.brandhub.dhl/en/guide/basics/wording",
+    faviconUrl: "https://www.brandhub.dhl/favicon.ico",
     collection: "brand",
     bestFor: "Brand expression",
     platform: "Web",
@@ -1894,19 +1906,10 @@ export const designSystems: DesignSystem[] = [
     maintainer: "Brand",
   },
   {
-    name: "Docplanner Watson",
-    description:
-      "Docplanner's design system for healthcare products, with public foundations and component documentation.",
-    websiteUrl: "https://watson.docplanner.design/",
-    collection: "healthcare",
-    bestFor: "Healthcare products",
-    platform: "Web",
-    maintainer: "Docplanner",
-  },
-  {
     name: "General Electric",
     description: "Healthcare design system with public documentation.",
     websiteUrl: "https://eds.gehealthcare.com/",
+    faviconUrl: "https://eds.gehealthcare.com/assets/favicon.ico",
     collection: "healthcare",
     bestFor: "Healthcare products",
     platform: "Web",
@@ -1937,6 +1940,7 @@ export const designSystems: DesignSystem[] = [
     description:
       "Open-source industrial design system built with React, Angular, Vue, and Web Components, including usage guidelines.",
     websiteUrl: "https://ix.siemens.io/",
+    faviconUrl: "https://ix.siemens.io/img/favicon.png",
     collection: "industrial",
     bestFor: "Industrial software",
     platform: "React, Angular, Vue, and Web Components",

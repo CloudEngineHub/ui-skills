@@ -19,11 +19,14 @@ describe("design system directory data", () => {
   test("uses unique names and valid external URLs", () => {
     const names = new Set(designSystems.map((system) => system.name));
 
-    assert.equal(designSystems.length, 179);
+    assert.equal(designSystems.length, 176);
     assert.equal(names.size, designSystems.length);
 
     for (const system of designSystems) {
       assert.match(system.websiteUrl, /^https:\/\//);
+      if (system.faviconUrl) {
+        assert.match(system.faviconUrl, /^https:\/\//);
+      }
       if (system.githubRepo) {
         assert.match(system.githubRepo, /^[^/]+\/[^/]+$/);
       }

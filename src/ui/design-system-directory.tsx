@@ -109,7 +109,8 @@ function SystemRow({
   const githubOwner = system.githubRepo?.split("/")[0];
   const avatarUrl = githubOwner
     ? `https://github.com/${githubOwner}.png?size=80`
-    : `https://www.google.com/s2/favicons?domain=${host}&sz=64`;
+    : (system.faviconUrl ??
+      `https://www.google.com/s2/favicons?domain=${host}&sz=64`);
   const avatarHref = system.githubRepo
     ? `https://github.com/${system.githubRepo}`
     : system.websiteUrl;

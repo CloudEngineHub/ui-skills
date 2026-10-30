@@ -35,7 +35,7 @@ export const topicsBySlug = {
         label: "Design systems",
         href: "/design-systems",
         description:
-          "Browse public product, open-source, and public-sector design systems.",
+          "Browse public design systems from product companies, component libraries, and government services.",
       },
       {
         label: "Component libraries",
