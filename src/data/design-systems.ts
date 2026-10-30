@@ -494,15 +494,6 @@ export const designSystems: DesignSystem[] = [
     maintainer: "Enterprise",
   },
   {
-    name: "Morningstar",
-    description: "Enterprise design system with public documentation.",
-    websiteUrl: "https://design.morningstar.com/",
-    collection: "enterprise",
-    bestFor: "Large product teams",
-    platform: "Web",
-    maintainer: "Enterprise",
-  },
-  {
     name: "Morningstar Product System",
     description:
       "Enterprise design system built with Vue, including usage guidelines.",
@@ -531,15 +522,6 @@ export const designSystems: DesignSystem[] = [
     bestFor: "Large product teams",
     platform: "Vue",
     maintainer: "Open source",
-  },
-  {
-    name: "Palantir",
-    description: "Enterprise design system with public documentation.",
-    websiteUrl: "https://blueprintjs.com/docs/",
-    collection: "enterprise",
-    bestFor: "Large product teams",
-    platform: "Web",
-    maintainer: "Enterprise",
   },
   {
     name: "Pando (Pluralsight)",
@@ -708,6 +690,17 @@ export const designSystems: DesignSystem[] = [
     maintainer: "Open source",
   },
   {
+    name: "Uber Base",
+    description:
+      "Uber's design system for product interfaces, with tokens, components, and accessibility guidance.",
+    websiteUrl: "https://base.uber.com/",
+    githubRepo: "uber/baseweb",
+    collection: "enterprise",
+    bestFor: "Large product teams",
+    platform: "Web",
+    maintainer: "Uber",
+  },
+  {
     name: "uStyle",
     description:
       "Open-source enterprise design system built with Sass, including usage guidelines and content guidance.",
@@ -716,15 +709,6 @@ export const designSystems: DesignSystem[] = [
     bestFor: "Large product teams",
     platform: "Sass",
     maintainer: "Open source",
-  },
-  {
-    name: "Vercel",
-    description: "Enterprise design system with public documentation.",
-    websiteUrl: "https://vercel.com/design/introduction",
-    collection: "enterprise",
-    bestFor: "Large product teams",
-    platform: "Web",
-    maintainer: "Enterprise",
   },
   {
     name: "Vibe (monday.com)",
@@ -1059,15 +1043,6 @@ export const designSystems: DesignSystem[] = [
     maintainer: "Open source",
   },
   {
-    name: "Radix Primitives",
-    description: "Open-source component library built with React.",
-    websiteUrl: "https://radix-ui.com/",
-    collection: "component-libraries",
-    bestFor: "Shared component kits",
-    platform: "React",
-    maintainer: "Open source",
-  },
-  {
     name: "Radix UI",
     description:
       "Unstyled React primitives for menus, dialogs, popovers, tabs, and other difficult interface behaviors.",
@@ -1389,19 +1364,10 @@ export const designSystems: DesignSystem[] = [
     maintainer: "Open source",
   },
   {
-    name: "BBC",
-    description: "Media design system with public documentation.",
-    websiteUrl: "https://www.bbc.co.uk/gel",
-    collection: "media",
-    bestFor: "Publishing products",
-    platform: "Web",
-    maintainer: "Media",
-  },
-  {
     name: "BBC Global Experience Language",
     description:
-      "Media design system with usage guidelines and accessibility guidance.",
-    websiteUrl: "https://www.bbc.co.uk/gel/guidelines/category/design-patterns",
+      "The BBC design system for consistent publishing interfaces, with usage guidelines and accessibility guidance.",
+    websiteUrl: "https://www.bbc.co.uk/gel",
     collection: "media",
     bestFor: "Publishing products",
     platform: "Web",
@@ -1581,15 +1547,6 @@ export const designSystems: DesignSystem[] = [
     description: "Fintech design system with public documentation.",
     websiteUrl:
       "https://circuit.sumup.com/?path=/docs/introduction-welcome--docs",
-    collection: "fintech",
-    bestFor: "Financial products",
-    platform: "Web",
-    maintainer: "Fintech",
-  },
-  {
-    name: "Visa",
-    description: "Fintech design system with public documentation.",
-    websiteUrl: "https://design.visa.com/",
     collection: "fintech",
     bestFor: "Financial products",
     platform: "Web",
@@ -1780,6 +1737,17 @@ export const designSystems: DesignSystem[] = [
     maintainer: "Transport",
   },
   {
+    name: "Orbit",
+    description:
+      "Kiwi.com's design system for travel products, with React components and public documentation.",
+    websiteUrl: "https://orbit.kiwi/",
+    githubRepo: "kiwicom/orbit",
+    collection: "transport",
+    bestFor: "Travel products",
+    platform: "Web",
+    maintainer: "Kiwi.com",
+  },
+  {
     name: "West Midlands Network Design System",
     description:
       "Open-source transport design system built with HTML, Nunjucks, and Sass, including usage guidelines.",
@@ -1924,6 +1892,16 @@ export const designSystems: DesignSystem[] = [
     bestFor: "Brand expression",
     platform: "Web",
     maintainer: "Brand",
+  },
+  {
+    name: "Docplanner Watson",
+    description:
+      "Docplanner's design system for healthcare products, with public foundations and component documentation.",
+    websiteUrl: "https://watson.docplanner.design/",
+    collection: "healthcare",
+    bestFor: "Healthcare products",
+    platform: "Web",
+    maintainer: "Docplanner",
   },
   {
     name: "General Electric",

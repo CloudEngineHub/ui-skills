@@ -19,7 +19,7 @@ describe("design system directory data", () => {
   test("uses unique names and valid external URLs", () => {
     const names = new Set(designSystems.map((system) => system.name));
 
-    assert.equal(designSystems.length, 182);
+    assert.equal(designSystems.length, 179);
     assert.equal(names.size, designSystems.length);
 
     for (const system of designSystems) {
